@@ -120,7 +120,12 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
     def block_quote(self, node, entering):
         if entering:
             self.block_indent.append("> ")
+            self.block_quote_start = len(self.buf)
         else:
+            if self.block_quote_start == len(self.buf):
+                # If no content, still must emit something.
+                self.render_indent()
+                self.out("\n\n")
             self.block_indent.pop(-1)
     def list(self, node, entering):
         if entering:

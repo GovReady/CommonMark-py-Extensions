@@ -2642,6 +2642,8 @@ HTML:
 output:
 foo </url>
 
+> 
+
 
 TEST (Paragraphs)
 =================
@@ -3069,6 +3071,8 @@ HTML:
 </blockquote>
 
 output:
+> 
+
 
 TEST (Block quotes)
 ===================
@@ -3083,6 +3087,8 @@ HTML:
 </blockquote>
 
 output:
+> 
+
 
 TEST (Block quotes)
 ===================
