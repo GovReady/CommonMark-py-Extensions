@@ -1,0 +1,9634 @@
+TEST (Tabs)
+===========
+
+markdown:
+	foo	baz		bim
+
+HTML:
+<pre><code>foo	baz		bim
+</code></pre>
+
+output:
+---------------------
+foo	baz		bim
+---------------------
+
+
+TEST (Tabs)
+===========
+
+markdown:
+  	foo	baz		bim
+
+HTML:
+<pre><code>foo	baz		bim
+</code></pre>
+
+output:
+---------------------
+foo	baz		bim
+---------------------
+
+
+TEST (Tabs)
+===========
+
+markdown:
+    a	a
+    ὐ	a
+
+HTML:
+<pre><code>a	a
+ὐ	a
+</code></pre>
+
+output:
+------
+a	a
+ὐ	a
+------
+
+
+TEST (Tabs)
+===========
+
+markdown:
+  - foo
+
+	bar
+
+HTML:
+<ul>
+<li>
+<p>foo</p>
+<p>bar</p>
+</li>
+</ul>
+
+output:
+* foo
+
+  bar
+
+
+TEST (Tabs)
+===========
+
+markdown:
+- foo
+
+		bar
+
+HTML:
+<ul>
+<li>
+<p>foo</p>
+<pre><code>  bar
+</code></pre>
+</li>
+</ul>
+
+output:
+* foo
+
+  -----
+    bar
+  -----
+
+
+TEST (Tabs)
+===========
+
+markdown:
+>		foo
+
+HTML:
+<blockquote>
+<pre><code>  foo
+</code></pre>
+</blockquote>
+
+output:
+> -----
+>   foo
+> -----
+
+
+TEST (Tabs)
+===========
+
+markdown:
+-		foo
+
+HTML:
+<ul>
+<li>
+<pre><code>  foo
+</code></pre>
+</li>
+</ul>
+
+output:
+* -----
+    foo
+  -----
+
+
+TEST (Tabs)
+===========
+
+markdown:
+    foo
+	bar
+
+HTML:
+<pre><code>foo
+bar
+</code></pre>
+
+output:
+---
+foo
+bar
+---
+
+
+TEST (Tabs)
+===========
+
+markdown:
+ - foo
+   - bar
+	 - baz
+
+HTML:
+<ul>
+<li>foo
+<ul>
+<li>bar
+<ul>
+<li>baz</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+output:
+* foo
+
+  * bar
+
+    * baz
+
+
+TEST (Precedence)
+=================
+
+markdown:
+- `one
+- two`
+
+HTML:
+<ul>
+<li>`one</li>
+<li>two`</li>
+</ul>
+
+output:
+* `one
+
+* two`
+
+
+TEST (Thematic breaks)
+======================
+
+markdown:
+***
+---
+___
+
+HTML:
+<hr />
+<hr />
+<hr />
+
+output:
+------------------------------------------------------------
+
+------------------------------------------------------------
+
+------------------------------------------------------------
+
+
+TEST (Thematic breaks)
+======================
+
+markdown:
++++
+
+HTML:
+<p>+++</p>
+
+output:
++++
+
+
+TEST (Thematic breaks)
+======================
+
+markdown:
+===
+
+HTML:
+<p>===</p>
+
+output:
+===
+
+
+TEST (Thematic breaks)
+======================
+
+markdown:
+--
+**
+__
+
+HTML:
+<p>--
+**
+__</p>
+
+output:
+--
+**
+__
+
+
+TEST (Thematic breaks)
+======================
+
+markdown:
+ ***
+  ***
+   ***
+
+HTML:
+<hr />
+<hr />
+<hr />
+
+output:
+------------------------------------------------------------
+
+------------------------------------------------------------
+
+------------------------------------------------------------
+
+
+TEST (Thematic breaks)
+======================
+
+markdown:
+    ***
+
+HTML:
+<pre><code>***
+</code></pre>
+
+output:
+---
+***
+---
+
+
+TEST (Thematic breaks)
+======================
+
+markdown:
+Foo
+    ***
+
+HTML:
+<p>Foo
+***</p>
+
+output:
+Foo
+***
+
+
+TEST (Thematic breaks)
+======================
+
+markdown:
+_____________________________________
+
+HTML:
+<hr />
+
+output:
+------------------------------------------------------------
+
+
+TEST (Thematic breaks)
+======================
+
+markdown:
+ - - -
+
+HTML:
+<hr />
+
+output:
+------------------------------------------------------------
+
+
+TEST (Thematic breaks)
+======================
+
+markdown:
+ **  * ** * ** * **
+
+HTML:
+<hr />
+
+output:
+------------------------------------------------------------
+
+
+TEST (Thematic breaks)
+======================
+
+markdown:
+-     -      -      -
+
+HTML:
+<hr />
+
+output:
+------------------------------------------------------------
+
+
+TEST (Thematic breaks)
+======================
+
+markdown:
+- - - -    
+
+HTML:
+<hr />
+
+output:
+------------------------------------------------------------
+
+
+TEST (Thematic breaks)
+======================
+
+markdown:
+_ _ _ _ a
+
+a------
+
+---a---
+
+HTML:
+<p>_ _ _ _ a</p>
+<p>a------</p>
+<p>---a---</p>
+
+output:
+_ _ _ _ a
+
+a------
+
+---a---
+
+
+TEST (Thematic breaks)
+======================
+
+markdown:
+ *-*
+
+HTML:
+<p><em>-</em></p>
+
+output:
+*-*
+
+
+TEST (Thematic breaks)
+======================
+
+markdown:
+- foo
+***
+- bar
+
+HTML:
+<ul>
+<li>foo</li>
+</ul>
+<hr />
+<ul>
+<li>bar</li>
+</ul>
+
+output:
+* foo
+
+------------------------------------------------------------
+
+* bar
+
+
+TEST (Thematic breaks)
+======================
+
+markdown:
+Foo
+***
+bar
+
+HTML:
+<p>Foo</p>
+<hr />
+<p>bar</p>
+
+output:
+Foo
+
+------------------------------------------------------------
+
+bar
+
+
+TEST (Thematic breaks)
+======================
+
+markdown:
+Foo
+---
+bar
+
+HTML:
+<h2>Foo</h2>
+<p>bar</p>
+
+output:
+Foo
+===
+
+bar
+
+
+TEST (Thematic breaks)
+======================
+
+markdown:
+* Foo
+* * *
+* Bar
+
+HTML:
+<ul>
+<li>Foo</li>
+</ul>
+<hr />
+<ul>
+<li>Bar</li>
+</ul>
+
+output:
+* Foo
+
+------------------------------------------------------------
+
+* Bar
+
+
+TEST (Thematic breaks)
+======================
+
+markdown:
+- Foo
+- * * *
+
+HTML:
+<ul>
+<li>Foo</li>
+<li>
+<hr />
+</li>
+</ul>
+
+output:
+* Foo
+
+* ------------------------------------------------------------
+
+
+TEST (ATX headings)
+===================
+
+markdown:
+# foo
+## foo
+### foo
+#### foo
+##### foo
+###### foo
+
+HTML:
+<h1>foo</h1>
+<h2>foo</h2>
+<h3>foo</h3>
+<h4>foo</h4>
+<h5>foo</h5>
+<h6>foo</h6>
+
+output:
+foo
+###
+
+foo
+===
+
+foo
+---
+
+foo
+
+foo
+
+foo
+
+
+TEST (ATX headings)
+===================
+
+markdown:
+####### foo
+
+HTML:
+<p>####### foo</p>
+
+output:
+####### foo
+
+
+TEST (ATX headings)
+===================
+
+markdown:
+#5 bolt
+
+#hashtag
+
+HTML:
+<p>#5 bolt</p>
+<p>#hashtag</p>
+
+output:
+#5 bolt
+
+#hashtag
+
+
+TEST (ATX headings)
+===================
+
+markdown:
+#	foo
+
+HTML:
+<p>#	foo</p>
+
+output:
+#	foo
+
+
+TEST (ATX headings)
+===================
+
+markdown:
+\## foo
+
+HTML:
+<p>## foo</p>
+
+output:
+## foo
+
+
+TEST (ATX headings)
+===================
+
+markdown:
+# foo *bar* \*baz\*
+
+HTML:
+<h1>foo <em>bar</em> *baz*</h1>
+
+output:
+foo *bar* *baz*
+###############
+
+
+TEST (ATX headings)
+===================
+
+markdown:
+#                  foo                     
+
+HTML:
+<h1>foo</h1>
+
+output:
+foo
+###
+
+
+TEST (ATX headings)
+===================
+
+markdown:
+ ### foo
+  ## foo
+   # foo
+
+HTML:
+<h3>foo</h3>
+<h2>foo</h2>
+<h1>foo</h1>
+
+output:
+foo
+---
+
+foo
+===
+
+foo
+###
+
+
+TEST (ATX headings)
+===================
+
+markdown:
+    # foo
+
+HTML:
+<pre><code># foo
+</code></pre>
+
+output:
+-----
+# foo
+-----
+
+
+TEST (ATX headings)
+===================
+
+markdown:
+foo
+    # bar
+
+HTML:
+<p>foo
+# bar</p>
+
+output:
+foo
+# bar
+
+
+TEST (ATX headings)
+===================
+
+markdown:
+## foo ##
+  ###   bar    ###
+
+HTML:
+<h2>foo</h2>
+<h3>bar</h3>
+
+output:
+foo
+===
+
+bar
+---
+
+
+TEST (ATX headings)
+===================
+
+markdown:
+# foo ##################################
+##### foo ##
+
+HTML:
+<h1>foo</h1>
+<h5>foo</h5>
+
+output:
+foo
+###
+
+foo
+
+
+TEST (ATX headings)
+===================
+
+markdown:
+### foo ###     
+
+HTML:
+<h3>foo</h3>
+
+output:
+foo
+---
+
+
+TEST (ATX headings)
+===================
+
+markdown:
+### foo ### b
+
+HTML:
+<h3>foo ### b</h3>
+
+output:
+foo ### b
+---------
+
+
+TEST (ATX headings)
+===================
+
+markdown:
+# foo#
+
+HTML:
+<h1>foo#</h1>
+
+output:
+foo#
+####
+
+
+TEST (ATX headings)
+===================
+
+markdown:
+### foo \###
+## foo #\##
+# foo \#
+
+HTML:
+<h3>foo ###</h3>
+<h2>foo ###</h2>
+<h1>foo #</h1>
+
+output:
+foo ###
+-------
+
+foo ###
+=======
+
+foo #
+#####
+
+
+TEST (ATX headings)
+===================
+
+markdown:
+****
+## foo
+****
+
+HTML:
+<hr />
+<h2>foo</h2>
+<hr />
+
+output:
+------------------------------------------------------------
+
+foo
+===
+
+------------------------------------------------------------
+
+
+TEST (ATX headings)
+===================
+
+markdown:
+Foo bar
+# baz
+Bar foo
+
+HTML:
+<p>Foo bar</p>
+<h1>baz</h1>
+<p>Bar foo</p>
+
+output:
+Foo bar
+
+baz
+###
+
+Bar foo
+
+
+TEST (ATX headings)
+===================
+
+markdown:
+## 
+#
+### ###
+
+HTML:
+<h2></h2>
+<h1></h1>
+<h3></h3>
+
+output:
+
+
+
+
+
+
+
+
+
+
+TEST (Setext headings)
+======================
+
+markdown:
+Foo *bar*
+=========
+
+Foo *bar*
+---------
+
+HTML:
+<h1>Foo <em>bar</em></h1>
+<h2>Foo <em>bar</em></h2>
+
+output:
+Foo *bar*
+#########
+
+Foo *bar*
+=========
+
+
+TEST (Setext headings)
+======================
+
+markdown:
+Foo *bar
+baz*
+====
+
+HTML:
+<h1>Foo <em>bar
+baz</em></h1>
+
+output:
+Foo *bar
+baz*
+#############
+
+
+TEST (Setext headings)
+======================
+
+markdown:
+Foo
+-------------------------
+
+Foo
+=
+
+HTML:
+<h2>Foo</h2>
+<h1>Foo</h1>
+
+output:
+Foo
+===
+
+Foo
+###
+
+
+TEST (Setext headings)
+======================
+
+markdown:
+   Foo
+---
+
+  Foo
+-----
+
+  Foo
+  ===
+
+HTML:
+<h2>Foo</h2>
+<h2>Foo</h2>
+<h1>Foo</h1>
+
+output:
+Foo
+===
+
+Foo
+===
+
+Foo
+###
+
+
+TEST (Setext headings)
+======================
+
+markdown:
+    Foo
+    ---
+
+    Foo
+---
+
+HTML:
+<pre><code>Foo
+---
+
+Foo
+</code></pre>
+<hr />
+
+output:
+---
+Foo
+---
+
+Foo
+---
+
+------------------------------------------------------------
+
+
+TEST (Setext headings)
+======================
+
+markdown:
+Foo
+   ----      
+
+HTML:
+<h2>Foo</h2>
+
+output:
+Foo
+===
+
+
+TEST (Setext headings)
+======================
+
+markdown:
+Foo
+    ---
+
+HTML:
+<p>Foo
+---</p>
+
+output:
+Foo
+---
+
+
+TEST (Setext headings)
+======================
+
+markdown:
+Foo
+= =
+
+Foo
+--- -
+
+HTML:
+<p>Foo
+= =</p>
+<p>Foo</p>
+<hr />
+
+output:
+Foo
+= =
+
+Foo
+
+------------------------------------------------------------
+
+
+TEST (Setext headings)
+======================
+
+markdown:
+Foo  
+-----
+
+HTML:
+<h2>Foo</h2>
+
+output:
+Foo
+===
+
+
+TEST (Setext headings)
+======================
+
+markdown:
+Foo\
+----
+
+HTML:
+<h2>Foo\</h2>
+
+output:
+Foo\
+====
+
+
+TEST (Setext headings)
+======================
+
+markdown:
+`Foo
+----
+`
+
+<a title="a lot
+---
+of dashes"/>
+
+HTML:
+<h2>`Foo</h2>
+<p>`</p>
+<h2>&lt;a title=&quot;a lot</h2>
+<p>of dashes&quot;/&gt;</p>
+
+output:
+`Foo
+====
+
+`
+
+<a title="a lot
+===============
+
+of dashes"/>
+
+
+TEST (Setext headings)
+======================
+
+markdown:
+> Foo
+---
+
+HTML:
+<blockquote>
+<p>Foo</p>
+</blockquote>
+<hr />
+
+output:
+> Foo
+
+------------------------------------------------------------
+
+
+TEST (Setext headings)
+======================
+
+markdown:
+> foo
+bar
+===
+
+HTML:
+<blockquote>
+<p>foo
+bar
+===</p>
+</blockquote>
+
+output:
+> foo
+> bar
+> ===
+
+
+TEST (Setext headings)
+======================
+
+markdown:
+- Foo
+---
+
+HTML:
+<ul>
+<li>Foo</li>
+</ul>
+<hr />
+
+output:
+* Foo
+
+------------------------------------------------------------
+
+
+TEST (Setext headings)
+======================
+
+markdown:
+Foo
+Bar
+---
+
+HTML:
+<h2>Foo
+Bar</h2>
+
+output:
+Foo
+Bar
+=======
+
+
+TEST (Setext headings)
+======================
+
+markdown:
+---
+Foo
+---
+Bar
+---
+Baz
+
+HTML:
+<hr />
+<h2>Foo</h2>
+<h2>Bar</h2>
+<p>Baz</p>
+
+output:
+------------------------------------------------------------
+
+Foo
+===
+
+Bar
+===
+
+Baz
+
+
+TEST (Setext headings)
+======================
+
+markdown:
+
+====
+
+HTML:
+<p>====</p>
+
+output:
+====
+
+
+TEST (Setext headings)
+======================
+
+markdown:
+---
+---
+
+HTML:
+<hr />
+<hr />
+
+output:
+------------------------------------------------------------
+
+------------------------------------------------------------
+
+
+TEST (Setext headings)
+======================
+
+markdown:
+- foo
+-----
+
+HTML:
+<ul>
+<li>foo</li>
+</ul>
+<hr />
+
+output:
+* foo
+
+------------------------------------------------------------
+
+
+TEST (Setext headings)
+======================
+
+markdown:
+    foo
+---
+
+HTML:
+<pre><code>foo
+</code></pre>
+<hr />
+
+output:
+---
+foo
+---
+
+------------------------------------------------------------
+
+
+TEST (Setext headings)
+======================
+
+markdown:
+> foo
+-----
+
+HTML:
+<blockquote>
+<p>foo</p>
+</blockquote>
+<hr />
+
+output:
+> foo
+
+------------------------------------------------------------
+
+
+TEST (Setext headings)
+======================
+
+markdown:
+\> foo
+------
+
+HTML:
+<h2>&gt; foo</h2>
+
+output:
+> foo
+=====
+
+
+TEST (Setext headings)
+======================
+
+markdown:
+Foo
+
+bar
+---
+baz
+
+HTML:
+<p>Foo</p>
+<h2>bar</h2>
+<p>baz</p>
+
+output:
+Foo
+
+bar
+===
+
+baz
+
+
+TEST (Setext headings)
+======================
+
+markdown:
+Foo
+bar
+
+---
+
+baz
+
+HTML:
+<p>Foo
+bar</p>
+<hr />
+<p>baz</p>
+
+output:
+Foo
+bar
+
+------------------------------------------------------------
+
+baz
+
+
+TEST (Setext headings)
+======================
+
+markdown:
+Foo
+bar
+* * *
+baz
+
+HTML:
+<p>Foo
+bar</p>
+<hr />
+<p>baz</p>
+
+output:
+Foo
+bar
+
+------------------------------------------------------------
+
+baz
+
+
+TEST (Setext headings)
+======================
+
+markdown:
+Foo
+bar
+\---
+baz
+
+HTML:
+<p>Foo
+bar
+---
+baz</p>
+
+output:
+Foo
+bar
+---
+baz
+
+
+TEST (Indented code blocks)
+===========================
+
+markdown:
+    a simple
+      indented code block
+
+HTML:
+<pre><code>a simple
+  indented code block
+</code></pre>
+
+output:
+---------------------
+a simple
+  indented code block
+---------------------
+
+
+TEST (Indented code blocks)
+===========================
+
+markdown:
+  - foo
+
+    bar
+
+HTML:
+<ul>
+<li>
+<p>foo</p>
+<p>bar</p>
+</li>
+</ul>
+
+output:
+* foo
+
+  bar
+
+
+TEST (Indented code blocks)
+===========================
+
+markdown:
+1.  foo
+
+    - bar
+
+HTML:
+<ol>
+<li>
+<p>foo</p>
+<ul>
+<li>bar</li>
+</ul>
+</li>
+</ol>
+
+output:
+* foo
+
+  * bar
+
+
+TEST (Indented code blocks)
+===========================
+
+markdown:
+    <a/>
+    *hi*
+
+    - one
+
+HTML:
+<pre><code>&lt;a/&gt;
+*hi*
+
+- one
+</code></pre>
+
+output:
+-----
+<a/>
+*hi*
+
+- one
+-----
+
+
+TEST (Indented code blocks)
+===========================
+
+markdown:
+    chunk1
+
+    chunk2
+  
+ 
+ 
+    chunk3
+
+HTML:
+<pre><code>chunk1
+
+chunk2
+
+
+
+chunk3
+</code></pre>
+
+output:
+------
+chunk1
+
+chunk2
+
+
+
+chunk3
+------
+
+
+TEST (Indented code blocks)
+===========================
+
+markdown:
+    chunk1
+      
+      chunk2
+
+HTML:
+<pre><code>chunk1
+  
+  chunk2
+</code></pre>
+
+output:
+--------
+chunk1
+  
+  chunk2
+--------
+
+
+TEST (Indented code blocks)
+===========================
+
+markdown:
+Foo
+    bar
+
+
+HTML:
+<p>Foo
+bar</p>
+
+output:
+Foo
+bar
+
+
+TEST (Indented code blocks)
+===========================
+
+markdown:
+    foo
+bar
+
+HTML:
+<pre><code>foo
+</code></pre>
+<p>bar</p>
+
+output:
+---
+foo
+---
+
+bar
+
+
+TEST (Indented code blocks)
+===========================
+
+markdown:
+# Heading
+    foo
+Heading
+------
+    foo
+----
+
+HTML:
+<h1>Heading</h1>
+<pre><code>foo
+</code></pre>
+<h2>Heading</h2>
+<pre><code>foo
+</code></pre>
+<hr />
+
+output:
+Heading
+#######
+
+---
+foo
+---
+
+Heading
+=======
+
+---
+foo
+---
+
+------------------------------------------------------------
+
+
+TEST (Indented code blocks)
+===========================
+
+markdown:
+        foo
+    bar
+
+HTML:
+<pre><code>    foo
+bar
+</code></pre>
+
+output:
+-------
+    foo
+bar
+-------
+
+
+TEST (Indented code blocks)
+===========================
+
+markdown:
+
+    
+    foo
+    
+
+
+HTML:
+<pre><code>foo
+</code></pre>
+
+output:
+---
+foo
+---
+
+
+TEST (Indented code blocks)
+===========================
+
+markdown:
+    foo  
+
+HTML:
+<pre><code>foo  
+</code></pre>
+
+output:
+-----
+foo  
+-----
+
+
+TEST (Fenced code blocks)
+=========================
+
+markdown:
+```
+<
+ >
+```
+
+HTML:
+<pre><code>&lt;
+ &gt;
+</code></pre>
+
+output:
+--
+<
+ >
+--
+
+
+TEST (Fenced code blocks)
+=========================
+
+markdown:
+~~~
+<
+ >
+~~~
+
+HTML:
+<pre><code>&lt;
+ &gt;
+</code></pre>
+
+output:
+--
+<
+ >
+--
+
+
+TEST (Fenced code blocks)
+=========================
+
+markdown:
+```
+aaa
+~~~
+```
+
+HTML:
+<pre><code>aaa
+~~~
+</code></pre>
+
+output:
+---
+aaa
+~~~
+---
+
+
+TEST (Fenced code blocks)
+=========================
+
+markdown:
+~~~
+aaa
+```
+~~~
+
+HTML:
+<pre><code>aaa
+```
+</code></pre>
+
+output:
+---
+aaa
+```
+---
+
+
+TEST (Fenced code blocks)
+=========================
+
+markdown:
+````
+aaa
+```
+``````
+
+HTML:
+<pre><code>aaa
+```
+</code></pre>
+
+output:
+---
+aaa
+```
+---
+
+
+TEST (Fenced code blocks)
+=========================
+
+markdown:
+~~~~
+aaa
+~~~
+~~~~
+
+HTML:
+<pre><code>aaa
+~~~
+</code></pre>
+
+output:
+---
+aaa
+~~~
+---
+
+
+TEST (Fenced code blocks)
+=========================
+
+markdown:
+```
+
+HTML:
+<pre><code></code></pre>
+
+output:
+
+
+
+
+TEST (Fenced code blocks)
+=========================
+
+markdown:
+`````
+
+```
+aaa
+
+HTML:
+<pre><code>
+```
+aaa
+</code></pre>
+
+output:
+---
+
+```
+aaa
+---
+
+
+TEST (Fenced code blocks)
+=========================
+
+markdown:
+> ```
+> aaa
+
+bbb
+
+HTML:
+<blockquote>
+<pre><code>aaa
+</code></pre>
+</blockquote>
+<p>bbb</p>
+
+output:
+> ---
+> aaa
+> ---
+
+bbb
+
+
+TEST (Fenced code blocks)
+=========================
+
+markdown:
+```
+
+  
+```
+
+HTML:
+<pre><code>
+  
+</code></pre>
+
+output:
+--
+
+  
+--
+
+
+TEST (Fenced code blocks)
+=========================
+
+markdown:
+```
+```
+
+HTML:
+<pre><code></code></pre>
+
+output:
+
+
+
+
+TEST (Fenced code blocks)
+=========================
+
+markdown:
+ ```
+ aaa
+aaa
+```
+
+HTML:
+<pre><code>aaa
+aaa
+</code></pre>
+
+output:
+---
+aaa
+aaa
+---
+
+
+TEST (Fenced code blocks)
+=========================
+
+markdown:
+  ```
+aaa
+  aaa
+aaa
+  ```
+
+HTML:
+<pre><code>aaa
+aaa
+aaa
+</code></pre>
+
+output:
+---
+aaa
+aaa
+aaa
+---
+
+
+TEST (Fenced code blocks)
+=========================
+
+markdown:
+   ```
+   aaa
+    aaa
+  aaa
+   ```
+
+HTML:
+<pre><code>aaa
+ aaa
+aaa
+</code></pre>
+
+output:
+----
+aaa
+ aaa
+aaa
+----
+
+
+TEST (Fenced code blocks)
+=========================
+
+markdown:
+    ```
+    aaa
+    ```
+
+HTML:
+<pre><code>```
+aaa
+```
+</code></pre>
+
+output:
+---
+```
+aaa
+```
+---
+
+
+TEST (Fenced code blocks)
+=========================
+
+markdown:
+```
+aaa
+  ```
+
+HTML:
+<pre><code>aaa
+</code></pre>
+
+output:
+---
+aaa
+---
+
+
+TEST (Fenced code blocks)
+=========================
+
+markdown:
+   ```
+aaa
+  ```
+
+HTML:
+<pre><code>aaa
+</code></pre>
+
+output:
+---
+aaa
+---
+
+
+TEST (Fenced code blocks)
+=========================
+
+markdown:
+```
+aaa
+    ```
+
+HTML:
+<pre><code>aaa
+    ```
+</code></pre>
+
+output:
+-------
+aaa
+    ```
+-------
+
+
+TEST (Fenced code blocks)
+=========================
+
+markdown:
+``` ```
+aaa
+
+HTML:
+<p><code></code>
+aaa</p>
+
+output:
+``````
+aaa
+
+
+TEST (Fenced code blocks)
+=========================
+
+markdown:
+~~~~~~
+aaa
+~~~ ~~
+
+HTML:
+<pre><code>aaa
+~~~ ~~
+</code></pre>
+
+output:
+------
+aaa
+~~~ ~~
+------
+
+
+TEST (Fenced code blocks)
+=========================
+
+markdown:
+foo
+```
+bar
+```
+baz
+
+HTML:
+<p>foo</p>
+<pre><code>bar
+</code></pre>
+<p>baz</p>
+
+output:
+foo
+
+---
+bar
+---
+
+baz
+
+
+TEST (Fenced code blocks)
+=========================
+
+markdown:
+foo
+---
+~~~
+bar
+~~~
+# baz
+
+HTML:
+<h2>foo</h2>
+<pre><code>bar
+</code></pre>
+<h1>baz</h1>
+
+output:
+foo
+===
+
+---
+bar
+---
+
+baz
+###
+
+
+TEST (Fenced code blocks)
+=========================
+
+markdown:
+```ruby
+def foo(x)
+  return 3
+end
+```
+
+HTML:
+<pre><code class="language-ruby">def foo(x)
+  return 3
+end
+</code></pre>
+
+output:
+----------
+def foo(x)
+  return 3
+end
+----------
+
+
+TEST (Fenced code blocks)
+=========================
+
+markdown:
+~~~~    ruby startline=3 $%@#$
+def foo(x)
+  return 3
+end
+~~~~~~~
+
+HTML:
+<pre><code class="language-ruby">def foo(x)
+  return 3
+end
+</code></pre>
+
+output:
+----------
+def foo(x)
+  return 3
+end
+----------
+
+
+TEST (Fenced code blocks)
+=========================
+
+markdown:
+````;
+````
+
+HTML:
+<pre><code class="language-;"></code></pre>
+
+output:
+
+
+
+
+TEST (Fenced code blocks)
+=========================
+
+markdown:
+``` aa ```
+foo
+
+HTML:
+<p><code>aa</code>
+foo</p>
+
+output:
+```aa```
+foo
+
+
+TEST (Fenced code blocks)
+=========================
+
+markdown:
+```
+``` aaa
+```
+
+HTML:
+<pre><code>``` aaa
+</code></pre>
+
+output:
+-------
+``` aaa
+-------
+
+
+TEST (Link reference definitions)
+=================================
+
+markdown:
+[foo]: /url "title"
+
+[foo]
+
+HTML:
+<p><a href="/url" title="title">foo</a></p>
+
+output:
+foo </url>
+
+
+TEST (Link reference definitions)
+=================================
+
+markdown:
+   [foo]: 
+      /url  
+           'the title'  
+
+[foo]
+
+HTML:
+<p><a href="/url" title="the title">foo</a></p>
+
+output:
+foo </url>
+
+
+TEST (Link reference definitions)
+=================================
+
+markdown:
+[Foo*bar\]]:my_(url) 'title (with parens)'
+
+[Foo*bar\]]
+
+HTML:
+<p><a href="my_(url)" title="title (with parens)">Foo*bar]</a></p>
+
+output:
+Foo*bar] <my_(url)>
+
+
+TEST (Link reference definitions)
+=================================
+
+markdown:
+[Foo bar]:
+<my%20url>
+'title'
+
+[Foo bar]
+
+HTML:
+<p><a href="my%20url" title="title">Foo bar</a></p>
+
+output:
+Foo bar <my%20url>
+
+
+TEST (Link reference definitions)
+=================================
+
+markdown:
+[foo]: /url '
+title
+line1
+line2
+'
+
+[foo]
+
+HTML:
+<p><a href="/url" title="
+title
+line1
+line2
+">foo</a></p>
+
+output:
+foo </url>
+
+
+TEST (Link reference definitions)
+=================================
+
+markdown:
+[foo]: /url 'title
+
+with blank line'
+
+[foo]
+
+HTML:
+<p>[foo]: /url 'title</p>
+<p>with blank line'</p>
+<p>[foo]</p>
+
+output:
+[foo]: /url 'title
+
+with blank line'
+
+[foo]
+
+
+TEST (Link reference definitions)
+=================================
+
+markdown:
+[foo]:
+/url
+
+[foo]
+
+HTML:
+<p><a href="/url">foo</a></p>
+
+output:
+foo </url>
+
+
+TEST (Link reference definitions)
+=================================
+
+markdown:
+[foo]:
+
+[foo]
+
+HTML:
+<p>[foo]:</p>
+<p>[foo]</p>
+
+output:
+[foo]:
+
+[foo]
+
+
+TEST (Link reference definitions)
+=================================
+
+markdown:
+[foo]: /url\bar\*baz "foo\"bar\baz"
+
+[foo]
+
+HTML:
+<p><a href="/url%5Cbar*baz" title="foo&quot;bar\baz">foo</a></p>
+
+output:
+foo </url%5Cbar*baz>
+
+
+TEST (Link reference definitions)
+=================================
+
+markdown:
+[foo]
+
+[foo]: url
+
+HTML:
+<p><a href="url">foo</a></p>
+
+output:
+foo <url>
+
+
+TEST (Link reference definitions)
+=================================
+
+markdown:
+[foo]
+
+[foo]: first
+[foo]: second
+
+HTML:
+<p><a href="first">foo</a></p>
+
+output:
+foo <first>
+
+
+TEST (Link reference definitions)
+=================================
+
+markdown:
+[FOO]: /url
+
+[Foo]
+
+HTML:
+<p><a href="/url">Foo</a></p>
+
+output:
+Foo </url>
+
+
+TEST (Link reference definitions)
+=================================
+
+markdown:
+[ΑΓΩ]: /φου
+
+[αγω]
+
+HTML:
+<p><a href="/%CF%86%CE%BF%CF%85">αγω</a></p>
+
+output:
+αγω </%CF%86%CE%BF%CF%85>
+
+
+TEST (Link reference definitions)
+=================================
+
+markdown:
+[foo]: /url
+
+HTML:
+
+output:
+
+TEST (Link reference definitions)
+=================================
+
+markdown:
+[
+foo
+]: /url
+bar
+
+HTML:
+<p>bar</p>
+
+output:
+bar
+
+
+TEST (Link reference definitions)
+=================================
+
+markdown:
+[foo]: /url "title" ok
+
+HTML:
+<p>[foo]: /url &quot;title&quot; ok</p>
+
+output:
+[foo]: /url "title" ok
+
+
+TEST (Link reference definitions)
+=================================
+
+markdown:
+[foo]: /url
+"title" ok
+
+HTML:
+<p>&quot;title&quot; ok</p>
+
+output:
+"title" ok
+
+
+TEST (Link reference definitions)
+=================================
+
+markdown:
+    [foo]: /url "title"
+
+[foo]
+
+HTML:
+<pre><code>[foo]: /url &quot;title&quot;
+</code></pre>
+<p>[foo]</p>
+
+output:
+-------------------
+[foo]: /url "title"
+-------------------
+
+[foo]
+
+
+TEST (Link reference definitions)
+=================================
+
+markdown:
+```
+[foo]: /url
+```
+
+[foo]
+
+HTML:
+<pre><code>[foo]: /url
+</code></pre>
+<p>[foo]</p>
+
+output:
+-----------
+[foo]: /url
+-----------
+
+[foo]
+
+
+TEST (Link reference definitions)
+=================================
+
+markdown:
+Foo
+[bar]: /baz
+
+[bar]
+
+HTML:
+<p>Foo
+[bar]: /baz</p>
+<p>[bar]</p>
+
+output:
+Foo
+[bar]: /baz
+
+[bar]
+
+
+TEST (Link reference definitions)
+=================================
+
+markdown:
+# [Foo]
+[foo]: /url
+> bar
+
+HTML:
+<h1><a href="/url">Foo</a></h1>
+<blockquote>
+<p>bar</p>
+</blockquote>
+
+output:
+Foo </url>
+##########
+
+> bar
+
+
+TEST (Link reference definitions)
+=================================
+
+markdown:
+[foo]: /foo-url "foo"
+[bar]: /bar-url
+  "bar"
+[baz]: /baz-url
+
+[foo],
+[bar],
+[baz]
+
+HTML:
+<p><a href="/foo-url" title="foo">foo</a>,
+<a href="/bar-url" title="bar">bar</a>,
+<a href="/baz-url">baz</a></p>
+
+output:
+foo </foo-url>,
+bar </bar-url>,
+baz </baz-url>
+
+
+TEST (Link reference definitions)
+=================================
+
+markdown:
+[foo]
+
+> [foo]: /url
+
+HTML:
+<p><a href="/url">foo</a></p>
+<blockquote>
+</blockquote>
+
+output:
+foo </url>
+
+
+TEST (Paragraphs)
+=================
+
+markdown:
+aaa
+
+bbb
+
+HTML:
+<p>aaa</p>
+<p>bbb</p>
+
+output:
+aaa
+
+bbb
+
+
+TEST (Paragraphs)
+=================
+
+markdown:
+aaa
+bbb
+
+ccc
+ddd
+
+HTML:
+<p>aaa
+bbb</p>
+<p>ccc
+ddd</p>
+
+output:
+aaa
+bbb
+
+ccc
+ddd
+
+
+TEST (Paragraphs)
+=================
+
+markdown:
+aaa
+
+
+bbb
+
+HTML:
+<p>aaa</p>
+<p>bbb</p>
+
+output:
+aaa
+
+bbb
+
+
+TEST (Paragraphs)
+=================
+
+markdown:
+  aaa
+ bbb
+
+HTML:
+<p>aaa
+bbb</p>
+
+output:
+aaa
+bbb
+
+
+TEST (Paragraphs)
+=================
+
+markdown:
+aaa
+             bbb
+                                       ccc
+
+HTML:
+<p>aaa
+bbb
+ccc</p>
+
+output:
+aaa
+bbb
+ccc
+
+
+TEST (Paragraphs)
+=================
+
+markdown:
+   aaa
+bbb
+
+HTML:
+<p>aaa
+bbb</p>
+
+output:
+aaa
+bbb
+
+
+TEST (Paragraphs)
+=================
+
+markdown:
+    aaa
+bbb
+
+HTML:
+<pre><code>aaa
+</code></pre>
+<p>bbb</p>
+
+output:
+---
+aaa
+---
+
+bbb
+
+
+TEST (Paragraphs)
+=================
+
+markdown:
+aaa     
+bbb     
+
+HTML:
+<p>aaa<br />
+bbb</p>
+
+output:
+aaa
+bbb
+
+
+TEST (Blank lines)
+==================
+
+markdown:
+  
+
+aaa
+  
+
+# aaa
+
+  
+
+HTML:
+<p>aaa</p>
+<h1>aaa</h1>
+
+output:
+aaa
+
+aaa
+###
+
+
+TEST (Block quotes)
+===================
+
+markdown:
+> # Foo
+> bar
+> baz
+
+HTML:
+<blockquote>
+<h1>Foo</h1>
+<p>bar
+baz</p>
+</blockquote>
+
+output:
+> Foo
+> ###
+> 
+> bar
+> baz
+
+
+TEST (Block quotes)
+===================
+
+markdown:
+># Foo
+>bar
+> baz
+
+HTML:
+<blockquote>
+<h1>Foo</h1>
+<p>bar
+baz</p>
+</blockquote>
+
+output:
+> Foo
+> ###
+> 
+> bar
+> baz
+
+
+TEST (Block quotes)
+===================
+
+markdown:
+   > # Foo
+   > bar
+ > baz
+
+HTML:
+<blockquote>
+<h1>Foo</h1>
+<p>bar
+baz</p>
+</blockquote>
+
+output:
+> Foo
+> ###
+> 
+> bar
+> baz
+
+
+TEST (Block quotes)
+===================
+
+markdown:
+    > # Foo
+    > bar
+    > baz
+
+HTML:
+<pre><code>&gt; # Foo
+&gt; bar
+&gt; baz
+</code></pre>
+
+output:
+-------
+> # Foo
+> bar
+> baz
+-------
+
+
+TEST (Block quotes)
+===================
+
+markdown:
+> # Foo
+> bar
+baz
+
+HTML:
+<blockquote>
+<h1>Foo</h1>
+<p>bar
+baz</p>
+</blockquote>
+
+output:
+> Foo
+> ###
+> 
+> bar
+> baz
+
+
+TEST (Block quotes)
+===================
+
+markdown:
+> bar
+baz
+> foo
+
+HTML:
+<blockquote>
+<p>bar
+baz
+foo</p>
+</blockquote>
+
+output:
+> bar
+> baz
+> foo
+
+
+TEST (Block quotes)
+===================
+
+markdown:
+> foo
+---
+
+HTML:
+<blockquote>
+<p>foo</p>
+</blockquote>
+<hr />
+
+output:
+> foo
+
+------------------------------------------------------------
+
+
+TEST (Block quotes)
+===================
+
+markdown:
+> - foo
+- bar
+
+HTML:
+<blockquote>
+<ul>
+<li>foo</li>
+</ul>
+</blockquote>
+<ul>
+<li>bar</li>
+</ul>
+
+output:
+> * foo
+
+* bar
+
+
+TEST (Block quotes)
+===================
+
+markdown:
+>     foo
+    bar
+
+HTML:
+<blockquote>
+<pre><code>foo
+</code></pre>
+</blockquote>
+<pre><code>bar
+</code></pre>
+
+output:
+> ---
+> foo
+> ---
+
+---
+bar
+---
+
+
+TEST (Block quotes)
+===================
+
+markdown:
+> ```
+foo
+```
+
+HTML:
+<blockquote>
+<pre><code></code></pre>
+</blockquote>
+<p>foo</p>
+<pre><code></code></pre>
+
+output:
+> 
+> 
+
+foo
+
+
+
+
+
+TEST (Block quotes)
+===================
+
+markdown:
+> foo
+    - bar
+
+HTML:
+<blockquote>
+<p>foo
+- bar</p>
+</blockquote>
+
+output:
+> foo
+> - bar
+
+
+TEST (Block quotes)
+===================
+
+markdown:
+>
+
+HTML:
+<blockquote>
+</blockquote>
+
+output:
+
+TEST (Block quotes)
+===================
+
+markdown:
+>
+>  
+> 
+
+HTML:
+<blockquote>
+</blockquote>
+
+output:
+
+TEST (Block quotes)
+===================
+
+markdown:
+>
+> foo
+>  
+
+HTML:
+<blockquote>
+<p>foo</p>
+</blockquote>
+
+output:
+> foo
+
+
+TEST (Block quotes)
+===================
+
+markdown:
+> foo
+
+> bar
+
+HTML:
+<blockquote>
+<p>foo</p>
+</blockquote>
+<blockquote>
+<p>bar</p>
+</blockquote>
+
+output:
+> foo
+
+> bar
+
+
+TEST (Block quotes)
+===================
+
+markdown:
+> foo
+> bar
+
+HTML:
+<blockquote>
+<p>foo
+bar</p>
+</blockquote>
+
+output:
+> foo
+> bar
+
+
+TEST (Block quotes)
+===================
+
+markdown:
+> foo
+>
+> bar
+
+HTML:
+<blockquote>
+<p>foo</p>
+<p>bar</p>
+</blockquote>
+
+output:
+> foo
+
+> bar
+
+
+TEST (Block quotes)
+===================
+
+markdown:
+foo
+> bar
+
+HTML:
+<p>foo</p>
+<blockquote>
+<p>bar</p>
+</blockquote>
+
+output:
+foo
+
+> bar
+
+
+TEST (Block quotes)
+===================
+
+markdown:
+> aaa
+***
+> bbb
+
+HTML:
+<blockquote>
+<p>aaa</p>
+</blockquote>
+<hr />
+<blockquote>
+<p>bbb</p>
+</blockquote>
+
+output:
+> aaa
+
+------------------------------------------------------------
+
+> bbb
+
+
+TEST (Block quotes)
+===================
+
+markdown:
+> bar
+baz
+
+HTML:
+<blockquote>
+<p>bar
+baz</p>
+</blockquote>
+
+output:
+> bar
+> baz
+
+
+TEST (Block quotes)
+===================
+
+markdown:
+> bar
+
+baz
+
+HTML:
+<blockquote>
+<p>bar</p>
+</blockquote>
+<p>baz</p>
+
+output:
+> bar
+
+baz
+
+
+TEST (Block quotes)
+===================
+
+markdown:
+> bar
+>
+baz
+
+HTML:
+<blockquote>
+<p>bar</p>
+</blockquote>
+<p>baz</p>
+
+output:
+> bar
+
+baz
+
+
+TEST (Block quotes)
+===================
+
+markdown:
+> > > foo
+bar
+
+HTML:
+<blockquote>
+<blockquote>
+<blockquote>
+<p>foo
+bar</p>
+</blockquote>
+</blockquote>
+</blockquote>
+
+output:
+> > > foo
+> > > bar
+
+
+TEST (Block quotes)
+===================
+
+markdown:
+>>> foo
+> bar
+>>baz
+
+HTML:
+<blockquote>
+<blockquote>
+<blockquote>
+<p>foo
+bar
+baz</p>
+</blockquote>
+</blockquote>
+</blockquote>
+
+output:
+> > > foo
+> > > bar
+> > > baz
+
+
+TEST (Block quotes)
+===================
+
+markdown:
+>     code
+
+>    not code
+
+HTML:
+<blockquote>
+<pre><code>code
+</code></pre>
+</blockquote>
+<blockquote>
+<p>not code</p>
+</blockquote>
+
+output:
+> ----
+> code
+> ----
+
+> not code
+
+
+TEST (List items)
+=================
+
+markdown:
+A paragraph
+with two lines.
+
+    indented code
+
+> A block quote.
+
+HTML:
+<p>A paragraph
+with two lines.</p>
+<pre><code>indented code
+</code></pre>
+<blockquote>
+<p>A block quote.</p>
+</blockquote>
+
+output:
+A paragraph
+with two lines.
+
+-------------
+indented code
+-------------
+
+> A block quote.
+
+
+TEST (List items)
+=================
+
+markdown:
+1.  A paragraph
+    with two lines.
+
+        indented code
+
+    > A block quote.
+
+HTML:
+<ol>
+<li>
+<p>A paragraph
+with two lines.</p>
+<pre><code>indented code
+</code></pre>
+<blockquote>
+<p>A block quote.</p>
+</blockquote>
+</li>
+</ol>
+
+output:
+* A paragraph
+  with two lines.
+
+  -------------
+  indented code
+  -------------
+
+  > A block quote.
+
+
+TEST (List items)
+=================
+
+markdown:
+- one
+
+ two
+
+HTML:
+<ul>
+<li>one</li>
+</ul>
+<p>two</p>
+
+output:
+* one
+
+two
+
+
+TEST (List items)
+=================
+
+markdown:
+- one
+
+  two
+
+HTML:
+<ul>
+<li>
+<p>one</p>
+<p>two</p>
+</li>
+</ul>
+
+output:
+* one
+
+  two
+
+
+TEST (List items)
+=================
+
+markdown:
+ -    one
+
+     two
+
+HTML:
+<ul>
+<li>one</li>
+</ul>
+<pre><code> two
+</code></pre>
+
+output:
+* one
+
+----
+ two
+----
+
+
+TEST (List items)
+=================
+
+markdown:
+ -    one
+
+      two
+
+HTML:
+<ul>
+<li>
+<p>one</p>
+<p>two</p>
+</li>
+</ul>
+
+output:
+* one
+
+  two
+
+
+TEST (List items)
+=================
+
+markdown:
+   > > 1.  one
+>>
+>>     two
+
+HTML:
+<blockquote>
+<blockquote>
+<ol>
+<li>
+<p>one</p>
+<p>two</p>
+</li>
+</ol>
+</blockquote>
+</blockquote>
+
+output:
+> > * one
+
+> >   two
+
+
+TEST (List items)
+=================
+
+markdown:
+>>- one
+>>
+  >  > two
+
+HTML:
+<blockquote>
+<blockquote>
+<ul>
+<li>one</li>
+</ul>
+<p>two</p>
+</blockquote>
+</blockquote>
+
+output:
+> > * one
+
+> > two
+
+
+TEST (List items)
+=================
+
+markdown:
+-one
+
+2.two
+
+HTML:
+<p>-one</p>
+<p>2.two</p>
+
+output:
+-one
+
+2.two
+
+
+TEST (List items)
+=================
+
+markdown:
+- foo
+
+  bar
+
+- foo
+
+
+  bar
+
+- ```
+  foo
+
+
+  bar
+  ```
+
+- baz
+
+  + ```
+    foo
+
+
+    bar
+    ```
+
+HTML:
+<ul>
+<li>
+<p>foo</p>
+<p>bar</p>
+</li>
+<li>
+<p>foo</p>
+</li>
+</ul>
+<p>bar</p>
+<ul>
+<li>
+<pre><code>foo
+
+
+bar
+</code></pre>
+</li>
+<li>
+<p>baz</p>
+<ul>
+<li>
+<pre><code>foo
+
+
+bar
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+
+output:
+* foo
+
+  bar
+
+* foo
+
+bar
+
+* ---
+  foo
+  
+  
+  bar
+  ---
+
+* baz
+
+  * ---
+    foo
+    
+    
+    bar
+    ---
+
+
+TEST (List items)
+=================
+
+markdown:
+1.  foo
+
+    ```
+    bar
+    ```
+
+    baz
+
+    > bam
+
+HTML:
+<ol>
+<li>
+<p>foo</p>
+<pre><code>bar
+</code></pre>
+<p>baz</p>
+<blockquote>
+<p>bam</p>
+</blockquote>
+</li>
+</ol>
+
+output:
+* foo
+
+  ---
+  bar
+  ---
+
+  baz
+
+  > bam
+
+
+TEST (List items)
+=================
+
+markdown:
+- Foo
+
+      bar
+
+      baz
+
+HTML:
+<ul>
+<li>
+<p>Foo</p>
+<pre><code>bar
+
+baz
+</code></pre>
+</li>
+</ul>
+
+output:
+* Foo
+
+  ---
+  bar
+  
+  baz
+  ---
+
+
+TEST (List items)
+=================
+
+markdown:
+- Foo
+
+      bar
+
+
+      baz
+
+HTML:
+<ul>
+<li>
+<p>Foo</p>
+<pre><code>bar
+</code></pre>
+</li>
+</ul>
+<pre><code>  baz
+</code></pre>
+
+output:
+* Foo
+
+  ---
+  bar
+  ---
+
+-----
+  baz
+-----
+
+
+TEST (List items)
+=================
+
+markdown:
+123456789. ok
+
+HTML:
+<ol start="123456789">
+<li>ok</li>
+</ol>
+
+output:
+* ok
+
+
+TEST (List items)
+=================
+
+markdown:
+1234567890. not ok
+
+HTML:
+<p>1234567890. not ok</p>
+
+output:
+1234567890. not ok
+
+
+TEST (List items)
+=================
+
+markdown:
+0. ok
+
+HTML:
+<ol start="0">
+<li>ok</li>
+</ol>
+
+output:
+* ok
+
+
+TEST (List items)
+=================
+
+markdown:
+003. ok
+
+HTML:
+<ol start="3">
+<li>ok</li>
+</ol>
+
+output:
+* ok
+
+
+TEST (List items)
+=================
+
+markdown:
+-1. not ok
+
+HTML:
+<p>-1. not ok</p>
+
+output:
+-1. not ok
+
+
+TEST (List items)
+=================
+
+markdown:
+- foo
+
+      bar
+
+HTML:
+<ul>
+<li>
+<p>foo</p>
+<pre><code>bar
+</code></pre>
+</li>
+</ul>
+
+output:
+* foo
+
+  ---
+  bar
+  ---
+
+
+TEST (List items)
+=================
+
+markdown:
+  10.  foo
+
+           bar
+
+HTML:
+<ol start="10">
+<li>
+<p>foo</p>
+<pre><code>bar
+</code></pre>
+</li>
+</ol>
+
+output:
+* foo
+
+  ---
+  bar
+  ---
+
+
+TEST (List items)
+=================
+
+markdown:
+    indented code
+
+paragraph
+
+    more code
+
+HTML:
+<pre><code>indented code
+</code></pre>
+<p>paragraph</p>
+<pre><code>more code
+</code></pre>
+
+output:
+-------------
+indented code
+-------------
+
+paragraph
+
+---------
+more code
+---------
+
+
+TEST (List items)
+=================
+
+markdown:
+1.     indented code
+
+   paragraph
+
+       more code
+
+HTML:
+<ol>
+<li>
+<pre><code>indented code
+</code></pre>
+<p>paragraph</p>
+<pre><code>more code
+</code></pre>
+</li>
+</ol>
+
+output:
+* -------------
+  indented code
+  -------------
+
+  paragraph
+
+  ---------
+  more code
+  ---------
+
+
+TEST (List items)
+=================
+
+markdown:
+1.      indented code
+
+   paragraph
+
+       more code
+
+HTML:
+<ol>
+<li>
+<pre><code> indented code
+</code></pre>
+<p>paragraph</p>
+<pre><code>more code
+</code></pre>
+</li>
+</ol>
+
+output:
+* --------------
+   indented code
+  --------------
+
+  paragraph
+
+  ---------
+  more code
+  ---------
+
+
+TEST (List items)
+=================
+
+markdown:
+   foo
+
+bar
+
+HTML:
+<p>foo</p>
+<p>bar</p>
+
+output:
+foo
+
+bar
+
+
+TEST (List items)
+=================
+
+markdown:
+-    foo
+
+  bar
+
+HTML:
+<ul>
+<li>foo</li>
+</ul>
+<p>bar</p>
+
+output:
+* foo
+
+bar
+
+
+TEST (List items)
+=================
+
+markdown:
+-  foo
+
+   bar
+
+HTML:
+<ul>
+<li>
+<p>foo</p>
+<p>bar</p>
+</li>
+</ul>
+
+output:
+* foo
+
+  bar
+
+
+TEST (List items)
+=================
+
+markdown:
+-
+  foo
+-
+  ```
+  bar
+  ```
+-
+      baz
+
+HTML:
+<ul>
+<li>foo</li>
+<li>
+<pre><code>bar
+</code></pre>
+</li>
+<li>
+<pre><code>baz
+</code></pre>
+</li>
+</ul>
+
+output:
+* foo
+
+* ---
+  bar
+  ---
+
+* ---
+  baz
+  ---
+
+
+TEST (List items)
+=================
+
+markdown:
+-   
+  foo
+
+HTML:
+<ul>
+<li>foo</li>
+</ul>
+
+output:
+* foo
+
+
+TEST (List items)
+=================
+
+markdown:
+-
+
+  foo
+
+HTML:
+<ul>
+<li></li>
+</ul>
+<p>foo</p>
+
+output:
+* foo
+
+
+TEST (List items)
+=================
+
+markdown:
+- foo
+-
+- bar
+
+HTML:
+<ul>
+<li>foo</li>
+<li></li>
+<li>bar</li>
+</ul>
+
+output:
+* foo
+
+* * bar
+
+
+TEST (List items)
+=================
+
+markdown:
+- foo
+-   
+- bar
+
+HTML:
+<ul>
+<li>foo</li>
+<li></li>
+<li>bar</li>
+</ul>
+
+output:
+* foo
+
+* * bar
+
+
+TEST (List items)
+=================
+
+markdown:
+1. foo
+2.
+3. bar
+
+HTML:
+<ol>
+<li>foo</li>
+<li></li>
+<li>bar</li>
+</ol>
+
+output:
+* foo
+
+* * bar
+
+
+TEST (List items)
+=================
+
+markdown:
+*
+
+HTML:
+<ul>
+<li></li>
+</ul>
+
+output:
+* 
+TEST (List items)
+=================
+
+markdown:
+ 1.  A paragraph
+     with two lines.
+
+         indented code
+
+     > A block quote.
+
+HTML:
+<ol>
+<li>
+<p>A paragraph
+with two lines.</p>
+<pre><code>indented code
+</code></pre>
+<blockquote>
+<p>A block quote.</p>
+</blockquote>
+</li>
+</ol>
+
+output:
+* A paragraph
+  with two lines.
+
+  -------------
+  indented code
+  -------------
+
+  > A block quote.
+
+
+TEST (List items)
+=================
+
+markdown:
+  1.  A paragraph
+      with two lines.
+
+          indented code
+
+      > A block quote.
+
+HTML:
+<ol>
+<li>
+<p>A paragraph
+with two lines.</p>
+<pre><code>indented code
+</code></pre>
+<blockquote>
+<p>A block quote.</p>
+</blockquote>
+</li>
+</ol>
+
+output:
+* A paragraph
+  with two lines.
+
+  -------------
+  indented code
+  -------------
+
+  > A block quote.
+
+
+TEST (List items)
+=================
+
+markdown:
+   1.  A paragraph
+       with two lines.
+
+           indented code
+
+       > A block quote.
+
+HTML:
+<ol>
+<li>
+<p>A paragraph
+with two lines.</p>
+<pre><code>indented code
+</code></pre>
+<blockquote>
+<p>A block quote.</p>
+</blockquote>
+</li>
+</ol>
+
+output:
+* A paragraph
+  with two lines.
+
+  -------------
+  indented code
+  -------------
+
+  > A block quote.
+
+
+TEST (List items)
+=================
+
+markdown:
+    1.  A paragraph
+        with two lines.
+
+            indented code
+
+        > A block quote.
+
+HTML:
+<pre><code>1.  A paragraph
+    with two lines.
+
+        indented code
+
+    &gt; A block quote.
+</code></pre>
+
+output:
+---------------------
+1.  A paragraph
+    with two lines.
+
+        indented code
+
+    > A block quote.
+---------------------
+
+
+TEST (List items)
+=================
+
+markdown:
+  1.  A paragraph
+with two lines.
+
+          indented code
+
+      > A block quote.
+
+HTML:
+<ol>
+<li>
+<p>A paragraph
+with two lines.</p>
+<pre><code>indented code
+</code></pre>
+<blockquote>
+<p>A block quote.</p>
+</blockquote>
+</li>
+</ol>
+
+output:
+* A paragraph
+  with two lines.
+
+  -------------
+  indented code
+  -------------
+
+  > A block quote.
+
+
+TEST (List items)
+=================
+
+markdown:
+  1.  A paragraph
+    with two lines.
+
+HTML:
+<ol>
+<li>A paragraph
+with two lines.</li>
+</ol>
+
+output:
+* A paragraph
+  with two lines.
+
+
+TEST (List items)
+=================
+
+markdown:
+> 1. > Blockquote
+continued here.
+
+HTML:
+<blockquote>
+<ol>
+<li>
+<blockquote>
+<p>Blockquote
+continued here.</p>
+</blockquote>
+</li>
+</ol>
+</blockquote>
+
+output:
+> * > Blockquote
+> >   continued here.
+
+
+TEST (List items)
+=================
+
+markdown:
+> 1. > Blockquote
+> continued here.
+
+HTML:
+<blockquote>
+<ol>
+<li>
+<blockquote>
+<p>Blockquote
+continued here.</p>
+</blockquote>
+</li>
+</ol>
+</blockquote>
+
+output:
+> * > Blockquote
+> >   continued here.
+
+
+TEST (List items)
+=================
+
+markdown:
+- foo
+  - bar
+    - baz
+
+HTML:
+<ul>
+<li>foo
+<ul>
+<li>bar
+<ul>
+<li>baz</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+output:
+* foo
+
+  * bar
+
+    * baz
+
+
+TEST (List items)
+=================
+
+markdown:
+- foo
+ - bar
+  - baz
+
+HTML:
+<ul>
+<li>foo</li>
+<li>bar</li>
+<li>baz</li>
+</ul>
+
+output:
+* foo
+
+* bar
+
+* baz
+
+
+TEST (List items)
+=================
+
+markdown:
+10) foo
+    - bar
+
+HTML:
+<ol start="10">
+<li>foo
+<ul>
+<li>bar</li>
+</ul>
+</li>
+</ol>
+
+output:
+* foo
+
+  * bar
+
+
+TEST (List items)
+=================
+
+markdown:
+10) foo
+   - bar
+
+HTML:
+<ol start="10">
+<li>foo</li>
+</ol>
+<ul>
+<li>bar</li>
+</ul>
+
+output:
+* foo
+
+* bar
+
+
+TEST (List items)
+=================
+
+markdown:
+- - foo
+
+HTML:
+<ul>
+<li>
+<ul>
+<li>foo</li>
+</ul>
+</li>
+</ul>
+
+output:
+* * foo
+
+
+TEST (List items)
+=================
+
+markdown:
+1. - 2. foo
+
+HTML:
+<ol>
+<li>
+<ul>
+<li>
+<ol start="2">
+<li>foo</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+
+output:
+* * * foo
+
+
+TEST (List items)
+=================
+
+markdown:
+- # Foo
+- Bar
+  ---
+  baz
+
+HTML:
+<ul>
+<li>
+<h1>Foo</h1>
+</li>
+<li>
+<h2>Bar</h2>
+baz</li>
+</ul>
+
+output:
+* Foo
+###
+
+* Bar
+===
+
+  baz
+
+
+TEST (Lists)
+============
+
+markdown:
+- foo
+- bar
++ baz
+
+HTML:
+<ul>
+<li>foo</li>
+<li>bar</li>
+</ul>
+<ul>
+<li>baz</li>
+</ul>
+
+output:
+* foo
+
+* bar
+
+* baz
+
+
+TEST (Lists)
+============
+
+markdown:
+1. foo
+2. bar
+3) baz
+
+HTML:
+<ol>
+<li>foo</li>
+<li>bar</li>
+</ol>
+<ol start="3">
+<li>baz</li>
+</ol>
+
+output:
+* foo
+
+* bar
+
+* baz
+
+
+TEST (Lists)
+============
+
+markdown:
+Foo
+- bar
+- baz
+
+HTML:
+<p>Foo</p>
+<ul>
+<li>bar</li>
+<li>baz</li>
+</ul>
+
+output:
+Foo
+
+* bar
+
+* baz
+
+
+TEST (Lists)
+============
+
+markdown:
+The number of windows in my house is
+14.  The number of doors is 6.
+
+HTML:
+<p>The number of windows in my house is</p>
+<ol start="14">
+<li>The number of doors is 6.</li>
+</ol>
+
+output:
+The number of windows in my house is
+
+* The number of doors is 6.
+
+
+TEST (Lists)
+============
+
+markdown:
+- foo
+
+- bar
+
+
+- baz
+
+HTML:
+<ul>
+<li>
+<p>foo</p>
+</li>
+<li>
+<p>bar</p>
+</li>
+</ul>
+<ul>
+<li>baz</li>
+</ul>
+
+output:
+* foo
+
+* bar
+
+* baz
+
+
+TEST (Lists)
+============
+
+markdown:
+- foo
+
+
+  bar
+- baz
+
+HTML:
+<ul>
+<li>foo</li>
+</ul>
+<p>bar</p>
+<ul>
+<li>baz</li>
+</ul>
+
+output:
+* foo
+
+bar
+
+* baz
+
+
+TEST (Lists)
+============
+
+markdown:
+- foo
+  - bar
+    - baz
+
+
+      bim
+
+HTML:
+<ul>
+<li>foo
+<ul>
+<li>bar
+<ul>
+<li>baz</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>  bim
+</code></pre>
+
+output:
+* foo
+
+  * bar
+
+    * baz
+
+-----
+  bim
+-----
+
+
+TEST (Lists)
+============
+
+markdown:
+- foo
+- bar
+
+
+- baz
+- bim
+
+HTML:
+<ul>
+<li>foo</li>
+<li>bar</li>
+</ul>
+<ul>
+<li>baz</li>
+<li>bim</li>
+</ul>
+
+output:
+* foo
+
+* bar
+
+* baz
+
+* bim
+
+
+TEST (Lists)
+============
+
+markdown:
+-   foo
+
+    notcode
+
+-   foo
+
+
+    code
+
+HTML:
+<ul>
+<li>
+<p>foo</p>
+<p>notcode</p>
+</li>
+<li>
+<p>foo</p>
+</li>
+</ul>
+<pre><code>code
+</code></pre>
+
+output:
+* foo
+
+  notcode
+
+* foo
+
+----
+code
+----
+
+
+TEST (Lists)
+============
+
+markdown:
+- a
+ - b
+  - c
+   - d
+    - e
+   - f
+  - g
+ - h
+- i
+
+HTML:
+<ul>
+<li>a</li>
+<li>b</li>
+<li>c</li>
+<li>d</li>
+<li>e</li>
+<li>f</li>
+<li>g</li>
+<li>h</li>
+<li>i</li>
+</ul>
+
+output:
+* a
+
+* b
+
+* c
+
+* d
+
+* e
+
+* f
+
+* g
+
+* h
+
+* i
+
+
+TEST (Lists)
+============
+
+markdown:
+1. a
+
+  2. b
+
+    3. c
+
+HTML:
+<ol>
+<li>
+<p>a</p>
+</li>
+<li>
+<p>b</p>
+</li>
+<li>
+<p>c</p>
+</li>
+</ol>
+
+output:
+* a
+
+* b
+
+* c
+
+
+TEST (Lists)
+============
+
+markdown:
+- a
+- b
+
+- c
+
+HTML:
+<ul>
+<li>
+<p>a</p>
+</li>
+<li>
+<p>b</p>
+</li>
+<li>
+<p>c</p>
+</li>
+</ul>
+
+output:
+* a
+
+* b
+
+* c
+
+
+TEST (Lists)
+============
+
+markdown:
+* a
+*
+
+* c
+
+HTML:
+<ul>
+<li>
+<p>a</p>
+</li>
+<li></li>
+<li>
+<p>c</p>
+</li>
+</ul>
+
+output:
+* a
+
+* * c
+
+
+TEST (Lists)
+============
+
+markdown:
+- a
+- b
+
+  c
+- d
+
+HTML:
+<ul>
+<li>
+<p>a</p>
+</li>
+<li>
+<p>b</p>
+<p>c</p>
+</li>
+<li>
+<p>d</p>
+</li>
+</ul>
+
+output:
+* a
+
+* b
+
+  c
+
+* d
+
+
+TEST (Lists)
+============
+
+markdown:
+- a
+- b
+
+  [ref]: /url
+- d
+
+HTML:
+<ul>
+<li>
+<p>a</p>
+</li>
+<li>
+<p>b</p>
+</li>
+<li>
+<p>d</p>
+</li>
+</ul>
+
+output:
+* a
+
+* b
+
+* d
+
+
+TEST (Lists)
+============
+
+markdown:
+- a
+- ```
+  b
+
+
+  ```
+- c
+
+HTML:
+<ul>
+<li>a</li>
+<li>
+<pre><code>b
+
+
+</code></pre>
+</li>
+<li>c</li>
+</ul>
+
+output:
+* a
+
+* -
+  b
+  -
+
+* c
+
+
+TEST (Lists)
+============
+
+markdown:
+- a
+  - b
+
+    c
+- d
+
+HTML:
+<ul>
+<li>a
+<ul>
+<li>
+<p>b</p>
+<p>c</p>
+</li>
+</ul>
+</li>
+<li>d</li>
+</ul>
+
+output:
+* a
+
+  * b
+
+    c
+
+* d
+
+
+TEST (Lists)
+============
+
+markdown:
+* a
+  > b
+  >
+* c
+
+HTML:
+<ul>
+<li>a
+<blockquote>
+<p>b</p>
+</blockquote>
+</li>
+<li>c</li>
+</ul>
+
+output:
+* a
+
+  > b
+
+* c
+
+
+TEST (Lists)
+============
+
+markdown:
+- a
+  > b
+  ```
+  c
+  ```
+- d
+
+HTML:
+<ul>
+<li>a
+<blockquote>
+<p>b</p>
+</blockquote>
+<pre><code>c
+</code></pre>
+</li>
+<li>d</li>
+</ul>
+
+output:
+* a
+
+  > b
+
+  -
+  c
+  -
+
+* d
+
+
+TEST (Lists)
+============
+
+markdown:
+- a
+
+HTML:
+<ul>
+<li>a</li>
+</ul>
+
+output:
+* a
+
+
+TEST (Lists)
+============
+
+markdown:
+- a
+  - b
+
+HTML:
+<ul>
+<li>a
+<ul>
+<li>b</li>
+</ul>
+</li>
+</ul>
+
+output:
+* a
+
+  * b
+
+
+TEST (Lists)
+============
+
+markdown:
+1. ```
+   foo
+   ```
+
+   bar
+
+HTML:
+<ol>
+<li>
+<pre><code>foo
+</code></pre>
+<p>bar</p>
+</li>
+</ol>
+
+output:
+* ---
+  foo
+  ---
+
+  bar
+
+
+TEST (Lists)
+============
+
+markdown:
+* foo
+  * bar
+
+  baz
+
+HTML:
+<ul>
+<li>
+<p>foo</p>
+<ul>
+<li>bar</li>
+</ul>
+<p>baz</p>
+</li>
+</ul>
+
+output:
+* foo
+
+  * bar
+
+  baz
+
+
+TEST (Lists)
+============
+
+markdown:
+- a
+  - b
+  - c
+
+- d
+  - e
+  - f
+
+HTML:
+<ul>
+<li>
+<p>a</p>
+<ul>
+<li>b</li>
+<li>c</li>
+</ul>
+</li>
+<li>
+<p>d</p>
+<ul>
+<li>e</li>
+<li>f</li>
+</ul>
+</li>
+</ul>
+
+output:
+* a
+
+  * b
+
+  * c
+
+* d
+
+  * e
+
+  * f
+
+
+TEST (Inlines)
+==============
+
+markdown:
+`hi`lo`
+
+HTML:
+<p><code>hi</code>lo`</p>
+
+output:
+```hi```lo`
+
+
+TEST (Backslash escapes)
+========================
+
+markdown:
+\!\"\#\$\%\&\'\(\)\*\+\,\-\.\/\:\;\<\=\>\?\@\[\\\]\^\_\`\{\|\}\~
+
+HTML:
+<p>!&quot;#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~</p>
+
+output:
+!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+
+
+TEST (Backslash escapes)
+========================
+
+markdown:
+\	\A\a\ \3\φ\«
+
+HTML:
+<p>\	\A\a\ \3\φ\«</p>
+
+output:
+\	\A\a\ \3\φ\«
+
+
+TEST (Backslash escapes)
+========================
+
+markdown:
+\*not emphasized*
+\<br/> not a tag
+\[not a link](/foo)
+\`not code`
+1\. not a list
+\* not a list
+\# not a heading
+\[foo]: /url "not a reference"
+
+HTML:
+<p>*not emphasized*
+&lt;br/&gt; not a tag
+[not a link](/foo)
+`not code`
+1. not a list
+* not a list
+# not a heading
+[foo]: /url &quot;not a reference&quot;</p>
+
+output:
+*not emphasized*
+<br/> not a tag
+[not a link](/foo)
+`not code`
+1. not a list
+* not a list
+# not a heading
+[foo]: /url "not a reference"
+
+
+TEST (Backslash escapes)
+========================
+
+markdown:
+\\*emphasis*
+
+HTML:
+<p>\<em>emphasis</em></p>
+
+output:
+\*emphasis*
+
+
+TEST (Backslash escapes)
+========================
+
+markdown:
+foo\
+bar
+
+HTML:
+<p>foo<br />
+bar</p>
+
+output:
+foo
+bar
+
+
+TEST (Backslash escapes)
+========================
+
+markdown:
+`` \[\` ``
+
+HTML:
+<p><code>\[\`</code></p>
+
+output:
+```\[\````
+
+
+TEST (Backslash escapes)
+========================
+
+markdown:
+    \[\]
+
+HTML:
+<pre><code>\[\]
+</code></pre>
+
+output:
+----
+\[\]
+----
+
+
+TEST (Backslash escapes)
+========================
+
+markdown:
+~~~
+\[\]
+~~~
+
+HTML:
+<pre><code>\[\]
+</code></pre>
+
+output:
+----
+\[\]
+----
+
+
+TEST (Backslash escapes)
+========================
+
+markdown:
+<http://example.com?find=\*>
+
+HTML:
+<p><a href="http://example.com?find=%5C*">http://example.com?find=\*</a></p>
+
+output:
+http://example.com?find=\* <http://example.com?find=%5C*>
+
+
+TEST (Backslash escapes)
+========================
+
+markdown:
+[foo](/bar\* "ti\*tle")
+
+HTML:
+<p><a href="/bar*" title="ti*tle">foo</a></p>
+
+output:
+foo </bar*>
+
+
+TEST (Backslash escapes)
+========================
+
+markdown:
+[foo]
+
+[foo]: /bar\* "ti\*tle"
+
+HTML:
+<p><a href="/bar*" title="ti*tle">foo</a></p>
+
+output:
+foo </bar*>
+
+
+TEST (Backslash escapes)
+========================
+
+markdown:
+``` foo\+bar
+foo
+```
+
+HTML:
+<pre><code class="language-foo+bar">foo
+</code></pre>
+
+output:
+---
+foo
+---
+
+
+TEST (Entity and numeric character references)
+==============================================
+
+markdown:
+&nbsp; &amp; &copy; &AElig; &Dcaron;
+&frac34; &HilbertSpace; &DifferentialD;
+&ClockwiseContourIntegral; &ngE;
+
+HTML:
+<p>  &amp; © Æ Ď
+¾ ℋ ⅆ
+∲ ≧̸</p>
+
+output:
+  & © Æ Ď
+¾ ℋ ⅆ
+∲ ≧̸
+
+
+TEST (Entity and numeric character references)
+==============================================
+
+markdown:
+&#35; &#1234; &#992; &#98765432; &#0;
+
+HTML:
+<p># Ӓ Ϡ � �</p>
+
+output:
+# Ӓ Ϡ � �
+
+
+TEST (Entity and numeric character references)
+==============================================
+
+markdown:
+&#X22; &#XD06; &#xcab;
+
+HTML:
+<p>&quot; ആ ಫ</p>
+
+output:
+" ആ ಫ
+
+
+TEST (Entity and numeric character references)
+==============================================
+
+markdown:
+&nbsp &x; &#; &#x;
+&ThisIsNotDefined; &hi?;
+
+HTML:
+<p>&amp;nbsp &amp;x; &amp;#; &amp;#x;
+&amp;ThisIsNotDefined; &amp;hi?;</p>
+
+output:
+&nbsp &x; &#; &#x;
+&ThisIsNotDefined; &hi?;
+
+
+TEST (Entity and numeric character references)
+==============================================
+
+markdown:
+&copy
+
+HTML:
+<p>&amp;copy</p>
+
+output:
+&copy
+
+
+TEST (Entity and numeric character references)
+==============================================
+
+markdown:
+&MadeUpEntity;
+
+HTML:
+<p>&amp;MadeUpEntity;</p>
+
+output:
+&MadeUpEntity;
+
+
+TEST (Entity and numeric character references)
+==============================================
+
+markdown:
+[foo](/f&ouml;&ouml; "f&ouml;&ouml;")
+
+HTML:
+<p><a href="/f%C3%B6%C3%B6" title="föö">foo</a></p>
+
+output:
+foo </f%C3%B6%C3%B6>
+
+
+TEST (Entity and numeric character references)
+==============================================
+
+markdown:
+[foo]
+
+[foo]: /f&ouml;&ouml; "f&ouml;&ouml;"
+
+HTML:
+<p><a href="/f%C3%B6%C3%B6" title="föö">foo</a></p>
+
+output:
+foo </f%C3%B6%C3%B6>
+
+
+TEST (Entity and numeric character references)
+==============================================
+
+markdown:
+``` f&ouml;&ouml;
+foo
+```
+
+HTML:
+<pre><code class="language-föö">foo
+</code></pre>
+
+output:
+---
+foo
+---
+
+
+TEST (Entity and numeric character references)
+==============================================
+
+markdown:
+`f&ouml;&ouml;`
+
+HTML:
+<p><code>f&amp;ouml;&amp;ouml;</code></p>
+
+output:
+```f&ouml;&ouml;```
+
+
+TEST (Entity and numeric character references)
+==============================================
+
+markdown:
+    f&ouml;f&ouml;
+
+HTML:
+<pre><code>f&amp;ouml;f&amp;ouml;
+</code></pre>
+
+output:
+--------------
+f&ouml;f&ouml;
+--------------
+
+
+TEST (Code spans)
+=================
+
+markdown:
+`foo`
+
+HTML:
+<p><code>foo</code></p>
+
+output:
+```foo```
+
+
+TEST (Code spans)
+=================
+
+markdown:
+`` foo ` bar  ``
+
+HTML:
+<p><code>foo ` bar</code></p>
+
+output:
+```foo ` bar```
+
+
+TEST (Code spans)
+=================
+
+markdown:
+` `` `
+
+HTML:
+<p><code>``</code></p>
+
+output:
+````````
+
+
+TEST (Code spans)
+=================
+
+markdown:
+``
+foo
+``
+
+HTML:
+<p><code>foo</code></p>
+
+output:
+```foo```
+
+
+TEST (Code spans)
+=================
+
+markdown:
+`foo   bar
+  baz`
+
+HTML:
+<p><code>foo bar baz</code></p>
+
+output:
+```foo bar baz```
+
+
+TEST (Code spans)
+=================
+
+markdown:
+`foo `` bar`
+
+HTML:
+<p><code>foo `` bar</code></p>
+
+output:
+```foo `` bar```
+
+
+TEST (Code spans)
+=================
+
+markdown:
+`foo\`bar`
+
+HTML:
+<p><code>foo\</code>bar`</p>
+
+output:
+```foo\```bar`
+
+
+TEST (Code spans)
+=================
+
+markdown:
+*foo`*`
+
+HTML:
+<p>*foo<code>*</code></p>
+
+output:
+*foo```*```
+
+
+TEST (Code spans)
+=================
+
+markdown:
+[not a `link](/foo`)
+
+HTML:
+<p>[not a <code>link](/foo</code>)</p>
+
+output:
+[not a ```link](/foo```)
+
+
+TEST (Code spans)
+=================
+
+markdown:
+`<a href="`">`
+
+HTML:
+<p><code>&lt;a href=&quot;</code>&quot;&gt;`</p>
+
+output:
+```<a href="```">`
+
+
+TEST (Code spans)
+=================
+
+markdown:
+`<http://foo.bar.`baz>`
+
+HTML:
+<p><code>&lt;http://foo.bar.</code>baz&gt;`</p>
+
+output:
+```<http://foo.bar.```baz>`
+
+
+TEST (Code spans)
+=================
+
+markdown:
+<http://foo.bar.`baz>`
+
+HTML:
+<p><a href="http://foo.bar.%60baz">http://foo.bar.`baz</a>`</p>
+
+output:
+http://foo.bar.`baz <http://foo.bar.%60baz>`
+
+
+TEST (Code spans)
+=================
+
+markdown:
+```foo``
+
+HTML:
+<p>```foo``</p>
+
+output:
+```foo``
+
+
+TEST (Code spans)
+=================
+
+markdown:
+`foo
+
+HTML:
+<p>`foo</p>
+
+output:
+`foo
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+*foo bar*
+
+HTML:
+<p><em>foo bar</em></p>
+
+output:
+*foo bar*
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+a * foo bar*
+
+HTML:
+<p>a * foo bar*</p>
+
+output:
+a * foo bar*
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+a*"foo"*
+
+HTML:
+<p>a*&quot;foo&quot;*</p>
+
+output:
+a*"foo"*
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+* a *
+
+HTML:
+<p>* a *</p>
+
+output:
+* a *
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+foo*bar*
+
+HTML:
+<p>foo<em>bar</em></p>
+
+output:
+foo*bar*
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+5*6*78
+
+HTML:
+<p>5<em>6</em>78</p>
+
+output:
+5*6*78
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+_foo bar_
+
+HTML:
+<p><em>foo bar</em></p>
+
+output:
+*foo bar*
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+_ foo bar_
+
+HTML:
+<p>_ foo bar_</p>
+
+output:
+_ foo bar_
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+a_"foo"_
+
+HTML:
+<p>a_&quot;foo&quot;_</p>
+
+output:
+a_"foo"_
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+foo_bar_
+
+HTML:
+<p>foo_bar_</p>
+
+output:
+foo_bar_
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+5_6_78
+
+HTML:
+<p>5_6_78</p>
+
+output:
+5_6_78
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+пристаням_стремятся_
+
+HTML:
+<p>пристаням_стремятся_</p>
+
+output:
+пристаням_стремятся_
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+aa_"bb"_cc
+
+HTML:
+<p>aa_&quot;bb&quot;_cc</p>
+
+output:
+aa_"bb"_cc
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+foo-_(bar)_
+
+HTML:
+<p>foo-<em>(bar)</em></p>
+
+output:
+foo-*(bar)*
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+_foo*
+
+HTML:
+<p>_foo*</p>
+
+output:
+_foo*
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+*foo bar *
+
+HTML:
+<p>*foo bar *</p>
+
+output:
+*foo bar *
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+*foo bar
+*
+
+HTML:
+<p>*foo bar</p>
+<ul>
+<li></li>
+</ul>
+
+output:
+*foo bar
+
+* 
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+*(*foo)
+
+HTML:
+<p>*(*foo)</p>
+
+output:
+*(*foo)
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+*(*foo*)*
+
+HTML:
+<p><em>(<em>foo</em>)</em></p>
+
+output:
+*(*foo*)*
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+*foo*bar
+
+HTML:
+<p><em>foo</em>bar</p>
+
+output:
+*foo*bar
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+_foo bar _
+
+HTML:
+<p>_foo bar _</p>
+
+output:
+_foo bar _
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+_(_foo)
+
+HTML:
+<p>_(_foo)</p>
+
+output:
+_(_foo)
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+_(_foo_)_
+
+HTML:
+<p><em>(<em>foo</em>)</em></p>
+
+output:
+*(*foo*)*
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+_foo_bar
+
+HTML:
+<p>_foo_bar</p>
+
+output:
+_foo_bar
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+_пристаням_стремятся
+
+HTML:
+<p>_пристаням_стремятся</p>
+
+output:
+_пристаням_стремятся
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+_foo_bar_baz_
+
+HTML:
+<p><em>foo_bar_baz</em></p>
+
+output:
+*foo_bar_baz*
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+_(bar)_.
+
+HTML:
+<p><em>(bar)</em>.</p>
+
+output:
+*(bar)*.
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+**foo bar**
+
+HTML:
+<p><strong>foo bar</strong></p>
+
+output:
+**foo bar**
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+** foo bar**
+
+HTML:
+<p>** foo bar**</p>
+
+output:
+** foo bar**
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+a**"foo"**
+
+HTML:
+<p>a**&quot;foo&quot;**</p>
+
+output:
+a**"foo"**
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+foo**bar**
+
+HTML:
+<p>foo<strong>bar</strong></p>
+
+output:
+foo**bar**
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+__foo bar__
+
+HTML:
+<p><strong>foo bar</strong></p>
+
+output:
+**foo bar**
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+__ foo bar__
+
+HTML:
+<p>__ foo bar__</p>
+
+output:
+__ foo bar__
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+__
+foo bar__
+
+HTML:
+<p>__
+foo bar__</p>
+
+output:
+__
+foo bar__
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+a__"foo"__
+
+HTML:
+<p>a__&quot;foo&quot;__</p>
+
+output:
+a__"foo"__
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+foo__bar__
+
+HTML:
+<p>foo__bar__</p>
+
+output:
+foo__bar__
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+5__6__78
+
+HTML:
+<p>5__6__78</p>
+
+output:
+5__6__78
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+пристаням__стремятся__
+
+HTML:
+<p>пристаням__стремятся__</p>
+
+output:
+пристаням__стремятся__
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+__foo, __bar__, baz__
+
+HTML:
+<p><strong>foo, <strong>bar</strong>, baz</strong></p>
+
+output:
+**foo, **bar**, baz**
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+foo-__(bar)__
+
+HTML:
+<p>foo-<strong>(bar)</strong></p>
+
+output:
+foo-**(bar)**
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+**foo bar **
+
+HTML:
+<p>**foo bar **</p>
+
+output:
+**foo bar **
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+**(**foo)
+
+HTML:
+<p>**(**foo)</p>
+
+output:
+**(**foo)
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+*(**foo**)*
+
+HTML:
+<p><em>(<strong>foo</strong>)</em></p>
+
+output:
+*(**foo**)*
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+**Gomphocarpus (*Gomphocarpus physocarpus*, syn.
+*Asclepias physocarpa*)**
+
+HTML:
+<p><strong>Gomphocarpus (<em>Gomphocarpus physocarpus</em>, syn.
+<em>Asclepias physocarpa</em>)</strong></p>
+
+output:
+**Gomphocarpus (*Gomphocarpus physocarpus*, syn.
+*Asclepias physocarpa*)**
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+**foo "*bar*" foo**
+
+HTML:
+<p><strong>foo &quot;<em>bar</em>&quot; foo</strong></p>
+
+output:
+**foo "*bar*" foo**
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+**foo**bar
+
+HTML:
+<p><strong>foo</strong>bar</p>
+
+output:
+**foo**bar
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+__foo bar __
+
+HTML:
+<p>__foo bar __</p>
+
+output:
+__foo bar __
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+__(__foo)
+
+HTML:
+<p>__(__foo)</p>
+
+output:
+__(__foo)
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+_(__foo__)_
+
+HTML:
+<p><em>(<strong>foo</strong>)</em></p>
+
+output:
+*(**foo**)*
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+__foo__bar
+
+HTML:
+<p>__foo__bar</p>
+
+output:
+__foo__bar
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+__пристаням__стремятся
+
+HTML:
+<p>__пристаням__стремятся</p>
+
+output:
+__пристаням__стремятся
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+__foo__bar__baz__
+
+HTML:
+<p><strong>foo__bar__baz</strong></p>
+
+output:
+**foo__bar__baz**
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+__(bar)__.
+
+HTML:
+<p><strong>(bar)</strong>.</p>
+
+output:
+**(bar)**.
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+*foo [bar](/url)*
+
+HTML:
+<p><em>foo <a href="/url">bar</a></em></p>
+
+output:
+*foo bar </url>*
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+*foo
+bar*
+
+HTML:
+<p><em>foo
+bar</em></p>
+
+output:
+*foo
+bar*
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+_foo __bar__ baz_
+
+HTML:
+<p><em>foo <strong>bar</strong> baz</em></p>
+
+output:
+*foo **bar** baz*
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+_foo _bar_ baz_
+
+HTML:
+<p><em>foo <em>bar</em> baz</em></p>
+
+output:
+*foo *bar* baz*
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+__foo_ bar_
+
+HTML:
+<p><em><em>foo</em> bar</em></p>
+
+output:
+**foo* bar*
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+*foo *bar**
+
+HTML:
+<p><em>foo <em>bar</em></em></p>
+
+output:
+*foo *bar**
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+*foo **bar** baz*
+
+HTML:
+<p><em>foo <strong>bar</strong> baz</em></p>
+
+output:
+*foo **bar** baz*
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+*foo**bar**baz*
+
+HTML:
+<p><em>foo</em><em>bar</em><em>baz</em></p>
+
+output:
+*foo**bar**baz*
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+***foo** bar*
+
+HTML:
+<p><em><strong>foo</strong> bar</em></p>
+
+output:
+***foo** bar*
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+*foo **bar***
+
+HTML:
+<p><em>foo <strong>bar</strong></em></p>
+
+output:
+*foo **bar***
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+*foo**bar***
+
+HTML:
+<p><em>foo</em><em>bar</em>**</p>
+
+output:
+*foo**bar***
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+*foo **bar *baz* bim** bop*
+
+HTML:
+<p><em>foo <strong>bar <em>baz</em> bim</strong> bop</em></p>
+
+output:
+*foo **bar *baz* bim** bop*
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+*foo [*bar*](/url)*
+
+HTML:
+<p><em>foo <a href="/url"><em>bar</em></a></em></p>
+
+output:
+*foo *bar* </url>*
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+** is not an empty emphasis
+
+HTML:
+<p>** is not an empty emphasis</p>
+
+output:
+** is not an empty emphasis
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+**** is not an empty strong emphasis
+
+HTML:
+<p>**** is not an empty strong emphasis</p>
+
+output:
+**** is not an empty strong emphasis
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+**foo [bar](/url)**
+
+HTML:
+<p><strong>foo <a href="/url">bar</a></strong></p>
+
+output:
+**foo bar </url>**
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+**foo
+bar**
+
+HTML:
+<p><strong>foo
+bar</strong></p>
+
+output:
+**foo
+bar**
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+__foo _bar_ baz__
+
+HTML:
+<p><strong>foo <em>bar</em> baz</strong></p>
+
+output:
+**foo *bar* baz**
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+__foo __bar__ baz__
+
+HTML:
+<p><strong>foo <strong>bar</strong> baz</strong></p>
+
+output:
+**foo **bar** baz**
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+____foo__ bar__
+
+HTML:
+<p><strong><strong>foo</strong> bar</strong></p>
+
+output:
+****foo** bar**
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+**foo **bar****
+
+HTML:
+<p><strong>foo <strong>bar</strong></strong></p>
+
+output:
+**foo **bar****
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+**foo *bar* baz**
+
+HTML:
+<p><strong>foo <em>bar</em> baz</strong></p>
+
+output:
+**foo *bar* baz**
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+**foo*bar*baz**
+
+HTML:
+<p><em><em>foo</em>bar</em>baz**</p>
+
+output:
+**foo*bar*baz**
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+***foo* bar**
+
+HTML:
+<p><strong><em>foo</em> bar</strong></p>
+
+output:
+***foo* bar**
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+**foo *bar***
+
+HTML:
+<p><strong>foo <em>bar</em></strong></p>
+
+output:
+**foo *bar***
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+**foo *bar **baz**
+bim* bop**
+
+HTML:
+<p><strong>foo <em>bar <strong>baz</strong>
+bim</em> bop</strong></p>
+
+output:
+**foo *bar **baz**
+bim* bop**
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+**foo [*bar*](/url)**
+
+HTML:
+<p><strong>foo <a href="/url"><em>bar</em></a></strong></p>
+
+output:
+**foo *bar* </url>**
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+__ is not an empty emphasis
+
+HTML:
+<p>__ is not an empty emphasis</p>
+
+output:
+__ is not an empty emphasis
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+____ is not an empty strong emphasis
+
+HTML:
+<p>____ is not an empty strong emphasis</p>
+
+output:
+____ is not an empty strong emphasis
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+foo ***
+
+HTML:
+<p>foo ***</p>
+
+output:
+foo ***
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+foo *\**
+
+HTML:
+<p>foo <em>*</em></p>
+
+output:
+foo ***
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+foo *_*
+
+HTML:
+<p>foo <em>_</em></p>
+
+output:
+foo *_*
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+foo *****
+
+HTML:
+<p>foo *****</p>
+
+output:
+foo *****
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+foo **\***
+
+HTML:
+<p>foo <strong>*</strong></p>
+
+output:
+foo *****
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+foo **_**
+
+HTML:
+<p>foo <strong>_</strong></p>
+
+output:
+foo **_**
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+**foo*
+
+HTML:
+<p>*<em>foo</em></p>
+
+output:
+**foo*
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+*foo**
+
+HTML:
+<p><em>foo</em>*</p>
+
+output:
+*foo**
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+***foo**
+
+HTML:
+<p>*<strong>foo</strong></p>
+
+output:
+***foo**
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+****foo*
+
+HTML:
+<p>***<em>foo</em></p>
+
+output:
+****foo*
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+**foo***
+
+HTML:
+<p><strong>foo</strong>*</p>
+
+output:
+**foo***
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+*foo****
+
+HTML:
+<p><em>foo</em>***</p>
+
+output:
+*foo****
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+foo ___
+
+HTML:
+<p>foo ___</p>
+
+output:
+foo ___
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+foo _\__
+
+HTML:
+<p>foo <em>_</em></p>
+
+output:
+foo *_*
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+foo _*_
+
+HTML:
+<p>foo <em>*</em></p>
+
+output:
+foo ***
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+foo _____
+
+HTML:
+<p>foo _____</p>
+
+output:
+foo _____
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+foo __\___
+
+HTML:
+<p>foo <strong>_</strong></p>
+
+output:
+foo **_**
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+foo __*__
+
+HTML:
+<p>foo <strong>*</strong></p>
+
+output:
+foo *****
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+__foo_
+
+HTML:
+<p>_<em>foo</em></p>
+
+output:
+_*foo*
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+_foo__
+
+HTML:
+<p><em>foo</em>_</p>
+
+output:
+*foo*_
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+___foo__
+
+HTML:
+<p>_<strong>foo</strong></p>
+
+output:
+_**foo**
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+____foo_
+
+HTML:
+<p>___<em>foo</em></p>
+
+output:
+___*foo*
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+__foo___
+
+HTML:
+<p><strong>foo</strong>_</p>
+
+output:
+**foo**_
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+_foo____
+
+HTML:
+<p><em>foo</em>___</p>
+
+output:
+*foo*___
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+**foo**
+
+HTML:
+<p><strong>foo</strong></p>
+
+output:
+**foo**
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+*_foo_*
+
+HTML:
+<p><em><em>foo</em></em></p>
+
+output:
+**foo**
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+__foo__
+
+HTML:
+<p><strong>foo</strong></p>
+
+output:
+**foo**
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+_*foo*_
+
+HTML:
+<p><em><em>foo</em></em></p>
+
+output:
+**foo**
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+****foo****
+
+HTML:
+<p><strong><strong>foo</strong></strong></p>
+
+output:
+****foo****
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+____foo____
+
+HTML:
+<p><strong><strong>foo</strong></strong></p>
+
+output:
+****foo****
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+******foo******
+
+HTML:
+<p><strong><strong><strong>foo</strong></strong></strong></p>
+
+output:
+******foo******
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+***foo***
+
+HTML:
+<p><strong><em>foo</em></strong></p>
+
+output:
+***foo***
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+_____foo_____
+
+HTML:
+<p><strong><strong><em>foo</em></strong></strong></p>
+
+output:
+*****foo*****
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+*foo _bar* baz_
+
+HTML:
+<p><em>foo _bar</em> baz_</p>
+
+output:
+*foo _bar* baz_
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+**foo*bar**
+
+HTML:
+<p><em><em>foo</em>bar</em>*</p>
+
+output:
+**foo*bar**
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+*foo __bar *baz bim__ bam*
+
+HTML:
+<p><em>foo <strong>bar *baz bim</strong> bam</em></p>
+
+output:
+*foo **bar *baz bim** bam*
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+**foo **bar baz**
+
+HTML:
+<p>**foo <strong>bar baz</strong></p>
+
+output:
+**foo **bar baz**
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+*foo *bar baz*
+
+HTML:
+<p>*foo <em>bar baz</em></p>
+
+output:
+*foo *bar baz*
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+*[bar*](/url)
+
+HTML:
+<p>*<a href="/url">bar*</a></p>
+
+output:
+*bar* </url>
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+_foo [bar_](/url)
+
+HTML:
+<p>_foo <a href="/url">bar_</a></p>
+
+output:
+_foo bar_ </url>
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+*a `*`*
+
+HTML:
+<p><em>a <code>*</code></em></p>
+
+output:
+*a ```*```*
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+_a `_`_
+
+HTML:
+<p><em>a <code>_</code></em></p>
+
+output:
+*a ```_```*
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+**a<http://foo.bar/?q=**>
+
+HTML:
+<p>**a<a href="http://foo.bar/?q=**">http://foo.bar/?q=**</a></p>
+
+output:
+**ahttp://foo.bar/?q=**
+
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+__a<http://foo.bar/?q=__>
+
+HTML:
+<p>__a<a href="http://foo.bar/?q=__">http://foo.bar/?q=__</a></p>
+
+output:
+__ahttp://foo.bar/?q=__
+
+
+TEST (Links)
+============
+
+markdown:
+[link](/uri "title")
+
+HTML:
+<p><a href="/uri" title="title">link</a></p>
+
+output:
+link </uri>
+
+
+TEST (Links)
+============
+
+markdown:
+[link](/uri)
+
+HTML:
+<p><a href="/uri">link</a></p>
+
+output:
+link </uri>
+
+
+TEST (Links)
+============
+
+markdown:
+[link]()
+
+HTML:
+<p><a href="">link</a></p>
+
+output:
+link <>
+
+
+TEST (Links)
+============
+
+markdown:
+[link](<>)
+
+HTML:
+<p><a href="">link</a></p>
+
+output:
+link <>
+
+
+TEST (Links)
+============
+
+markdown:
+[link](/my uri)
+
+HTML:
+<p>[link](/my uri)</p>
+
+output:
+[link](/my uri)
+
+
+TEST (Links)
+============
+
+markdown:
+[link](</my uri>)
+
+HTML:
+<p>[link](&lt;/my uri&gt;)</p>
+
+output:
+[link](</my uri>)
+
+
+TEST (Links)
+============
+
+markdown:
+[link](foo
+bar)
+
+HTML:
+<p>[link](foo
+bar)</p>
+
+output:
+[link](foo
+bar)
+
+
+TEST (Links)
+============
+
+markdown:
+[link](\(foo\))
+
+HTML:
+<p><a href="(foo)">link</a></p>
+
+output:
+link <(foo)>
+
+
+TEST (Links)
+============
+
+markdown:
+[link]((foo)and(bar))
+
+HTML:
+<p><a href="(foo)and(bar)">link</a></p>
+
+output:
+link <(foo)and(bar)>
+
+
+TEST (Links)
+============
+
+markdown:
+[link](foo(and(bar)))
+
+HTML:
+<p>[link](foo(and(bar)))</p>
+
+output:
+[link](foo(and(bar)))
+
+
+TEST (Links)
+============
+
+markdown:
+[link](foo(and\(bar\)))
+
+HTML:
+<p><a href="foo(and(bar))">link</a></p>
+
+output:
+link <foo(and(bar))>
+
+
+TEST (Links)
+============
+
+markdown:
+[link](<foo(and(bar))>)
+
+HTML:
+<p><a href="foo(and(bar))">link</a></p>
+
+output:
+link <foo(and(bar))>
+
+
+TEST (Links)
+============
+
+markdown:
+[link](foo\)\:)
+
+HTML:
+<p><a href="foo):">link</a></p>
+
+output:
+link <foo):>
+
+
+TEST (Links)
+============
+
+markdown:
+[link](#fragment)
+
+[link](http://example.com#fragment)
+
+[link](http://example.com?foo=3#frag)
+
+HTML:
+<p><a href="#fragment">link</a></p>
+<p><a href="http://example.com#fragment">link</a></p>
+<p><a href="http://example.com?foo=3#frag">link</a></p>
+
+output:
+link <#fragment>
+
+link <http://example.com#fragment>
+
+link <http://example.com?foo=3#frag>
+
+
+TEST (Links)
+============
+
+markdown:
+[link](foo\bar)
+
+HTML:
+<p><a href="foo%5Cbar">link</a></p>
+
+output:
+link <foo%5Cbar>
+
+
+TEST (Links)
+============
+
+markdown:
+[link](foo%20b&auml;)
+
+HTML:
+<p><a href="foo%20b%C3%A4">link</a></p>
+
+output:
+link <foo%20b%C3%A4>
+
+
+TEST (Links)
+============
+
+markdown:
+[link]("title")
+
+HTML:
+<p><a href="%22title%22">link</a></p>
+
+output:
+link <%22title%22>
+
+
+TEST (Links)
+============
+
+markdown:
+[link](/url "title")
+[link](/url 'title')
+[link](/url (title))
+
+HTML:
+<p><a href="/url" title="title">link</a>
+<a href="/url" title="title">link</a>
+<a href="/url" title="title">link</a></p>
+
+output:
+link </url>
+link </url>
+link </url>
+
+
+TEST (Links)
+============
+
+markdown:
+[link](/url "title \"&quot;")
+
+HTML:
+<p><a href="/url" title="title &quot;&quot;">link</a></p>
+
+output:
+link </url>
+
+
+TEST (Links)
+============
+
+markdown:
+[link](/url "title "and" title")
+
+HTML:
+<p>[link](/url &quot;title &quot;and&quot; title&quot;)</p>
+
+output:
+[link](/url "title "and" title")
+
+
+TEST (Links)
+============
+
+markdown:
+[link](/url 'title "and" title')
+
+HTML:
+<p><a href="/url" title="title &quot;and&quot; title">link</a></p>
+
+output:
+link </url>
+
+
+TEST (Links)
+============
+
+markdown:
+[link](   /uri
+  "title"  )
+
+HTML:
+<p><a href="/uri" title="title">link</a></p>
+
+output:
+link </uri>
+
+
+TEST (Links)
+============
+
+markdown:
+[link] (/uri)
+
+HTML:
+<p>[link] (/uri)</p>
+
+output:
+[link] (/uri)
+
+
+TEST (Links)
+============
+
+markdown:
+[link [foo [bar]]](/uri)
+
+HTML:
+<p><a href="/uri">link [foo [bar]]</a></p>
+
+output:
+link [foo [bar]] </uri>
+
+
+TEST (Links)
+============
+
+markdown:
+[link] bar](/uri)
+
+HTML:
+<p>[link] bar](/uri)</p>
+
+output:
+[link] bar](/uri)
+
+
+TEST (Links)
+============
+
+markdown:
+[link [bar](/uri)
+
+HTML:
+<p>[link <a href="/uri">bar</a></p>
+
+output:
+[link bar </uri>
+
+
+TEST (Links)
+============
+
+markdown:
+[link \[bar](/uri)
+
+HTML:
+<p><a href="/uri">link [bar</a></p>
+
+output:
+link [bar </uri>
+
+
+TEST (Links)
+============
+
+markdown:
+[link *foo **bar** `#`*](/uri)
+
+HTML:
+<p><a href="/uri">link <em>foo <strong>bar</strong> <code>#</code></em></a></p>
+
+output:
+link *foo **bar** ```#```* </uri>
+
+
+TEST (Links)
+============
+
+markdown:
+[![moon](moon.jpg)](/uri)
+
+HTML:
+<p><a href="/uri"><img src="moon.jpg" alt="moon" /></a></p>
+
+output:
+[image]moon </uri>
+
+
+TEST (Links)
+============
+
+markdown:
+[foo [bar](/uri)](/uri)
+
+HTML:
+<p>[foo <a href="/uri">bar</a>](/uri)</p>
+
+output:
+[foo bar </uri>](/uri)
+
+
+TEST (Links)
+============
+
+markdown:
+[foo *[bar [baz](/uri)](/uri)*](/uri)
+
+HTML:
+<p>[foo <em>[bar <a href="/uri">baz</a>](/uri)</em>](/uri)</p>
+
+output:
+[foo *[bar baz </uri>](/uri)*](/uri)
+
+
+TEST (Links)
+============
+
+markdown:
+![[[foo](uri1)](uri2)](uri3)
+
+HTML:
+<p><img src="uri3" alt="[foo](uri2)" /></p>
+
+output:
+[image][foo <uri1>](uri2)
+
+
+TEST (Links)
+============
+
+markdown:
+*[foo*](/uri)
+
+HTML:
+<p>*<a href="/uri">foo*</a></p>
+
+output:
+*foo* </uri>
+
+
+TEST (Links)
+============
+
+markdown:
+[foo *bar](baz*)
+
+HTML:
+<p><a href="baz*">foo *bar</a></p>
+
+output:
+foo *bar <baz*>
+
+
+TEST (Links)
+============
+
+markdown:
+*foo [bar* baz]
+
+HTML:
+<p><em>foo [bar</em> baz]</p>
+
+output:
+*foo [bar* baz]
+
+
+TEST (Links)
+============
+
+markdown:
+[foo`](/uri)`
+
+HTML:
+<p>[foo<code>](/uri)</code></p>
+
+output:
+[foo```](/uri)```
+
+
+TEST (Links)
+============
+
+markdown:
+[foo<http://example.com/?search=](uri)>
+
+HTML:
+<p>[foo<a href="http://example.com/?search=%5D(uri)">http://example.com/?search=](uri)</a></p>
+
+output:
+[foohttp://example.com/?search=](uri) <http://example.com/?search=%5D(uri)>
+
+
+TEST (Links)
+============
+
+markdown:
+[foo][bar]
+
+[bar]: /url "title"
+
+HTML:
+<p><a href="/url" title="title">foo</a></p>
+
+output:
+foo </url>
+
+
+TEST (Links)
+============
+
+markdown:
+[link [foo [bar]]][ref]
+
+[ref]: /uri
+
+HTML:
+<p><a href="/uri">link [foo [bar]]</a></p>
+
+output:
+link [foo [bar]] </uri>
+
+
+TEST (Links)
+============
+
+markdown:
+[link \[bar][ref]
+
+[ref]: /uri
+
+HTML:
+<p><a href="/uri">link [bar</a></p>
+
+output:
+link [bar </uri>
+
+
+TEST (Links)
+============
+
+markdown:
+[link *foo **bar** `#`*][ref]
+
+[ref]: /uri
+
+HTML:
+<p><a href="/uri">link <em>foo <strong>bar</strong> <code>#</code></em></a></p>
+
+output:
+link *foo **bar** ```#```* </uri>
+
+
+TEST (Links)
+============
+
+markdown:
+[![moon](moon.jpg)][ref]
+
+[ref]: /uri
+
+HTML:
+<p><a href="/uri"><img src="moon.jpg" alt="moon" /></a></p>
+
+output:
+[image]moon </uri>
+
+
+TEST (Links)
+============
+
+markdown:
+[foo [bar](/uri)][ref]
+
+[ref]: /uri
+
+HTML:
+<p>[foo <a href="/uri">bar</a>]<a href="/uri">ref</a></p>
+
+output:
+[foo bar </uri>]ref </uri>
+
+
+TEST (Links)
+============
+
+markdown:
+[foo *bar [baz][ref]*][ref]
+
+[ref]: /uri
+
+HTML:
+<p>[foo <em>bar <a href="/uri">baz</a></em>]<a href="/uri">ref</a></p>
+
+output:
+[foo *bar baz </uri>*]ref </uri>
+
+
+TEST (Links)
+============
+
+markdown:
+*[foo*][ref]
+
+[ref]: /uri
+
+HTML:
+<p>*<a href="/uri">foo*</a></p>
+
+output:
+*foo* </uri>
+
+
+TEST (Links)
+============
+
+markdown:
+[foo *bar][ref]
+
+[ref]: /uri
+
+HTML:
+<p><a href="/uri">foo *bar</a></p>
+
+output:
+foo *bar </uri>
+
+
+TEST (Links)
+============
+
+markdown:
+[foo`][ref]`
+
+[ref]: /uri
+
+HTML:
+<p>[foo<code>][ref]</code></p>
+
+output:
+[foo```][ref]```
+
+
+TEST (Links)
+============
+
+markdown:
+[foo<http://example.com/?search=][ref]>
+
+[ref]: /uri
+
+HTML:
+<p>[foo<a href="http://example.com/?search=%5D%5Bref%5D">http://example.com/?search=][ref]</a></p>
+
+output:
+[foohttp://example.com/?search=][ref] <http://example.com/?search=%5D%5Bref%5D>
+
+
+TEST (Links)
+============
+
+markdown:
+[foo][BaR]
+
+[bar]: /url "title"
+
+HTML:
+<p><a href="/url" title="title">foo</a></p>
+
+output:
+foo </url>
+
+
+TEST (Links)
+============
+
+markdown:
+[Толпой][Толпой] is a Russian word.
+
+[ТОЛПОЙ]: /url
+
+HTML:
+<p><a href="/url">Толпой</a> is a Russian word.</p>
+
+output:
+Толпой </url> is a Russian word.
+
+
+TEST (Links)
+============
+
+markdown:
+[Foo
+  bar]: /url
+
+[Baz][Foo bar]
+
+HTML:
+<p><a href="/url">Baz</a></p>
+
+output:
+Baz </url>
+
+
+TEST (Links)
+============
+
+markdown:
+[foo] [bar]
+
+[bar]: /url "title"
+
+HTML:
+<p>[foo] <a href="/url" title="title">bar</a></p>
+
+output:
+[foo] bar </url>
+
+
+TEST (Links)
+============
+
+markdown:
+[foo]
+[bar]
+
+[bar]: /url "title"
+
+HTML:
+<p>[foo]
+<a href="/url" title="title">bar</a></p>
+
+output:
+[foo]
+bar </url>
+
+
+TEST (Links)
+============
+
+markdown:
+[foo]: /url1
+
+[foo]: /url2
+
+[bar][foo]
+
+HTML:
+<p><a href="/url1">bar</a></p>
+
+output:
+bar </url1>
+
+
+TEST (Links)
+============
+
+markdown:
+[bar][foo\!]
+
+[foo!]: /url
+
+HTML:
+<p>[bar][foo!]</p>
+
+output:
+[bar][foo!]
+
+
+TEST (Links)
+============
+
+markdown:
+[foo][ref[]
+
+[ref[]: /uri
+
+HTML:
+<p>[foo][ref[]</p>
+<p>[ref[]: /uri</p>
+
+output:
+[foo][ref[]
+
+[ref[]: /uri
+
+
+TEST (Links)
+============
+
+markdown:
+[foo][ref[bar]]
+
+[ref[bar]]: /uri
+
+HTML:
+<p>[foo][ref[bar]]</p>
+<p>[ref[bar]]: /uri</p>
+
+output:
+[foo][ref[bar]]
+
+[ref[bar]]: /uri
+
+
+TEST (Links)
+============
+
+markdown:
+[[[foo]]]
+
+[[[foo]]]: /url
+
+HTML:
+<p>[[[foo]]]</p>
+<p>[[[foo]]]: /url</p>
+
+output:
+[[[foo]]]
+
+[[[foo]]]: /url
+
+
+TEST (Links)
+============
+
+markdown:
+[foo][ref\[]
+
+[ref\[]: /uri
+
+HTML:
+<p><a href="/uri">foo</a></p>
+
+output:
+foo </uri>
+
+
+TEST (Links)
+============
+
+markdown:
+[bar\\]: /uri
+
+[bar\\]
+
+HTML:
+<p><a href="/uri">bar\</a></p>
+
+output:
+bar\ </uri>
+
+
+TEST (Links)
+============
+
+markdown:
+[]
+
+[]: /uri
+
+HTML:
+<p>[]</p>
+<p>[]: /uri</p>
+
+output:
+[]
+
+[]: /uri
+
+
+TEST (Links)
+============
+
+markdown:
+[
+ ]
+
+[
+ ]: /uri
+
+HTML:
+<p>[
+]</p>
+<p>[
+]: /uri</p>
+
+output:
+[
+]
+
+[
+]: /uri
+
+
+TEST (Links)
+============
+
+markdown:
+[foo][]
+
+[foo]: /url "title"
+
+HTML:
+<p><a href="/url" title="title">foo</a></p>
+
+output:
+foo </url>
+
+
+TEST (Links)
+============
+
+markdown:
+[*foo* bar][]
+
+[*foo* bar]: /url "title"
+
+HTML:
+<p><a href="/url" title="title"><em>foo</em> bar</a></p>
+
+output:
+*foo* bar </url>
+
+
+TEST (Links)
+============
+
+markdown:
+[Foo][]
+
+[foo]: /url "title"
+
+HTML:
+<p><a href="/url" title="title">Foo</a></p>
+
+output:
+Foo </url>
+
+
+TEST (Links)
+============
+
+markdown:
+[foo] 
+[]
+
+[foo]: /url "title"
+
+HTML:
+<p><a href="/url" title="title">foo</a>
+[]</p>
+
+output:
+foo </url>
+[]
+
+
+TEST (Links)
+============
+
+markdown:
+[foo]
+
+[foo]: /url "title"
+
+HTML:
+<p><a href="/url" title="title">foo</a></p>
+
+output:
+foo </url>
+
+
+TEST (Links)
+============
+
+markdown:
+[*foo* bar]
+
+[*foo* bar]: /url "title"
+
+HTML:
+<p><a href="/url" title="title"><em>foo</em> bar</a></p>
+
+output:
+*foo* bar </url>
+
+
+TEST (Links)
+============
+
+markdown:
+[[*foo* bar]]
+
+[*foo* bar]: /url "title"
+
+HTML:
+<p>[<a href="/url" title="title"><em>foo</em> bar</a>]</p>
+
+output:
+[*foo* bar </url>]
+
+
+TEST (Links)
+============
+
+markdown:
+[[bar [foo]
+
+[foo]: /url
+
+HTML:
+<p>[[bar <a href="/url">foo</a></p>
+
+output:
+[[bar foo </url>
+
+
+TEST (Links)
+============
+
+markdown:
+[Foo]
+
+[foo]: /url "title"
+
+HTML:
+<p><a href="/url" title="title">Foo</a></p>
+
+output:
+Foo </url>
+
+
+TEST (Links)
+============
+
+markdown:
+[foo] bar
+
+[foo]: /url
+
+HTML:
+<p><a href="/url">foo</a> bar</p>
+
+output:
+foo </url> bar
+
+
+TEST (Links)
+============
+
+markdown:
+\[foo]
+
+[foo]: /url "title"
+
+HTML:
+<p>[foo]</p>
+
+output:
+[foo]
+
+
+TEST (Links)
+============
+
+markdown:
+[foo*]: /url
+
+*[foo*]
+
+HTML:
+<p>*<a href="/url">foo*</a></p>
+
+output:
+*foo* </url>
+
+
+TEST (Links)
+============
+
+markdown:
+[foo][bar]
+
+[foo]: /url1
+[bar]: /url2
+
+HTML:
+<p><a href="/url2">foo</a></p>
+
+output:
+foo </url2>
+
+
+TEST (Links)
+============
+
+markdown:
+[foo][bar][baz]
+
+[baz]: /url
+
+HTML:
+<p>[foo]<a href="/url">bar</a></p>
+
+output:
+[foo]bar </url>
+
+
+TEST (Links)
+============
+
+markdown:
+[foo][bar][baz]
+
+[baz]: /url1
+[bar]: /url2
+
+HTML:
+<p><a href="/url2">foo</a><a href="/url1">baz</a></p>
+
+output:
+foo </url2>baz </url1>
+
+
+TEST (Links)
+============
+
+markdown:
+[foo][bar][baz]
+
+[baz]: /url1
+[foo]: /url2
+
+HTML:
+<p>[foo]<a href="/url1">bar</a></p>
+
+output:
+[foo]bar </url1>
+
+
+TEST (Images)
+=============
+
+markdown:
+![foo](/url "title")
+
+HTML:
+<p><img src="/url" alt="foo" title="title" /></p>
+
+output:
+[image]foo
+
+
+TEST (Images)
+=============
+
+markdown:
+![foo *bar*]
+
+[foo *bar*]: train.jpg "train & tracks"
+
+HTML:
+<p><img src="train.jpg" alt="foo bar" title="train &amp; tracks" /></p>
+
+output:
+[image]foo *bar*
+
+
+TEST (Images)
+=============
+
+markdown:
+![foo ![bar](/url)](/url2)
+
+HTML:
+<p><img src="/url2" alt="foo bar" /></p>
+
+output:
+[image]foo [image]bar
+
+
+TEST (Images)
+=============
+
+markdown:
+![foo [bar](/url)](/url2)
+
+HTML:
+<p><img src="/url2" alt="foo bar" /></p>
+
+output:
+[image]foo bar </url>
+
+
+TEST (Images)
+=============
+
+markdown:
+![foo *bar*][]
+
+[foo *bar*]: train.jpg "train & tracks"
+
+HTML:
+<p><img src="train.jpg" alt="foo bar" title="train &amp; tracks" /></p>
+
+output:
+[image]foo *bar*
+
+
+TEST (Images)
+=============
+
+markdown:
+![foo *bar*][foobar]
+
+[FOOBAR]: train.jpg "train & tracks"
+
+HTML:
+<p><img src="train.jpg" alt="foo bar" title="train &amp; tracks" /></p>
+
+output:
+[image]foo *bar*
+
+
+TEST (Images)
+=============
+
+markdown:
+![foo](train.jpg)
+
+HTML:
+<p><img src="train.jpg" alt="foo" /></p>
+
+output:
+[image]foo
+
+
+TEST (Images)
+=============
+
+markdown:
+My ![foo bar](/path/to/train.jpg  "title"   )
+
+HTML:
+<p>My <img src="/path/to/train.jpg" alt="foo bar" title="title" /></p>
+
+output:
+My [image]foo bar
+
+
+TEST (Images)
+=============
+
+markdown:
+![foo](<url>)
+
+HTML:
+<p><img src="url" alt="foo" /></p>
+
+output:
+[image]foo
+
+
+TEST (Images)
+=============
+
+markdown:
+![](/url)
+
+HTML:
+<p><img src="/url" alt="" /></p>
+
+output:
+[image]
+
+
+TEST (Images)
+=============
+
+markdown:
+![foo][bar]
+
+[bar]: /url
+
+HTML:
+<p><img src="/url" alt="foo" /></p>
+
+output:
+[image]foo
+
+
+TEST (Images)
+=============
+
+markdown:
+![foo][bar]
+
+[BAR]: /url
+
+HTML:
+<p><img src="/url" alt="foo" /></p>
+
+output:
+[image]foo
+
+
+TEST (Images)
+=============
+
+markdown:
+![foo][]
+
+[foo]: /url "title"
+
+HTML:
+<p><img src="/url" alt="foo" title="title" /></p>
+
+output:
+[image]foo
+
+
+TEST (Images)
+=============
+
+markdown:
+![*foo* bar][]
+
+[*foo* bar]: /url "title"
+
+HTML:
+<p><img src="/url" alt="foo bar" title="title" /></p>
+
+output:
+[image]*foo* bar
+
+
+TEST (Images)
+=============
+
+markdown:
+![Foo][]
+
+[foo]: /url "title"
+
+HTML:
+<p><img src="/url" alt="Foo" title="title" /></p>
+
+output:
+[image]Foo
+
+
+TEST (Images)
+=============
+
+markdown:
+![foo] 
+[]
+
+[foo]: /url "title"
+
+HTML:
+<p><img src="/url" alt="foo" title="title" />
+[]</p>
+
+output:
+[image]foo
+[]
+
+
+TEST (Images)
+=============
+
+markdown:
+![foo]
+
+[foo]: /url "title"
+
+HTML:
+<p><img src="/url" alt="foo" title="title" /></p>
+
+output:
+[image]foo
+
+
+TEST (Images)
+=============
+
+markdown:
+![*foo* bar]
+
+[*foo* bar]: /url "title"
+
+HTML:
+<p><img src="/url" alt="foo bar" title="title" /></p>
+
+output:
+[image]*foo* bar
+
+
+TEST (Images)
+=============
+
+markdown:
+![[foo]]
+
+[[foo]]: /url "title"
+
+HTML:
+<p>![[foo]]</p>
+<p>[[foo]]: /url &quot;title&quot;</p>
+
+output:
+![[foo]]
+
+[[foo]]: /url "title"
+
+
+TEST (Images)
+=============
+
+markdown:
+![Foo]
+
+[foo]: /url "title"
+
+HTML:
+<p><img src="/url" alt="Foo" title="title" /></p>
+
+output:
+[image]Foo
+
+
+TEST (Images)
+=============
+
+markdown:
+\!\[foo]
+
+[foo]: /url "title"
+
+HTML:
+<p>![foo]</p>
+
+output:
+![foo]
+
+
+TEST (Images)
+=============
+
+markdown:
+\![foo]
+
+[foo]: /url "title"
+
+HTML:
+<p>!<a href="/url" title="title">foo</a></p>
+
+output:
+!foo </url>
+
+
+TEST (Autolinks)
+================
+
+markdown:
+<http://foo.bar.baz>
+
+HTML:
+<p><a href="http://foo.bar.baz">http://foo.bar.baz</a></p>
+
+output:
+http://foo.bar.baz
+
+
+TEST (Autolinks)
+================
+
+markdown:
+<http://foo.bar.baz/test?q=hello&id=22&boolean>
+
+HTML:
+<p><a href="http://foo.bar.baz/test?q=hello&amp;id=22&amp;boolean">http://foo.bar.baz/test?q=hello&amp;id=22&amp;boolean</a></p>
+
+output:
+http://foo.bar.baz/test?q=hello&id=22&boolean
+
+
+TEST (Autolinks)
+================
+
+markdown:
+<irc://foo.bar:2233/baz>
+
+HTML:
+<p><a href="irc://foo.bar:2233/baz">irc://foo.bar:2233/baz</a></p>
+
+output:
+irc://foo.bar:2233/baz
+
+
+TEST (Autolinks)
+================
+
+markdown:
+<MAILTO:FOO@BAR.BAZ>
+
+HTML:
+<p><a href="MAILTO:FOO@BAR.BAZ">MAILTO:FOO@BAR.BAZ</a></p>
+
+output:
+MAILTO:FOO@BAR.BAZ
+
+
+TEST (Autolinks)
+================
+
+markdown:
+<a+b+c:d>
+
+HTML:
+<p><a href="a+b+c:d">a+b+c:d</a></p>
+
+output:
+a+b+c:d
+
+
+TEST (Autolinks)
+================
+
+markdown:
+<made-up-scheme://foo,bar>
+
+HTML:
+<p><a href="made-up-scheme://foo,bar">made-up-scheme://foo,bar</a></p>
+
+output:
+made-up-scheme://foo,bar
+
+
+TEST (Autolinks)
+================
+
+markdown:
+<http://../>
+
+HTML:
+<p><a href="http://../">http://../</a></p>
+
+output:
+http://../
+
+
+TEST (Autolinks)
+================
+
+markdown:
+<localhost:5001/foo>
+
+HTML:
+<p><a href="localhost:5001/foo">localhost:5001/foo</a></p>
+
+output:
+localhost:5001/foo
+
+
+TEST (Autolinks)
+================
+
+markdown:
+<http://foo.bar/baz bim>
+
+HTML:
+<p>&lt;http://foo.bar/baz bim&gt;</p>
+
+output:
+<http://foo.bar/baz bim>
+
+
+TEST (Autolinks)
+================
+
+markdown:
+<http://example.com/\[\>
+
+HTML:
+<p><a href="http://example.com/%5C%5B%5C">http://example.com/\[\</a></p>
+
+output:
+http://example.com/\[\ <http://example.com/%5C%5B%5C>
+
+
+TEST (Autolinks)
+================
+
+markdown:
+<foo@bar.example.com>
+
+HTML:
+<p><a href="mailto:foo@bar.example.com">foo@bar.example.com</a></p>
+
+output:
+foo@bar.example.com <mailto:foo@bar.example.com>
+
+
+TEST (Autolinks)
+================
+
+markdown:
+<foo+special@Bar.baz-bar0.com>
+
+HTML:
+<p><a href="mailto:foo+special@Bar.baz-bar0.com">foo+special@Bar.baz-bar0.com</a></p>
+
+output:
+foo+special@Bar.baz-bar0.com <mailto:foo+special@Bar.baz-bar0.com>
+
+
+TEST (Autolinks)
+================
+
+markdown:
+<foo\+@bar.example.com>
+
+HTML:
+<p>&lt;foo+@bar.example.com&gt;</p>
+
+output:
+<foo+@bar.example.com>
+
+
+TEST (Autolinks)
+================
+
+markdown:
+<>
+
+HTML:
+<p>&lt;&gt;</p>
+
+output:
+<>
+
+
+TEST (Autolinks)
+================
+
+markdown:
+< http://foo.bar >
+
+HTML:
+<p>&lt; http://foo.bar &gt;</p>
+
+output:
+< http://foo.bar >
+
+
+TEST (Autolinks)
+================
+
+markdown:
+<m:abc>
+
+HTML:
+<p>&lt;m:abc&gt;</p>
+
+output:
+<m:abc>
+
+
+TEST (Autolinks)
+================
+
+markdown:
+<foo.bar.baz>
+
+HTML:
+<p>&lt;foo.bar.baz&gt;</p>
+
+output:
+<foo.bar.baz>
+
+
+TEST (Autolinks)
+================
+
+markdown:
+http://example.com
+
+HTML:
+<p>http://example.com</p>
+
+output:
+http://example.com
+
+
+TEST (Autolinks)
+================
+
+markdown:
+foo@bar.example.com
+
+HTML:
+<p>foo@bar.example.com</p>
+
+output:
+foo@bar.example.com
+
+
+TEST (Raw HTML)
+===============
+
+markdown:
+<33> <__>
+
+HTML:
+<p>&lt;33&gt; &lt;__&gt;</p>
+
+output:
+<33> <__>
+
+
+TEST (Raw HTML)
+===============
+
+markdown:
+<a h*#ref="hi">
+
+HTML:
+<p>&lt;a h*#ref=&quot;hi&quot;&gt;</p>
+
+output:
+<a h*#ref="hi">
+
+
+TEST (Raw HTML)
+===============
+
+markdown:
+<a href="hi'> <a href=hi'>
+
+HTML:
+<p>&lt;a href=&quot;hi'&gt; &lt;a href=hi'&gt;</p>
+
+output:
+<a href="hi'> <a href=hi'>
+
+
+TEST (Raw HTML)
+===============
+
+markdown:
+< a><
+foo><bar/ >
+
+HTML:
+<p>&lt; a&gt;&lt;
+foo&gt;&lt;bar/ &gt;</p>
+
+output:
+< a><
+foo><bar/ >
+
+
+TEST (Raw HTML)
+===============
+
+markdown:
+<a href='bar'title=title>
+
+HTML:
+<p>&lt;a href='bar'title=title&gt;</p>
+
+output:
+<a href='bar'title=title>
+
+
+TEST (Raw HTML)
+===============
+
+markdown:
+</a href="foo">
+
+HTML:
+<p>&lt;/a href=&quot;foo&quot;&gt;</p>
+
+output:
+</a href="foo">
+
+
+TEST (Raw HTML)
+===============
+
+markdown:
+foo <!-- not a comment -- two hyphens -->
+
+HTML:
+<p>foo &lt;!-- not a comment -- two hyphens --&gt;</p>
+
+output:
+foo <!-- not a comment -- two hyphens -->
+
+
+TEST (Raw HTML)
+===============
+
+markdown:
+foo <!--> foo -->
+
+foo <!-- foo--->
+
+HTML:
+<p>foo &lt;!--&gt; foo --&gt;</p>
+<p>foo &lt;!-- foo---&gt;</p>
+
+output:
+foo <!--> foo -->
+
+foo <!-- foo--->
+
+
+TEST (Raw HTML)
+===============
+
+markdown:
+<a href="\"">
+
+HTML:
+<p>&lt;a href=&quot;&quot;&quot;&gt;</p>
+
+output:
+<a href=""">
+
+
+TEST (Hard line breaks)
+=======================
+
+markdown:
+foo  
+baz
+
+HTML:
+<p>foo<br />
+baz</p>
+
+output:
+foo
+baz
+
+
+TEST (Hard line breaks)
+=======================
+
+markdown:
+foo\
+baz
+
+HTML:
+<p>foo<br />
+baz</p>
+
+output:
+foo
+baz
+
+
+TEST (Hard line breaks)
+=======================
+
+markdown:
+foo       
+baz
+
+HTML:
+<p>foo<br />
+baz</p>
+
+output:
+foo
+baz
+
+
+TEST (Hard line breaks)
+=======================
+
+markdown:
+foo  
+     bar
+
+HTML:
+<p>foo<br />
+bar</p>
+
+output:
+foo
+bar
+
+
+TEST (Hard line breaks)
+=======================
+
+markdown:
+foo\
+     bar
+
+HTML:
+<p>foo<br />
+bar</p>
+
+output:
+foo
+bar
+
+
+TEST (Hard line breaks)
+=======================
+
+markdown:
+*foo  
+bar*
+
+HTML:
+<p><em>foo<br />
+bar</em></p>
+
+output:
+*foo
+bar*
+
+
+TEST (Hard line breaks)
+=======================
+
+markdown:
+*foo\
+bar*
+
+HTML:
+<p><em>foo<br />
+bar</em></p>
+
+output:
+*foo
+bar*
+
+
+TEST (Hard line breaks)
+=======================
+
+markdown:
+`code  
+span`
+
+HTML:
+<p><code>code span</code></p>
+
+output:
+```code span```
+
+
+TEST (Hard line breaks)
+=======================
+
+markdown:
+`code\
+span`
+
+HTML:
+<p><code>code\ span</code></p>
+
+output:
+```code\ span```
+
+
+TEST (Hard line breaks)
+=======================
+
+markdown:
+foo\
+
+HTML:
+<p>foo\</p>
+
+output:
+foo\
+
+
+TEST (Hard line breaks)
+=======================
+
+markdown:
+foo  
+
+HTML:
+<p>foo</p>
+
+output:
+foo
+
+
+TEST (Hard line breaks)
+=======================
+
+markdown:
+### foo\
+
+HTML:
+<h3>foo\</h3>
+
+output:
+foo\
+----
+
+
+TEST (Hard line breaks)
+=======================
+
+markdown:
+### foo  
+
+HTML:
+<h3>foo</h3>
+
+output:
+foo
+---
+
+
+TEST (Soft line breaks)
+=======================
+
+markdown:
+foo
+baz
+
+HTML:
+<p>foo
+baz</p>
+
+output:
+foo
+baz
+
+
+TEST (Soft line breaks)
+=======================
+
+markdown:
+foo 
+ baz
+
+HTML:
+<p>foo
+baz</p>
+
+output:
+foo
+baz
+
+
+TEST (Textual content)
+======================
+
+markdown:
+hello $.;'there
+
+HTML:
+<p>hello $.;'there</p>
+
+output:
+hello $.;'there
+
+
+TEST (Textual content)
+======================
+
+markdown:
+Foo χρῆν
+
+HTML:
+<p>Foo χρῆν</p>
+
+output:
+Foo χρῆν
+
+
+TEST (Textual content)
+======================
+
+markdown:
+Multiple     spaces
+
+HTML:
+<p>Multiple     spaces</p>
+
+output:
+Multiple     spaces
+
+
