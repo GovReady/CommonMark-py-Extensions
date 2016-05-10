@@ -26,7 +26,14 @@ class ItemBullet:
         # A bullet is emitted exactly once.
         if not self.emitted:
             self.emitted = True
-            return "* "
+            if self.listblock.list_type == "bullet":
+                return "* "
+            elif self.listblock.list_type == "ordered":
+                r = str(self.listblock.value) + ". "
+                self.listblock.value += 1
+                return r
+            else:
+                raise ValueError(self.listblock.list_type)
 
         # After that, it is just emitted as indentation.
         else:

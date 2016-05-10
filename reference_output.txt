@@ -1482,7 +1482,7 @@ HTML:
 </ol>
 
 output:
-* foo
+1. foo
 
   * bar
 
@@ -3406,7 +3406,7 @@ with two lines.</p>
 </ol>
 
 output:
-* A paragraph
+1. A paragraph
   with two lines.
 
   -------------
@@ -3524,7 +3524,7 @@ HTML:
 </blockquote>
 
 output:
-> > * one
+> > 1. one
 
 > >   two
 
@@ -3687,7 +3687,7 @@ HTML:
 </ol>
 
 output:
-* foo
+1. foo
 
   ---
   bar
@@ -3775,7 +3775,7 @@ HTML:
 </ol>
 
 output:
-* ok
+123456789. ok
 
 
 TEST (List items)
@@ -3803,7 +3803,7 @@ HTML:
 </ol>
 
 output:
-* ok
+0. ok
 
 
 TEST (List items)
@@ -3818,7 +3818,7 @@ HTML:
 </ol>
 
 output:
-* ok
+3. ok
 
 
 TEST (List items)
@@ -3877,7 +3877,7 @@ HTML:
 </ol>
 
 output:
-* foo
+10. foo
 
   ---
   bar
@@ -3935,7 +3935,7 @@ HTML:
 </ol>
 
 output:
-* -------------
+1. -------------
   indented code
   -------------
 
@@ -3968,7 +3968,7 @@ HTML:
 </ol>
 
 output:
-* --------------
+1. --------------
    indented code
   --------------
 
@@ -4175,11 +4175,11 @@ HTML:
 </ol>
 
 output:
-* foo
+1. foo
 
-* 
+2. 
 
-* bar
+3. bar
 
 
 TEST (List items)
@@ -4222,7 +4222,7 @@ with two lines.</p>
 </ol>
 
 output:
-* A paragraph
+1. A paragraph
   with two lines.
 
   -------------
@@ -4257,7 +4257,7 @@ with two lines.</p>
 </ol>
 
 output:
-* A paragraph
+1. A paragraph
   with two lines.
 
   -------------
@@ -4292,7 +4292,7 @@ with two lines.</p>
 </ol>
 
 output:
-* A paragraph
+1. A paragraph
   with two lines.
 
   -------------
@@ -4358,7 +4358,7 @@ with two lines.</p>
 </ol>
 
 output:
-* A paragraph
+1. A paragraph
   with two lines.
 
   -------------
@@ -4382,7 +4382,7 @@ with two lines.</li>
 </ol>
 
 output:
-* A paragraph
+1. A paragraph
   with two lines.
 
 
@@ -4406,7 +4406,7 @@ continued here.</p>
 </blockquote>
 
 output:
-> * > Blockquote
+> 1. > Blockquote
 >   > continued here.
 
 
@@ -4430,7 +4430,7 @@ continued here.</p>
 </blockquote>
 
 output:
-> * > Blockquote
+> 1. > Blockquote
 >   > continued here.
 
 
@@ -4503,7 +4503,7 @@ HTML:
 </ol>
 
 output:
-* foo
+10. foo
 
   * bar
 
@@ -4524,7 +4524,7 @@ HTML:
 </ul>
 
 output:
-* foo
+10. foo
 
 * bar
 
@@ -4568,7 +4568,7 @@ HTML:
 </ol>
 
 output:
-* * * foo
+1. * 2. foo
 
 
 TEST (List items)
@@ -4643,11 +4643,11 @@ HTML:
 </ol>
 
 output:
-* foo
+1. foo
 
-* bar
+2. bar
 
-* baz
+3. baz
 
 
 TEST (Lists)
@@ -4689,7 +4689,7 @@ HTML:
 output:
 The number of windows in my house is
 
-* The number of doors is 6.
+14. The number of doors is 6.
 
 
 TEST (Lists)
@@ -4929,11 +4929,11 @@ HTML:
 </ol>
 
 output:
-* a
+1. a
 
-* b
+2. b
 
-* c
+3. c
 
 
 TEST (Lists)
@@ -5245,7 +5245,7 @@ HTML:
 </ol>
 
 output:
-* ---
+1. ---
   foo
   ---
 

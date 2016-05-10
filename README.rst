@@ -29,7 +29,6 @@ Why?
 Limitations:
 
 * The html_inline and html_block nodes are not supported and will raise a ValueError exception.
-* Numbered lists are outputted as bulletted lists.
 * Images are rendered as "[image]" plus their alt text.
 
 Testing:
