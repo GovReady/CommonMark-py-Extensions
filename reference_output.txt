@@ -1472,7 +1472,7 @@ HTML:
 output:
 1. foo
 
-  * bar
+   * bar
 
 TEST (Indented code blocks)
 ===========================
@@ -3398,13 +3398,13 @@ with two lines.</p>
 
 output:
 1. A paragraph
-  with two lines.
+   with two lines.
 
-  -------------
-  indented code
-  -------------
+   -------------
+   indented code
+   -------------
 
-  > A block quote.
+   > A block quote.
 
 
 TEST (List items)
@@ -3515,7 +3515,7 @@ HTML:
 output:
 > > 1. one
 
-> >   two
+> >    two
 
 
 TEST (List items)
@@ -3677,13 +3677,13 @@ HTML:
 output:
 1. foo
 
-  ---
-  bar
-  ---
+   ---
+   bar
+   ---
 
-  baz
+   baz
 
-  > bam
+   > bam
 
 
 TEST (List items)
@@ -3864,9 +3864,9 @@ HTML:
 output:
 10. foo
 
-  ---
-  bar
-  ---
+    ---
+    bar
+    ---
 
 
 TEST (List items)
@@ -3921,14 +3921,14 @@ HTML:
 
 output:
 1. -------------
-  indented code
-  -------------
+   indented code
+   -------------
 
-  paragraph
+   paragraph
 
-  ---------
-  more code
-  ---------
+   ---------
+   more code
+   ---------
 
 
 TEST (List items)
@@ -3954,14 +3954,14 @@ HTML:
 
 output:
 1. --------------
-   indented code
-  --------------
+    indented code
+   --------------
 
-  paragraph
+   paragraph
 
-  ---------
-  more code
-  ---------
+   ---------
+   more code
+   ---------
 
 
 TEST (List items)
@@ -4199,13 +4199,13 @@ with two lines.</p>
 
 output:
 1. A paragraph
-  with two lines.
+   with two lines.
 
-  -------------
-  indented code
-  -------------
+   -------------
+   indented code
+   -------------
 
-  > A block quote.
+   > A block quote.
 
 
 TEST (List items)
@@ -4234,13 +4234,13 @@ with two lines.</p>
 
 output:
 1. A paragraph
-  with two lines.
+   with two lines.
 
-  -------------
-  indented code
-  -------------
+   -------------
+   indented code
+   -------------
 
-  > A block quote.
+   > A block quote.
 
 
 TEST (List items)
@@ -4269,13 +4269,13 @@ with two lines.</p>
 
 output:
 1. A paragraph
-  with two lines.
+   with two lines.
 
-  -------------
-  indented code
-  -------------
+   -------------
+   indented code
+   -------------
 
-  > A block quote.
+   > A block quote.
 
 
 TEST (List items)
@@ -4335,13 +4335,13 @@ with two lines.</p>
 
 output:
 1. A paragraph
-  with two lines.
+   with two lines.
 
-  -------------
-  indented code
-  -------------
+   -------------
+   indented code
+   -------------
 
-  > A block quote.
+   > A block quote.
 
 
 TEST (List items)
@@ -4359,7 +4359,7 @@ with two lines.</li>
 
 output:
 1. A paragraph
-  with two lines.
+   with two lines.
 
 TEST (List items)
 =================
@@ -4382,7 +4382,7 @@ continued here.</p>
 
 output:
 > 1. > Blockquote
->   > continued here.
+>    > continued here.
 
 
 TEST (List items)
@@ -4406,7 +4406,7 @@ continued here.</p>
 
 output:
 > 1. > Blockquote
->   > continued here.
+>    > continued here.
 
 
 TEST (List items)
@@ -4473,7 +4473,7 @@ HTML:
 
 output:
 10. foo
-  * bar
+    * bar
 
 TEST (List items)
 =================
@@ -5169,10 +5169,10 @@ HTML:
 
 output:
 1. ---
-  foo
-  ---
+   foo
+   ---
 
-  bar
+   bar
 
 
 TEST (Lists)

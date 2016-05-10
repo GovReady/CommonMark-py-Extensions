@@ -21,23 +21,22 @@ class ListBlock:
 class ItemBullet:
     def __init__(self, listblock):
         self.listblock = listblock
-        self.emitted = False
+        self.emitted = None
     def __str__(self):
         # A bullet is emitted exactly once.
         if not self.emitted:
-            self.emitted = True
             if self.listblock.list_type == "bullet":
-                return "* "
+                self.emitted = "* "
             elif self.listblock.list_type == "ordered":
-                r = str(self.listblock.value) + ". "
+                self.emitted = str(self.listblock.value) + ". "
                 self.listblock.value += 1
-                return r
             else:
                 raise ValueError(self.listblock.list_type)
+            return self.emitted
 
         # After that, it is just emitted as indentation.
         else:
-            return "  "
+            return " " * len(self.emitted)
 
 
 class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
