@@ -4,6 +4,7 @@ import re
 import sys
 
 import CommonMark
+import CommonMark.render.html
 import CommonMarkPlainText
 
 def get_tests():
@@ -56,6 +57,10 @@ def run_tests():
     parser = CommonMark.Parser()
 
     for test in get_tests():
+        # Render as text and output.
+        # Since we don't have reference output, we'll make our own and
+        # just track if it changes.
+
         renderer = CommonMarkPlainText.CommonMarkPlainTextRenderer()
         ast = parser.parse(test['markdown'])
         try:
@@ -74,6 +79,20 @@ def run_tests():
         print(test['html'])
         print("output:")
         print(output)
+
+        # Render as CommonMark, then re-parse it, render that to
+        # HTML, and see if the HTML matches the reference HTML.
+        cm = CommonMarkPlainText.CommonMarkToCommonMarkRenderer().render(ast)
+        ast = parser.parse(cm)
+        html = CommonMark.render.html.HtmlRenderer().render(ast)
+        if html != test['html']:
+            # This is an error. Round-tripping didn't work.
+            print("\\")
+            print(cm)
+            print("/")
+            print(html)
+
+
 
 run_tests()
 

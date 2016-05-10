@@ -41,6 +41,7 @@ class ItemBullet:
 
 class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
     def __init__(self):
+        self.setext_heading_chars = ["#", "=", "-"]
         self.block_indent = []
 
     def render_indent(self, next_bullet=False):
@@ -49,10 +50,10 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
     def text(self, node, entering=None):
         self.out(node.literal)
     def softbreak(self, node=None, entering=None):
-        self.out("\n")
+        self.lit("\n")
         self.render_indent()
     def linebreak(self, node=None, entering=None):
-        self.out("\n")
+        self.lit("\n")
         self.render_indent()
     def link(self, node, entering):
         if entering:
@@ -60,16 +61,16 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
         else:
             text = self.buf[self.link_start:]
             if text != node.destination:
-                self.out(" <" + node.destination + ">")
+                self.lit(" <" + node.destination + ">")
     def image(self, node, entering):
         if entering:
-            self.out('[image]')
+            self.lit('[image]')
         else:
             pass
     def emph(self, node, entering):
-        self.out("*") # same symbol entering & existing
+        self.lit("*") # same symbol entering & existing
     def strong(self, node, entering):
-        self.out("**") # same symbol entering & existing
+        self.lit("**") # same symbol entering & existing
     def paragraph(self, node, entering):
         if entering:
             self.render_indent()
@@ -77,45 +78,62 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
             # adapted from the HtmlRenderer
             grandparent = node.parent.parent
             if grandparent is not None and grandparent.t == 'list' and  grandparent.list_data['tight']:
-                self.out("\n")
+                self.lit("\n")
             else:
-                self.out("\n\n")
+                self.lit("\n\n")
     def heading(self, node, entering):
         if entering:
             self.render_indent()
             self.heading_start = len(self.buf)
         else:
-            heading_chars = ["#", "=", "-"]
-            if node.level <= len(heading_chars):
+            if node.level <= len(self.setext_heading_chars):
                 heading_len = len(self.buf) - self.heading_start
-                self.out("\n")
-                self.render_indent()
-                self.out(heading_chars[node.level-1] * heading_len)
-            self.out("\n")
+                if heading_len == 0:
+                    # CommonMark requires that the heading still be emitted even if
+                    # empty, so fall back to a setext-style heading.
+                    self.lit("#" * node.level + " ")
+                else:
+                    self.lit("\n")
+                    self.render_indent()
+                    self.lit(self.setext_heading_chars[node.level-1] * heading_len)
+            self.lit("\n")
             self.render_indent()
-            self.out("\n")
+            self.lit("\n")
     def code(self, node, entering):
-        self.out("```") # better way to render this?
+        # Just do actual CommonMark here. The backtick string around the literal
+        # must have one more backtick than the number of consecutive backticks
+        # in the literal.
+        backtick_string = "`"
+        while backtick_string in node.literal:
+            backtick_string += "`"
+        self.lit(backtick_string)
+        if node.literal.startswith("`"):
+            self.lit(" ")
         self.out(node.literal)
-        self.out("```")
+        if node.literal.endswith("`"):
+            self.lit(" ")
+        self.lit(backtick_string)
     def code_block(self, node, entering):
-        max_line_len = max([len(line.replace("\t", "    ")) for line in node.literal.split("\n")])
         # open code block
         self.render_indent()
-        self.out("-" * max_line_len + "\n")
+        self.emit_code_block_fence(node.literal,node.info.split()[0] if node.info else None)
         # each line, with indentation
         lines = node.literal.split("\n")
         while len(lines) > 0 and lines[-1] == "": lines.pop(-1)
         for line in lines:
             self.render_indent()
-            self.out(line + "\n")
+            self.lit(line + "\n")
         # close code block
         self.render_indent()
-        self.out("-" * max_line_len + "\n\n")
+        self.emit_code_block_fence(node.literal)
+        self.lit("\n")
+    def emit_code_block_fence(self, literal, language=None):
+        width = max([len(line.replace("\t", "    ")) for line in literal.split("\n")])
+        self.lit("-" * width + "\n")
     def thematic_break(self, node, entering):
         self.render_indent()
-        self.out("-" * 60)
-        self.out("\n\n")
+        self.lit("-" * 60)
+        self.lit("\n\n")
     def block_quote(self, node, entering):
         if entering:
             self.block_indent.append("> ")
@@ -141,7 +159,7 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
             if len(self.buf) == self.item_start:
                 # Always emit a bullet even if there was no content.
                 self.render_indent()
-                self.out("\n\n")
+                self.lit("\n\n")
             self.block_indent.pop(-1)
 
     def html_inline(self, node, entering):
@@ -165,6 +183,58 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
         elif (not entering) and node.on_exit:
             self.lit(node.on_exit)
         self.cr()
+
+class CommonMarkToCommonMarkRenderer(CommonMarkPlainTextRenderer):
+    def __init__(self):
+        super(CommonMarkToCommonMarkRenderer, self).__init__()
+        self.setext_heading_chars = ["=", "-"]
+
+    def out(self, s):
+        # Escape punctuation.
+        escape_chars = "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~\\"
+        s = "".join(("\\" if c in escape_chars else "") + c for c in s)
+        super().out(s)
+
+    def linebreak(self, node=None, entering=None):
+        self.lit("\\\n")
+        self.render_indent()
+
+    def link(self, node, entering):
+        if entering:
+            self.lit("[")
+        else:
+            self.lit("](")
+            self.out(node.destination)
+            if node.title:
+                self.lit(" \"")
+                self.out(node.title)
+                self.lit("\"")
+            self.lit(")")
+
+    def heading(self, node, entering):
+        if node.level <= 2:
+            super().heading(node, entering)
+        else:
+            if entering:
+                self.lit("#" * node.level + " ")
+                self.block_indent.append(" " * (node.level+1))
+            else:
+                self.lit("\n")
+                self.block_indent.pop(-1)
+
+    def emit_code_block_fence(self, content, language=None):
+        if not "```" in content and content.strip() != "":
+            # if it's empty, then ``` would confuse for inline code
+            fence_char = "`"
+        elif not "~~~" in content:
+            fence_char = "~"
+        else:
+            raise ValueError("not sure how to fence this")
+        self.lit(fence_char*3)
+        if language:
+            self.out(language)
+        self.lit("\n")
+
 
 if __name__ == "__main__":
     # Example!

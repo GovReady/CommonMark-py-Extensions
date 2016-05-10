@@ -860,14 +860,11 @@ HTML:
 <h3></h3>
 
 output:
+## 
 
+# 
 
-
-
-
-
-
-
+### 
 
 
 TEST (Setext headings)
@@ -2067,9 +2064,18 @@ HTML:
 aaa</p>
 
 output:
-``````
+``
 aaa
 
+
+\
+``
+aaa
+
+
+/
+<p>``
+aaa</p>
 
 TEST (Fenced code blocks)
 =========================
@@ -2221,7 +2227,7 @@ HTML:
 foo</p>
 
 output:
-```aa```
+`aa`
 foo
 
 
@@ -3167,6 +3173,20 @@ output:
 > bar
 
 
+\
+> foo
+
+> bar
+
+
+/
+<blockquote>
+<p>foo</p>
+</blockquote>
+<blockquote>
+<p>bar</p>
+</blockquote>
+
 TEST (Block quotes)
 ===================
 
@@ -3426,6 +3446,17 @@ output:
 two
 
 
+\
+* one
+two
+
+
+/
+<ul>
+<li>one
+two</li>
+</ul>
+
 TEST (List items)
 =================
 
@@ -3518,6 +3549,26 @@ output:
 > >    two
 
 
+\
+> > 1. one
+
+> >    two
+
+
+/
+<blockquote>
+<blockquote>
+<ol>
+<li>one</li>
+</ol>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>two</p>
+</blockquote>
+</blockquote>
+
 TEST (List items)
 =================
 
@@ -3540,6 +3591,21 @@ output:
 > > * one
 > > two
 
+
+\
+> > * one
+> > two
+
+
+/
+<blockquote>
+<blockquote>
+<ul>
+<li>one
+two</li>
+</ul>
+</blockquote>
+</blockquote>
 
 TEST (List items)
 =================
@@ -4001,6 +4067,17 @@ output:
 bar
 
 
+\
+* foo
+bar
+
+
+/
+<ul>
+<li>foo
+bar</li>
+</ul>
+
 TEST (List items)
 =================
 
@@ -4060,6 +4137,32 @@ output:
   ---
 
 
+\
+* foo
+* ```
+  bar
+  ```
+
+* ```
+  baz
+  ```
+
+
+/
+<ul>
+<li>
+<p>foo</p>
+</li>
+<li>
+<pre><code>bar
+</code></pre>
+</li>
+<li>
+<pre><code>baz
+</code></pre>
+</li>
+</ul>
+
 TEST (List items)
 =================
 
@@ -4116,6 +4219,23 @@ output:
 
 * bar
 
+\
+* foo
+* 
+
+* bar
+
+/
+<ul>
+<li>
+<p>foo</p>
+</li>
+<li></li>
+<li>
+<p>bar</p>
+</li>
+</ul>
+
 TEST (List items)
 =================
 
@@ -4137,6 +4257,23 @@ output:
 
 * bar
 
+\
+* foo
+* 
+
+* bar
+
+/
+<ul>
+<li>
+<p>foo</p>
+</li>
+<li></li>
+<li>
+<p>bar</p>
+</li>
+</ul>
+
 TEST (List items)
 =================
 
@@ -4157,6 +4294,23 @@ output:
 2. 
 
 3. bar
+
+\
+1. foo
+2. 
+
+3. bar
+
+/
+<ol>
+<li>
+<p>foo</p>
+</li>
+<li></li>
+<li>
+<p>bar</p>
+</li>
+</ol>
 
 TEST (List items)
 =================
@@ -4562,6 +4716,26 @@ output:
   
   baz
 
+\
+* Foo
+  ===
+  
+* Bar
+  ---
+  
+  baz
+
+/
+<ul>
+<li>
+<h1>Foo</h1>
+</li>
+<li>
+<h2>Bar</h2>
+<p>baz</p>
+</li>
+</ul>
+
 TEST (Lists)
 ============
 
@@ -4584,6 +4758,18 @@ output:
 * bar
 * baz
 
+\
+* foo
+* bar
+* baz
+
+/
+<ul>
+<li>foo</li>
+<li>bar</li>
+<li>baz</li>
+</ul>
+
 TEST (Lists)
 ============
 
@@ -4605,6 +4791,18 @@ output:
 1. foo
 2. bar
 3. baz
+
+\
+1. foo
+2. bar
+3. baz
+
+/
+<ol>
+<li>foo</li>
+<li>bar</li>
+<li>baz</li>
+</ol>
 
 TEST (Lists)
 ============
@@ -4676,6 +4874,26 @@ output:
 
 * baz
 
+\
+* foo
+
+* bar
+
+* baz
+
+/
+<ul>
+<li>
+<p>foo</p>
+</li>
+<li>
+<p>bar</p>
+</li>
+<li>
+<p>baz</p>
+</li>
+</ul>
+
 TEST (Lists)
 ============
 
@@ -4700,6 +4918,23 @@ output:
 bar
 
 * baz
+
+\
+* foo
+bar
+
+* baz
+
+/
+<ul>
+<li>
+<p>foo
+bar</p>
+</li>
+<li>
+<p>baz</p>
+</li>
+</ul>
 
 TEST (Lists)
 ============
@@ -4762,6 +4997,20 @@ output:
 * bar
 * baz
 * bim
+
+\
+* foo
+* bar
+* baz
+* bim
+
+/
+<ul>
+<li>foo</li>
+<li>bar</li>
+<li>baz</li>
+<li>bim</li>
+</ul>
 
 TEST (Lists)
 ============
@@ -5025,6 +5274,28 @@ output:
 
 * c
 
+\
+* a
+* ```
+  b
+  ```
+
+* c
+
+/
+<ul>
+<li>
+<p>a</p>
+</li>
+<li>
+<pre><code>b
+</code></pre>
+</li>
+<li>
+<p>c</p>
+</li>
+</ul>
+
 TEST (Lists)
 ============
 
@@ -5056,6 +5327,30 @@ output:
 
 * d
 
+\
+* a
+  * b
+
+    c
+
+* d
+
+/
+<ul>
+<li>
+<p>a</p>
+<ul>
+<li>
+<p>b</p>
+<p>c</p>
+</li>
+</ul>
+</li>
+<li>
+<p>d</p>
+</li>
+</ul>
+
 TEST (Lists)
 ============
 
@@ -5080,6 +5375,25 @@ output:
   > b
 
 * c
+
+\
+* a
+  > b
+
+* c
+
+/
+<ul>
+<li>
+<p>a</p>
+<blockquote>
+<p>b</p>
+</blockquote>
+</li>
+<li>
+<p>c</p>
+</li>
+</ul>
 
 TEST (Lists)
 ============
@@ -5113,6 +5427,31 @@ output:
   -
 
 * d
+
+\
+* a
+  > b
+
+  ```
+  c
+  ```
+
+* d
+
+/
+<ul>
+<li>
+<p>a</p>
+<blockquote>
+<p>b</p>
+</blockquote>
+<pre><code>c
+</code></pre>
+</li>
+<li>
+<p>d</p>
+</li>
+</ul>
 
 TEST (Lists)
 ============
@@ -5202,6 +5541,24 @@ output:
   baz
 
 
+\
+* foo
+
+  * bar
+  baz
+
+
+/
+<ul>
+<li>
+<p>foo</p>
+<ul>
+<li>bar
+baz</li>
+</ul>
+</li>
+</ul>
+
 TEST (Lists)
 ============
 
@@ -5252,7 +5609,7 @@ HTML:
 <p><code>hi</code>lo`</p>
 
 output:
-```hi```lo`
+`hi`lo`
 
 
 TEST (Backslash escapes)
@@ -5354,8 +5711,15 @@ HTML:
 <p><code>\[\`</code></p>
 
 output:
-```\[\````
+``\[\` ``
 
+
+\
+``\\\[\\\` ``
+
+
+/
+<p><code>\\\[\\\`</code></p>
 
 TEST (Backslash escapes)
 ========================
@@ -5468,6 +5832,17 @@ output:
 ¾ ℋ ⅆ
 ∲ ≧̸
 
+
+\
+  \& © Æ Ď
+¾ ℋ ⅆ
+∲ ≧̸
+
+
+/
+<p>&amp; © Æ Ď
+¾ ℋ ⅆ
+∲ ≧̸</p>
 
 TEST (Entity and numeric character references)
 ==============================================
@@ -5593,8 +5968,15 @@ HTML:
 <p><code>f&amp;ouml;&amp;ouml;</code></p>
 
 output:
-```f&ouml;&ouml;```
+`f&ouml;&ouml;`
 
+
+\
+`f\&ouml\;\&ouml\;`
+
+
+/
+<p><code>f\&amp;ouml\;\&amp;ouml\;</code></p>
 
 TEST (Entity and numeric character references)
 ==============================================
@@ -5622,7 +6004,7 @@ HTML:
 <p><code>foo</code></p>
 
 output:
-```foo```
+`foo`
 
 
 TEST (Code spans)
@@ -5635,8 +6017,15 @@ HTML:
 <p><code>foo ` bar</code></p>
 
 output:
-```foo ` bar```
+``foo ` bar``
 
+
+\
+``foo \` bar``
+
+
+/
+<p><code>foo \` bar</code></p>
 
 TEST (Code spans)
 =================
@@ -5648,8 +6037,15 @@ HTML:
 <p><code>``</code></p>
 
 output:
-````````
+``` `` ```
 
+
+\
+``` \`\` ```
+
+
+/
+<p><code>\`\`</code></p>
 
 TEST (Code spans)
 =================
@@ -5663,7 +6059,7 @@ HTML:
 <p><code>foo</code></p>
 
 output:
-```foo```
+`foo`
 
 
 TEST (Code spans)
@@ -5677,7 +6073,7 @@ HTML:
 <p><code>foo bar baz</code></p>
 
 output:
-```foo bar baz```
+`foo bar baz`
 
 
 TEST (Code spans)
@@ -5693,6 +6089,13 @@ output:
 ```foo `` bar```
 
 
+\
+```foo \`\` bar```
+
+
+/
+<p><code>foo \`\` bar</code></p>
+
 TEST (Code spans)
 =================
 
@@ -5703,8 +6106,15 @@ HTML:
 <p><code>foo\</code>bar`</p>
 
 output:
-```foo\```bar`
+`foo\`bar`
 
+
+\
+`foo\\`bar\`
+
+
+/
+<p><code>foo\\</code>bar`</p>
 
 TEST (Code spans)
 =================
@@ -5716,8 +6126,15 @@ HTML:
 <p>*foo<code>*</code></p>
 
 output:
-*foo```*```
+*foo`*`
 
+
+\
+\*foo`\*`
+
+
+/
+<p>*foo<code>\*</code></p>
 
 TEST (Code spans)
 =================
@@ -5729,8 +6146,15 @@ HTML:
 <p>[not a <code>link](/foo</code>)</p>
 
 output:
-[not a ```link](/foo```)
+[not a `link](/foo`)
 
+
+\
+\[not a `link\]\(\/foo`\)
+
+
+/
+<p>[not a <code>link\]\(\/foo</code>)</p>
 
 TEST (Code spans)
 =================
@@ -5742,8 +6166,15 @@ HTML:
 <p><code>&lt;a href=&quot;</code>&quot;&gt;`</p>
 
 output:
-```<a href="```">`
+`<a href="`">`
 
+
+\
+`\<a href\=\"`\"\>\`
+
+
+/
+<p><code>\&lt;a href\=\&quot;</code>&quot;&gt;`</p>
 
 TEST (Code spans)
 =================
@@ -5755,8 +6186,15 @@ HTML:
 <p><code>&lt;http://foo.bar.</code>baz&gt;`</p>
 
 output:
-```<http://foo.bar.```baz>`
+`<http://foo.bar.`baz>`
 
+
+\
+`\<http\:\/\/foo\.bar\.`baz\>\`
+
+
+/
+<p><code>\&lt;http\:\/\/foo\.bar\.</code>baz&gt;`</p>
 
 TEST (Code spans)
 =================
@@ -7222,6 +7660,13 @@ output:
 **foo**
 
 
+\
+**foo**
+
+
+/
+<p><strong>foo</strong></p>
+
 TEST (Emphasis and strong emphasis)
 ===================================
 
@@ -7247,6 +7692,13 @@ HTML:
 output:
 **foo**
 
+
+\
+**foo**
+
+
+/
+<p><strong>foo</strong></p>
 
 TEST (Emphasis and strong emphasis)
 ===================================
@@ -7414,8 +7866,15 @@ HTML:
 <p><em>a <code>*</code></em></p>
 
 output:
-*a ```*```*
+*a `*`*
 
+
+\
+*a `\*`*
+
+
+/
+<p><em>a <code>\*</code></em></p>
 
 TEST (Emphasis and strong emphasis)
 ===================================
@@ -7427,8 +7886,15 @@ HTML:
 <p><em>a <code>_</code></em></p>
 
 output:
-*a ```_```*
+*a `_`*
 
+
+\
+*a `\_`*
+
+
+/
+<p><em>a <code>\_</code></em></p>
 
 TEST (Emphasis and strong emphasis)
 ===================================
@@ -7837,8 +8303,15 @@ HTML:
 <p><a href="/uri">link <em>foo <strong>bar</strong> <code>#</code></em></a></p>
 
 output:
-link *foo **bar** ```#```* </uri>
+link *foo **bar** `#`* </uri>
 
+
+\
+[link *foo **bar** `\#`*](\/uri)
+
+
+/
+<p><a href="/uri">link <em>foo <strong>bar</strong> <code>\#</code></em></a></p>
 
 TEST (Links)
 ============
@@ -7852,6 +8325,13 @@ HTML:
 output:
 [image]moon </uri>
 
+
+\
+[[image]moon](\/uri)
+
+
+/
+<p><a href="/uri">[image]moon</a></p>
 
 TEST (Links)
 ============
@@ -7891,6 +8371,13 @@ HTML:
 output:
 [image][foo <uri1>](uri2)
 
+
+\
+[image]\[[foo](uri1)\]\(uri2\)
+
+
+/
+<p>[image][<a href="uri1">foo</a>](uri2)</p>
 
 TEST (Links)
 ============
@@ -7941,8 +8428,15 @@ HTML:
 <p>[foo<code>](/uri)</code></p>
 
 output:
-[foo```](/uri)```
+[foo`](/uri)`
 
+
+\
+\[foo`\]\(\/uri\)`
+
+
+/
+<p>[foo<code>\]\(\/uri\)</code></p>
 
 TEST (Links)
 ============
@@ -8014,8 +8508,15 @@ HTML:
 <p><a href="/uri">link <em>foo <strong>bar</strong> <code>#</code></em></a></p>
 
 output:
-link *foo **bar** ```#```* </uri>
+link *foo **bar** `#`* </uri>
 
+
+\
+[link *foo **bar** `\#`*](\/uri)
+
+
+/
+<p><a href="/uri">link <em>foo <strong>bar</strong> <code>\#</code></em></a></p>
 
 TEST (Links)
 ============
@@ -8031,6 +8532,13 @@ HTML:
 output:
 [image]moon </uri>
 
+
+\
+[[image]moon](\/uri)
+
+
+/
+<p><a href="/uri">[image]moon</a></p>
 
 TEST (Links)
 ============
@@ -8104,8 +8612,15 @@ HTML:
 <p>[foo<code>][ref]</code></p>
 
 output:
-[foo```][ref]```
+[foo`][ref]`
 
+
+\
+\[foo`\]\[ref\]`
+
+
+/
+<p>[foo<code>\]\[ref\]</code></p>
 
 TEST (Links)
 ============
@@ -8618,6 +9133,13 @@ output:
 [image]foo
 
 
+\
+[image]foo
+
+
+/
+<p>[image]foo</p>
+
 TEST (Images)
 =============
 
@@ -8633,6 +9155,13 @@ output:
 [image]foo *bar*
 
 
+\
+[image]foo *bar*
+
+
+/
+<p>[image]foo <em>bar</em></p>
+
 TEST (Images)
 =============
 
@@ -8646,6 +9175,13 @@ output:
 [image]foo [image]bar
 
 
+\
+[image]foo [image]bar
+
+
+/
+<p>[image]foo [image]bar</p>
+
 TEST (Images)
 =============
 
@@ -8658,6 +9194,13 @@ HTML:
 output:
 [image]foo bar </url>
 
+
+\
+[image]foo [bar](\/url)
+
+
+/
+<p>[image]foo <a href="/url">bar</a></p>
 
 TEST (Images)
 =============
@@ -8674,6 +9217,13 @@ output:
 [image]foo *bar*
 
 
+\
+[image]foo *bar*
+
+
+/
+<p>[image]foo <em>bar</em></p>
+
 TEST (Images)
 =============
 
@@ -8689,6 +9239,13 @@ output:
 [image]foo *bar*
 
 
+\
+[image]foo *bar*
+
+
+/
+<p>[image]foo <em>bar</em></p>
+
 TEST (Images)
 =============
 
@@ -8701,6 +9258,13 @@ HTML:
 output:
 [image]foo
 
+
+\
+[image]foo
+
+
+/
+<p>[image]foo</p>
 
 TEST (Images)
 =============
@@ -8715,6 +9279,13 @@ output:
 My [image]foo bar
 
 
+\
+My [image]foo bar
+
+
+/
+<p>My [image]foo bar</p>
+
 TEST (Images)
 =============
 
@@ -8728,6 +9299,13 @@ output:
 [image]foo
 
 
+\
+[image]foo
+
+
+/
+<p>[image]foo</p>
+
 TEST (Images)
 =============
 
@@ -8740,6 +9318,13 @@ HTML:
 output:
 [image]
 
+
+\
+[image]
+
+
+/
+<p>[image]</p>
 
 TEST (Images)
 =============
@@ -8756,6 +9341,13 @@ output:
 [image]foo
 
 
+\
+[image]foo
+
+
+/
+<p>[image]foo</p>
+
 TEST (Images)
 =============
 
@@ -8770,6 +9362,13 @@ HTML:
 output:
 [image]foo
 
+
+\
+[image]foo
+
+
+/
+<p>[image]foo</p>
 
 TEST (Images)
 =============
@@ -8786,6 +9385,13 @@ output:
 [image]foo
 
 
+\
+[image]foo
+
+
+/
+<p>[image]foo</p>
+
 TEST (Images)
 =============
 
@@ -8801,6 +9407,13 @@ output:
 [image]*foo* bar
 
 
+\
+[image]*foo* bar
+
+
+/
+<p>[image]<em>foo</em> bar</p>
+
 TEST (Images)
 =============
 
@@ -8815,6 +9428,13 @@ HTML:
 output:
 [image]Foo
 
+
+\
+[image]Foo
+
+
+/
+<p>[image]Foo</p>
 
 TEST (Images)
 =============
@@ -8834,6 +9454,15 @@ output:
 []
 
 
+\
+[image]foo
+\[\]
+
+
+/
+<p>[image]foo
+[]</p>
+
 TEST (Images)
 =============
 
@@ -8849,6 +9478,13 @@ output:
 [image]foo
 
 
+\
+[image]foo
+
+
+/
+<p>[image]foo</p>
+
 TEST (Images)
 =============
 
@@ -8863,6 +9499,13 @@ HTML:
 output:
 [image]*foo* bar
 
+
+\
+[image]*foo* bar
+
+
+/
+<p>[image]<em>foo</em> bar</p>
 
 TEST (Images)
 =============
@@ -8896,6 +9539,13 @@ HTML:
 output:
 [image]Foo
 
+
+\
+[image]Foo
+
+
+/
+<p>[image]Foo</p>
 
 TEST (Images)
 =============
@@ -9422,7 +10072,7 @@ HTML:
 <p><code>code span</code></p>
 
 output:
-```code span```
+`code span`
 
 
 TEST (Hard line breaks)
@@ -9436,8 +10086,15 @@ HTML:
 <p><code>code\ span</code></p>
 
 output:
-```code\ span```
+`code\ span`
 
+
+\
+`code\\ span`
+
+
+/
+<p><code>code\\ span</code></p>
 
 TEST (Hard line breaks)
 =======================

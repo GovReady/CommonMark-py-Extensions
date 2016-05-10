@@ -1,4 +1,4 @@
-A CommonMark-py (https://github.com/rtfd/CommonMark-py) renderer that outputs pretty plain text, i.e. not the original Markdown but something nicer for end users to see.
+A CommonMark-py (https://github.com/rtfd/CommonMark-py) renderer that outputs pretty plain text or round-trips to CommonMark, i.e. not the original Markdown but something nicer for end users to see.
 
 Example::
 
@@ -19,7 +19,14 @@ Which outputs::
 
 	This is a link <https://github.com/JoshData/commonmark-py-plaintext>.
 
-Why?
+Or using the CommonMarkToCommonMarkRenderer instead of the CommonMarkPlainTextRenderer, you get::
+
+    Hello\!
+    =======
+
+    This is [a link](https\:\/\/github\.com\/JoshData\/commonmark\-py\-plaintext)\.
+
+Why have a special renderer for plain text?
 
 * Links appear more friendly than in the []() notation.
 * Indentation is normalized.
@@ -30,6 +37,7 @@ Limitations:
 
 * The html_inline and html_block nodes are not supported and will raise a ValueError exception.
 * Images are rendered as "[image]" plus their alt text.
+* The CommonMarkToCommonMarkRenderer is pretty good but is not complete.
 
 Testing:
 
