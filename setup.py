@@ -8,6 +8,7 @@ setup(
     author=u'Joshua Tauberer',
     author_email=u'jt@occams.info',
     packages = find_packages(),
+    py_modules = ['CommonMarkPlainText'],
     url='https://github.com/joshdata/commonmark-to-text',
     license='CC0 (copyright waived)',
     description='A CommonMark renderer that outputs pretty plain text.',
