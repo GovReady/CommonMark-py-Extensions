@@ -75,7 +75,12 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
         if entering:
             self.render_indent()
         else:
-            self.out("\n\n")
+            # adapted from the HtmlRenderer
+            grandparent = node.parent.parent
+            if grandparent is not None and grandparent.t == 'list' and  grandparent.list_data['tight']:
+                self.out("\n")
+            else:
+                self.out("\n\n")
     def heading(self, node, entering):
         if entering:
             self.render_indent()

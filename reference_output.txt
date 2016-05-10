@@ -176,11 +176,8 @@ HTML:
 
 output:
 * foo
-
   * bar
-
     * baz
-
 
 TEST (Precedence)
 =================
@@ -197,9 +194,7 @@ HTML:
 
 output:
 * `one
-
 * two`
-
 
 TEST (Thematic breaks)
 ======================
@@ -440,11 +435,9 @@ HTML:
 
 output:
 * foo
-
 ------------------------------------------------------------
 
 * bar
-
 
 TEST (Thematic breaks)
 ======================
@@ -505,11 +498,9 @@ HTML:
 
 output:
 * Foo
-
 ------------------------------------------------------------
 
 * Bar
-
 
 TEST (Thematic breaks)
 ======================
@@ -528,7 +519,6 @@ HTML:
 
 output:
 * Foo
-
 * ------------------------------------------------------------
 
 
@@ -1171,7 +1161,6 @@ HTML:
 
 output:
 * Foo
-
 ------------------------------------------------------------
 
 
@@ -1268,7 +1257,6 @@ HTML:
 
 output:
 * foo
-
 ------------------------------------------------------------
 
 
@@ -1485,7 +1473,6 @@ output:
 1. foo
 
   * bar
-
 
 TEST (Indented code blocks)
 ===========================
@@ -3001,9 +2988,7 @@ HTML:
 
 output:
 > * foo
-
 * bar
-
 
 TEST (Block quotes)
 ===================
@@ -3432,7 +3417,6 @@ HTML:
 
 output:
 * one
-
 two
 
 
@@ -3475,7 +3459,6 @@ HTML:
 
 output:
 * one
-
 ----
  two
 ----
@@ -3549,7 +3532,6 @@ HTML:
 
 output:
 > > * one
-
 > > two
 
 
@@ -3777,7 +3759,6 @@ HTML:
 output:
 123456789. ok
 
-
 TEST (List items)
 =================
 
@@ -3805,7 +3786,6 @@ HTML:
 output:
 0. ok
 
-
 TEST (List items)
 =================
 
@@ -3819,7 +3799,6 @@ HTML:
 
 output:
 3. ok
-
 
 TEST (List items)
 =================
@@ -4013,7 +3992,6 @@ HTML:
 
 output:
 * foo
-
 bar
 
 
@@ -4067,7 +4045,6 @@ HTML:
 
 output:
 * foo
-
 * ---
   bar
   ---
@@ -4091,7 +4068,6 @@ HTML:
 
 output:
 * foo
-
 
 TEST (List items)
 =================
@@ -4130,11 +4106,9 @@ HTML:
 
 output:
 * foo
-
 * 
 
 * bar
-
 
 TEST (List items)
 =================
@@ -4153,11 +4127,9 @@ HTML:
 
 output:
 * foo
-
 * 
 
 * bar
-
 
 TEST (List items)
 =================
@@ -4176,11 +4148,9 @@ HTML:
 
 output:
 1. foo
-
 2. 
 
 3. bar
-
 
 TEST (List items)
 =================
@@ -4385,7 +4355,6 @@ output:
 1. A paragraph
   with two lines.
 
-
 TEST (List items)
 =================
 
@@ -4457,11 +4426,8 @@ HTML:
 
 output:
 * foo
-
   * bar
-
     * baz
-
 
 TEST (List items)
 =================
@@ -4480,11 +4446,8 @@ HTML:
 
 output:
 * foo
-
 * bar
-
 * baz
-
 
 TEST (List items)
 =================
@@ -4504,9 +4467,7 @@ HTML:
 
 output:
 10. foo
-
   * bar
-
 
 TEST (List items)
 =================
@@ -4525,9 +4486,7 @@ HTML:
 
 output:
 10. foo
-
 * bar
-
 
 TEST (List items)
 =================
@@ -4546,7 +4505,6 @@ HTML:
 
 output:
 * * foo
-
 
 TEST (List items)
 =================
@@ -4569,7 +4527,6 @@ HTML:
 
 output:
 1. * 2. foo
-
 
 TEST (List items)
 =================
@@ -4599,7 +4556,6 @@ output:
   
   baz
 
-
 TEST (Lists)
 ============
 
@@ -4619,11 +4575,8 @@ HTML:
 
 output:
 * foo
-
 * bar
-
 * baz
-
 
 TEST (Lists)
 ============
@@ -4644,11 +4597,8 @@ HTML:
 
 output:
 1. foo
-
 2. bar
-
 3. baz
-
 
 TEST (Lists)
 ============
@@ -4669,9 +4619,7 @@ output:
 Foo
 
 * bar
-
 * baz
-
 
 TEST (Lists)
 ============
@@ -4690,7 +4638,6 @@ output:
 The number of windows in my house is
 
 14. The number of doors is 6.
-
 
 TEST (Lists)
 ============
@@ -4723,7 +4670,6 @@ output:
 
 * baz
 
-
 TEST (Lists)
 ============
 
@@ -4745,11 +4691,9 @@ HTML:
 
 output:
 * foo
-
 bar
 
 * baz
-
 
 TEST (Lists)
 ============
@@ -4779,11 +4723,8 @@ HTML:
 
 output:
 * foo
-
   * bar
-
     * baz
-
 -----
   bim
 -----
@@ -4812,13 +4753,9 @@ HTML:
 
 output:
 * foo
-
 * bar
-
 * baz
-
 * bim
-
 
 TEST (Lists)
 ============
@@ -4887,23 +4824,14 @@ HTML:
 
 output:
 * a
-
 * b
-
 * c
-
 * d
-
 * e
-
 * f
-
 * g
-
 * h
-
 * i
-
 
 TEST (Lists)
 ============
@@ -5085,13 +5013,11 @@ HTML:
 
 output:
 * a
-
 * -
   b
   -
 
 * c
-
 
 TEST (Lists)
 ============
@@ -5118,13 +5044,11 @@ HTML:
 
 output:
 * a
-
   * b
 
     c
 
 * d
-
 
 TEST (Lists)
 ============
@@ -5147,11 +5071,9 @@ HTML:
 
 output:
 * a
-
   > b
 
 * c
-
 
 TEST (Lists)
 ============
@@ -5178,7 +5100,6 @@ HTML:
 
 output:
 * a
-
   > b
 
   -
@@ -5186,7 +5107,6 @@ output:
   -
 
 * d
-
 
 TEST (Lists)
 ============
@@ -5201,7 +5121,6 @@ HTML:
 
 output:
 * a
-
 
 TEST (Lists)
 ============
@@ -5221,9 +5140,7 @@ HTML:
 
 output:
 * a
-
   * b
-
 
 TEST (Lists)
 ============
@@ -5276,7 +5193,6 @@ output:
 * foo
 
   * bar
-
   baz
 
 
@@ -5314,15 +5230,11 @@ output:
 * a
 
   * b
-
   * c
-
 * d
 
   * e
-
   * f
-
 
 TEST (Inlines)
 ==============
