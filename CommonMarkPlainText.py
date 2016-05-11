@@ -110,7 +110,7 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
         self.lit(backtick_string)
         if node.literal.startswith("`"):
             self.lit(" ")
-        self.out(node.literal)
+        self.lit(node.literal) # this is correct as lit() and not out() for CommonMark-compliant output
         if node.literal.endswith("`"):
             self.lit(" ")
         self.lit(backtick_string)
@@ -205,7 +205,8 @@ class CommonMarkToCommonMarkRenderer(CommonMarkPlainTextRenderer):
 
     def out(self, s):
         # Escape punctuation.
-        escape_chars = "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~\\"
+        # http://spec.commonmark.org/0.25/#ascii-punctuation-character
+        escape_chars = ["!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_", "`", "{", "|", "}", "~"]
         s = "".join(("\\" if c in escape_chars else "") + c for c in s)
         super().out(s)
 

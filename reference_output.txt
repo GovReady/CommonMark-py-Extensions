@@ -5714,13 +5714,6 @@ output:
 ``\[\` ``
 
 
-\
-``\\\[\\\` ``
-
-
-/
-<p><code>\\\[\\\`</code></p>
-
 TEST (Backslash escapes)
 ========================
 
@@ -5971,13 +5964,6 @@ output:
 `f&ouml;&ouml;`
 
 
-\
-`f\&ouml\;\&ouml\;`
-
-
-/
-<p><code>f\&amp;ouml\;\&amp;ouml\;</code></p>
-
 TEST (Entity and numeric character references)
 ==============================================
 
@@ -6020,13 +6006,6 @@ output:
 ``foo ` bar``
 
 
-\
-``foo \` bar``
-
-
-/
-<p><code>foo \` bar</code></p>
-
 TEST (Code spans)
 =================
 
@@ -6039,13 +6018,6 @@ HTML:
 output:
 ``` `` ```
 
-
-\
-``` \`\` ```
-
-
-/
-<p><code>\`\`</code></p>
 
 TEST (Code spans)
 =================
@@ -6089,13 +6061,6 @@ output:
 ```foo `` bar```
 
 
-\
-```foo \`\` bar```
-
-
-/
-<p><code>foo \`\` bar</code></p>
-
 TEST (Code spans)
 =================
 
@@ -6108,13 +6073,6 @@ HTML:
 output:
 `foo\`bar`
 
-
-\
-`foo\\`bar\`
-
-
-/
-<p><code>foo\\</code>bar`</p>
 
 TEST (Code spans)
 =================
@@ -6129,13 +6087,6 @@ output:
 *foo`*`
 
 
-\
-\*foo`\*`
-
-
-/
-<p>*foo<code>\*</code></p>
-
 TEST (Code spans)
 =================
 
@@ -6148,13 +6099,6 @@ HTML:
 output:
 [not a `link](/foo`)
 
-
-\
-\[not a `link\]\(\/foo`\)
-
-
-/
-<p>[not a <code>link\]\(\/foo</code>)</p>
 
 TEST (Code spans)
 =================
@@ -6169,13 +6113,6 @@ output:
 `<a href="`">`
 
 
-\
-`\<a href\=\"`\"\>\`
-
-
-/
-<p><code>\&lt;a href\=\&quot;</code>&quot;&gt;`</p>
-
 TEST (Code spans)
 =================
 
@@ -6188,13 +6125,6 @@ HTML:
 output:
 `<http://foo.bar.`baz>`
 
-
-\
-`\<http\:\/\/foo\.bar\.`baz\>\`
-
-
-/
-<p><code>\&lt;http\:\/\/foo\.bar\.</code>baz&gt;`</p>
 
 TEST (Code spans)
 =================
@@ -7869,13 +7799,6 @@ output:
 *a `*`*
 
 
-\
-*a `\*`*
-
-
-/
-<p><em>a <code>\*</code></em></p>
-
 TEST (Emphasis and strong emphasis)
 ===================================
 
@@ -7888,13 +7811,6 @@ HTML:
 output:
 *a `_`*
 
-
-\
-*a `\_`*
-
-
-/
-<p><em>a <code>\_</code></em></p>
 
 TEST (Emphasis and strong emphasis)
 ===================================
@@ -8306,13 +8222,6 @@ output:
 link *foo **bar** `#`* </uri>
 
 
-\
-[link *foo **bar** `\#`*](\/uri)
-
-
-/
-<p><a href="/uri">link <em>foo <strong>bar</strong> <code>\#</code></em></a></p>
-
 TEST (Links)
 ============
 
@@ -8431,13 +8340,6 @@ output:
 [foo`](/uri)`
 
 
-\
-\[foo`\]\(\/uri\)`
-
-
-/
-<p>[foo<code>\]\(\/uri\)</code></p>
-
 TEST (Links)
 ============
 
@@ -8510,13 +8412,6 @@ HTML:
 output:
 link *foo **bar** `#`* </uri>
 
-
-\
-[link *foo **bar** `\#`*](\/uri)
-
-
-/
-<p><a href="/uri">link <em>foo <strong>bar</strong> <code>\#</code></em></a></p>
 
 TEST (Links)
 ============
@@ -8614,13 +8509,6 @@ HTML:
 output:
 [foo`][ref]`
 
-
-\
-\[foo`\]\[ref\]`
-
-
-/
-<p>[foo<code>\]\[ref\]</code></p>
 
 TEST (Links)
 ============
@@ -10088,13 +9976,6 @@ HTML:
 output:
 `code\ span`
 
-
-\
-`code\\ span`
-
-
-/
-<p><code>code\\ span</code></p>
 
 TEST (Hard line breaks)
 =======================
