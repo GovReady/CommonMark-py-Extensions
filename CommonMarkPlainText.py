@@ -117,13 +117,13 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
     def code_block(self, node, entering):
         # open code block
         self.render_indent()
-        self.emit_code_block_fence(node.literal,node.info.split()[0] if node.info else None)
+        self.emit_code_block_fence(node.literal, node.info)
         # each line, with indentation
         lines = node.literal.split("\n")
         while len(lines) > 0 and lines[-1] == "": lines.pop(-1)
         for line in lines:
             self.render_indent()
-            self.lit(line + "\n")
+            self.lit(line + "\n") # this is correct as lit() and not out() for CommonMark-compliant output
         # close code block
         self.render_indent()
         self.emit_code_block_fence(node.literal)
@@ -229,17 +229,16 @@ class CommonMarkToCommonMarkRenderer(CommonMarkPlainTextRenderer):
                 self.lit("\n")
                 self.block_indent.pop(-1)
 
-    def emit_code_block_fence(self, content, language=None):
-        if not "```" in content and content.strip() != "":
-            # if it's empty, then ``` would confuse for inline code
-            fence_char = "`"
-        elif not "~~~" in content:
-            fence_char = "~"
-        else:
-            raise ValueError("not sure how to fence this")
-        self.lit(fence_char*3)
-        if language:
-            self.out(language)
+    def emit_code_block_fence(self, content, info_string=None):
+        # Choose a fence string that does not appear in the content
+        # of the code block. A fence string can made made up of
+        # backticks or tildes, but we'll stick to backticks.
+        fence_string = "```"
+        while fence_string in content:
+            fence_string += fence_string[0]
+        self.lit(fence_string)
+        if info_string:
+            self.out(info_string)
         self.lit("\n")
 
 
