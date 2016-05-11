@@ -8236,7 +8236,7 @@ output:
 
 
 \
-[[image]moon](\/uri)
+[[image]moon](/uri)
 
 
 /
@@ -8429,7 +8429,7 @@ output:
 
 
 \
-[[image]moon](\/uri)
+[[image]moon](/uri)
 
 
 /
@@ -9084,7 +9084,7 @@ output:
 
 
 \
-[image]foo [bar](\/url)
+[image]foo [bar](/url)
 
 
 /

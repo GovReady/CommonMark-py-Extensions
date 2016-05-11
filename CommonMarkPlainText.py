@@ -219,10 +219,14 @@ class CommonMarkToCommonMarkRenderer(CommonMarkPlainTextRenderer):
             self.lit("[")
         else:
             self.lit("](")
-            self.out(node.destination)
+            # When wrapping the destination with parens, then internal parens must be
+            # either well-nested (which is hard to detect) or escaped.
+            self.lit(node.destination.replace("(", "\\(").replace(")", "\\)"))
             if node.title:
                 self.lit(" \"")
-                self.out(node.title)
+                # When wrapping the title in double quotes, internal double quotes
+                # must be escaped.
+                self.lit(node.title.replace("\"", "\\\""))
                 self.lit("\"")
             self.lit(")")
 
