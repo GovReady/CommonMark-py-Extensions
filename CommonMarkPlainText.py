@@ -1,6 +1,8 @@
 # see https://github.com/rtfd/CommonMark-py/blob/master/CommonMark/render/html.py
 # for the HTML renderer -- this is just a riff on that.
 
+import re
+
 import CommonMark.render.renderer
 
 
@@ -215,20 +217,35 @@ class CommonMarkToCommonMarkRenderer(CommonMarkPlainTextRenderer):
         self.render_indent()
 
     def link(self, node, entering):
-        if entering:
-            self.lit("[")
+        # Determine if the link label and the destination are the same by rendering
+        # this node using the plain text renderer. Luckily, if they are the same,
+        # the plain text renderer simply emits the label without the destination.
+        if CommonMarkPlainTextRenderer().render(node) == node.destination \
+            and re.match(r"[A-Za-z][A-Za-z0-9+\.-]{1,32}:[^<> ]*$", node.destination):
+            # Emit an autolink.
+            if entering:
+                self.lit("<")
+                self.lit(node.destination)
+                self.lit(">")
+                self.autolink_start = len(self.buf)
+            else:
+                # kill any content emitted within this node
+                self.buf = self.buf[0:self.autolink_start]
         else:
-            self.lit("](")
-            # When wrapping the destination with parens, then internal parens must be
-            # either well-nested (which is hard to detect) or escaped.
-            self.lit(node.destination.replace("(", "\\(").replace(")", "\\)"))
-            if node.title:
-                self.lit(" \"")
-                # When wrapping the title in double quotes, internal double quotes
-                # must be escaped.
-                self.lit(node.title.replace("\"", "\\\""))
-                self.lit("\"")
-            self.lit(")")
+            if entering:
+                self.lit("[")
+            else:
+                self.lit("](")
+                # When wrapping the destination with parens, then internal parens must be
+                # either well-nested (which is hard to detect) or escaped.
+                self.lit(node.destination.replace("(", "\\(").replace(")", "\\)"))
+                if node.title:
+                    self.lit(" \"")
+                    # When wrapping the title in double quotes, internal double quotes
+                    # must be escaped.
+                    self.lit(node.title.replace("\"", "\\\""))
+                    self.lit("\"")
+                self.lit(")")
 
     def image(self, node, entering):
         if entering:
