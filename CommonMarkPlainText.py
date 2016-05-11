@@ -220,10 +220,14 @@ class CommonMarkToCommonMarkRenderer(CommonMarkPlainTextRenderer):
         # Determine if the link label and the destination are the same by rendering
         # this node using the plain text renderer. Luckily, if they are the same,
         # the plain text renderer simply emits the label without the destination.
-        if CommonMarkPlainTextRenderer().render(node) == node.destination \
+        link_label = CommonMarkPlainTextRenderer().render(node)
+        if (link_label == node.destination) or ("mailto:" + link_label.lower().lower() == node.destination.lower()) \
             and re.match(r"[A-Za-z][A-Za-z0-9+\.-]{1,32}:[^<> ]*$", node.destination):
             # Emit an autolink.
             if entering:
+                destination = node.destination
+                if destination.lower().startswith("mailto:"):
+                    destination = destination[7:]
                 self.lit("<")
                 self.lit(node.destination)
                 self.lit(">")
