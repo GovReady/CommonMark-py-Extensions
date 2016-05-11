@@ -63,11 +63,6 @@ def run_tests():
 
         renderer = CommonMarkPlainText.CommonMarkPlainTextRenderer()
         ast = parser.parse(test['markdown'])
-        try:
-            output = renderer.render(ast)
-        except CommonMarkPlainText.RawHtmlNotAllowed:
-            # don't bother testing these
-            continue
 
         heading = "TEST (%s)" % test['section']
         print(heading)
@@ -78,7 +73,13 @@ def run_tests():
         print("HTML:")
         print(test['html'])
         print("output:")
-        print(output)
+
+        try:
+            output = renderer.render(ast)
+        except CommonMarkPlainText.RawHtmlNotAllowed:
+            print("[raw HTML is not permitted in plain text output]\n")
+        else:
+            print(output)
 
         # Render as CommonMark, then re-parse it, render that to
         # HTML, and see if the HTML matches the reference HTML.

@@ -288,6 +288,13 @@ class CommonMarkToCommonMarkRenderer(CommonMarkPlainTextRenderer):
             self.out(info_string)
         self.lit("\n")
 
+    def html_inline(self, node, entering):
+        self.lit(node.literal)
+
+    def html_block(self, node, entering):
+        self.lit('\n')
+        self.lit(node.literal)
+        self.lit('\n')
 
 if __name__ == "__main__":
     # Example!

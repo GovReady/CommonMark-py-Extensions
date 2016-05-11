@@ -2249,6 +2249,883 @@ output:
 -------
 
 
+TEST (HTML blocks)
+==================
+
+markdown:
+<table>
+  <tr>
+    <td>
+           hi
+    </td>
+  </tr>
+</table>
+
+okay.
+
+HTML:
+<table>
+  <tr>
+    <td>
+           hi
+    </td>
+  </tr>
+</table>
+<p>okay.</p>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+\
+
+<table>
+  <tr>
+    <td>
+           hi
+    </td>
+  </tr>
+</table>
+okay\.
+
+
+/
+<table>
+  <tr>
+    <td>
+           hi
+    </td>
+  </tr>
+</table>
+okay\.
+
+TEST (HTML blocks)
+==================
+
+markdown:
+ <div>
+  *hello*
+         <foo><a>
+
+HTML:
+ <div>
+  *hello*
+         <foo><a>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (HTML blocks)
+==================
+
+markdown:
+</div>
+*foo*
+
+HTML:
+</div>
+*foo*
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (HTML blocks)
+==================
+
+markdown:
+<DIV CLASS="foo">
+
+*Markdown*
+
+</DIV>
+
+HTML:
+<DIV CLASS="foo">
+<p><em>Markdown</em></p>
+</DIV>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+\
+
+<DIV CLASS="foo">
+*Markdown*
+
+
+</DIV>
+
+/
+<DIV CLASS="foo">
+*Markdown*
+</DIV>
+
+TEST (HTML blocks)
+==================
+
+markdown:
+<div id="foo"
+  class="bar">
+</div>
+
+HTML:
+<div id="foo"
+  class="bar">
+</div>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (HTML blocks)
+==================
+
+markdown:
+<div id="foo" class="bar
+  baz">
+</div>
+
+HTML:
+<div id="foo" class="bar
+  baz">
+</div>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (HTML blocks)
+==================
+
+markdown:
+<div>
+*foo*
+
+*bar*
+
+HTML:
+<div>
+*foo*
+<p><em>bar</em></p>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+\
+
+<div>
+*foo*
+*bar*
+
+
+/
+<div>
+*foo*
+*bar*
+
+TEST (HTML blocks)
+==================
+
+markdown:
+<div id="foo"
+*hi*
+
+HTML:
+<div id="foo"
+*hi*
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (HTML blocks)
+==================
+
+markdown:
+<div class
+foo
+
+HTML:
+<div class
+foo
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (HTML blocks)
+==================
+
+markdown:
+<div *???-&&&-<---
+*foo*
+
+HTML:
+<div *???-&&&-<---
+*foo*
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (HTML blocks)
+==================
+
+markdown:
+<div><a href="bar">*foo*</a></div>
+
+HTML:
+<div><a href="bar">*foo*</a></div>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (HTML blocks)
+==================
+
+markdown:
+<table><tr><td>
+foo
+</td></tr></table>
+
+HTML:
+<table><tr><td>
+foo
+</td></tr></table>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (HTML blocks)
+==================
+
+markdown:
+<div></div>
+``` c
+int x = 33;
+```
+
+HTML:
+<div></div>
+``` c
+int x = 33;
+```
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (HTML blocks)
+==================
+
+markdown:
+<a href="foo">
+*bar*
+</a>
+
+HTML:
+<a href="foo">
+*bar*
+</a>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (HTML blocks)
+==================
+
+markdown:
+<Warning>
+*bar*
+</Warning>
+
+HTML:
+<Warning>
+*bar*
+</Warning>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (HTML blocks)
+==================
+
+markdown:
+<i class="foo">
+*bar*
+</i>
+
+HTML:
+<i class="foo">
+*bar*
+</i>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (HTML blocks)
+==================
+
+markdown:
+</ins>
+*bar*
+
+HTML:
+</ins>
+*bar*
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (HTML blocks)
+==================
+
+markdown:
+<del>
+*foo*
+</del>
+
+HTML:
+<del>
+*foo*
+</del>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (HTML blocks)
+==================
+
+markdown:
+<del>
+
+*foo*
+
+</del>
+
+HTML:
+<del>
+<p><em>foo</em></p>
+</del>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+\
+
+<del>
+*foo*
+
+
+</del>
+
+/
+<del>
+*foo*
+</del>
+
+TEST (HTML blocks)
+==================
+
+markdown:
+<del>*foo*</del>
+
+HTML:
+<p><del><em>foo</em></del></p>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (HTML blocks)
+==================
+
+markdown:
+<pre language="haskell"><code>
+import Text.HTML.TagSoup
+
+main :: IO ()
+main = print $ parseTags tags
+</code></pre>
+
+HTML:
+<pre language="haskell"><code>
+import Text.HTML.TagSoup
+
+main :: IO ()
+main = print $ parseTags tags
+</code></pre>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (HTML blocks)
+==================
+
+markdown:
+<script type="text/javascript">
+// JavaScript example
+
+document.getElementById("demo").innerHTML = "Hello JavaScript!";
+</script>
+
+HTML:
+<script type="text/javascript">
+// JavaScript example
+
+document.getElementById("demo").innerHTML = "Hello JavaScript!";
+</script>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (HTML blocks)
+==================
+
+markdown:
+<style
+  type="text/css">
+h1 {color:red;}
+
+p {color:blue;}
+</style>
+
+HTML:
+<style
+  type="text/css">
+h1 {color:red;}
+
+p {color:blue;}
+</style>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (HTML blocks)
+==================
+
+markdown:
+<style
+  type="text/css">
+
+foo
+
+HTML:
+<style
+  type="text/css">
+
+foo
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (HTML blocks)
+==================
+
+markdown:
+> <div>
+> foo
+
+bar
+
+HTML:
+<blockquote>
+<div>
+foo
+</blockquote>
+<p>bar</p>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+\
+
+<div>
+foo
+bar
+
+
+/
+<div>
+foo
+bar
+
+TEST (HTML blocks)
+==================
+
+markdown:
+- <div>
+- foo
+
+HTML:
+<ul>
+<li>
+<div>
+</li>
+<li>foo</li>
+</ul>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+\
+
+<div>
+* foo
+
+/
+<div>
+* foo
+
+TEST (HTML blocks)
+==================
+
+markdown:
+<style>p{color:red;}</style>
+*foo*
+
+HTML:
+<style>p{color:red;}</style>
+<p><em>foo</em></p>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (HTML blocks)
+==================
+
+markdown:
+<!-- foo -->*bar*
+*baz*
+
+HTML:
+<!-- foo -->*bar*
+<p><em>baz</em></p>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (HTML blocks)
+==================
+
+markdown:
+<script>
+foo
+</script>1. *bar*
+
+HTML:
+<script>
+foo
+</script>1. *bar*
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (HTML blocks)
+==================
+
+markdown:
+<!-- Foo
+
+bar
+   baz -->
+
+HTML:
+<!-- Foo
+
+bar
+   baz -->
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (HTML blocks)
+==================
+
+markdown:
+<?php
+
+  echo '>';
+
+?>
+
+HTML:
+<?php
+
+  echo '>';
+
+?>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (HTML blocks)
+==================
+
+markdown:
+<!DOCTYPE html>
+
+HTML:
+<!DOCTYPE html>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (HTML blocks)
+==================
+
+markdown:
+<![CDATA[
+function matchwo(a,b)
+{
+  if (a < b && a < 0) then {
+    return 1;
+
+  } else {
+
+    return 0;
+  }
+}
+]]>
+
+HTML:
+<![CDATA[
+function matchwo(a,b)
+{
+  if (a < b && a < 0) then {
+    return 1;
+
+  } else {
+
+    return 0;
+  }
+}
+]]>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (HTML blocks)
+==================
+
+markdown:
+  <!-- foo -->
+
+    <!-- foo -->
+
+HTML:
+  <!-- foo -->
+<pre><code>&lt;!-- foo --&gt;
+</code></pre>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (HTML blocks)
+==================
+
+markdown:
+  <div>
+
+    <div>
+
+HTML:
+  <div>
+<pre><code>&lt;div&gt;
+</code></pre>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+\
+
+  <div>
+```
+<div>
+```
+
+
+/
+  <div>
+```
+<div>
+```
+
+TEST (HTML blocks)
+==================
+
+markdown:
+Foo
+<div>
+bar
+</div>
+
+HTML:
+<p>Foo</p>
+<div>
+bar
+</div>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (HTML blocks)
+==================
+
+markdown:
+<div>
+bar
+</div>
+*foo*
+
+HTML:
+<div>
+bar
+</div>
+*foo*
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (HTML blocks)
+==================
+
+markdown:
+Foo
+<a href="bar">
+baz
+
+HTML:
+<p>Foo
+<a href="bar">
+baz</p>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (HTML blocks)
+==================
+
+markdown:
+<div>
+
+*Emphasized* text.
+
+</div>
+
+HTML:
+<div>
+<p><em>Emphasized</em> text.</p>
+</div>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+\
+
+<div>
+*Emphasized* text\.
+
+
+</div>
+
+/
+<div>
+*Emphasized* text\.
+</div>
+
+TEST (HTML blocks)
+==================
+
+markdown:
+<div>
+*Emphasized* text.
+</div>
+
+HTML:
+<div>
+*Emphasized* text.
+</div>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (HTML blocks)
+==================
+
+markdown:
+<table>
+
+<tr>
+
+<td>
+Hi
+</td>
+
+</tr>
+
+</table>
+
+HTML:
+<table>
+<tr>
+<td>
+Hi
+</td>
+</tr>
+</table>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (HTML blocks)
+==================
+
+markdown:
+<table>
+
+  <tr>
+
+    <td>
+      Hi
+    </td>
+
+  </tr>
+
+</table>
+
+HTML:
+<table>
+  <tr>
+<pre><code>&lt;td&gt;
+  Hi
+&lt;/td&gt;
+</code></pre>
+  </tr>
+</table>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+\
+
+<table>
+
+  <tr>
+```
+<td>
+  Hi
+</td>
+```
+
+
+  </tr>
+
+</table>
+
+/
+<table>
+  <tr>
+```
+<td>
+  Hi
+</td>
+```
+  </tr>
+</table>
+
 TEST (Link reference definitions)
 =================================
 
@@ -5765,6 +6642,18 @@ TEST (Backslash escapes)
 ========================
 
 markdown:
+<a href="/bar\/)">
+
+HTML:
+<a href="/bar\/)">
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (Backslash escapes)
+========================
+
+markdown:
 [foo](/bar\* "ti\*tle")
 
 HTML:
@@ -5904,6 +6793,18 @@ HTML:
 output:
 &MadeUpEntity;
 
+
+TEST (Entity and numeric character references)
+==============================================
+
+markdown:
+<a href="&ouml;&ouml;.html">
+
+HTML:
+<a href="&ouml;&ouml;.html">
+
+output:
+[raw HTML is not permitted in plain text output]
 
 TEST (Entity and numeric character references)
 ==============================================
@@ -6112,6 +7013,18 @@ HTML:
 output:
 `<a href="`">`
 
+
+TEST (Code spans)
+=================
+
+markdown:
+<a href="`">`
+
+HTML:
+<p><a href="`">`</p>
+
+output:
+[raw HTML is not permitted in plain text output]
 
 TEST (Code spans)
 =================
@@ -7790,6 +8703,42 @@ TEST (Emphasis and strong emphasis)
 ===================================
 
 markdown:
+*<img src="foo" title="*"/>
+
+HTML:
+<p>*<img src="foo" title="*"/></p>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+**<a href="**">
+
+HTML:
+<p>**<a href="**"></p>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
+__<a href="__">
+
+HTML:
+<p>__<a href="__"></p>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (Emphasis and strong emphasis)
+===================================
+
+markdown:
 *a `*`*
 
 HTML:
@@ -7931,6 +8880,20 @@ output:
 [link](foo
 bar)
 
+
+TEST (Links)
+============
+
+markdown:
+[link](<foo
+bar>)
+
+HTML:
+<p>[link](<foo
+bar>)</p>
+
+output:
+[raw HTML is not permitted in plain text output]
 
 TEST (Links)
 ============
@@ -8317,6 +9280,18 @@ TEST (Links)
 ============
 
 markdown:
+[foo <bar attr="](baz)">
+
+HTML:
+<p>[foo <bar attr="](baz)"></p>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (Links)
+============
+
+markdown:
 [foo`](/uri)`
 
 HTML:
@@ -8473,6 +9448,20 @@ HTML:
 output:
 foo *bar </uri>
 
+
+TEST (Links)
+============
+
+markdown:
+[foo <bar attr="][ref]">
+
+[ref]: /uri
+
+HTML:
+<p>[foo <bar attr="][ref]"></p>
+
+output:
+[raw HTML is not permitted in plain text output]
 
 TEST (Links)
 ============
@@ -9560,6 +10549,70 @@ TEST (Raw HTML)
 ===============
 
 markdown:
+<a><bab><c2c>
+
+HTML:
+<p><a><bab><c2c></p>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (Raw HTML)
+===============
+
+markdown:
+<a/><b2/>
+
+HTML:
+<p><a/><b2/></p>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (Raw HTML)
+===============
+
+markdown:
+<a  /><b2
+data="foo" >
+
+HTML:
+<p><a  /><b2
+data="foo" ></p>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (Raw HTML)
+===============
+
+markdown:
+<a foo="bar" bam = 'baz <em>"</em>'
+_boolean zoop:33=zoop:33 />
+
+HTML:
+<p><a foo="bar" bam = 'baz <em>"</em>'
+_boolean zoop:33=zoop:33 /></p>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (Raw HTML)
+===============
+
+markdown:
+Foo <responsive-image src="foo.jpg" />
+
+HTML:
+<p>Foo <responsive-image src="foo.jpg" /></p>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (Raw HTML)
+===============
+
+markdown:
 <33> <__>
 
 HTML:
@@ -9628,6 +10681,18 @@ TEST (Raw HTML)
 ===============
 
 markdown:
+</a></foo >
+
+HTML:
+<p></a></foo ></p>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (Raw HTML)
+===============
+
+markdown:
 </a href="foo">
 
 HTML:
@@ -9636,6 +10701,20 @@ HTML:
 output:
 </a href="foo">
 
+
+TEST (Raw HTML)
+===============
+
+markdown:
+foo <!-- this is a
+comment - with hyphen -->
+
+HTML:
+<p>foo <!-- this is a
+comment - with hyphen --></p>
+
+output:
+[raw HTML is not permitted in plain text output]
 
 TEST (Raw HTML)
 ===============
@@ -9667,6 +10746,66 @@ foo <!--> foo -->
 
 foo <!-- foo--->
 
+
+TEST (Raw HTML)
+===============
+
+markdown:
+foo <?php echo $a; ?>
+
+HTML:
+<p>foo <?php echo $a; ?></p>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (Raw HTML)
+===============
+
+markdown:
+foo <!ELEMENT br EMPTY>
+
+HTML:
+<p>foo <!ELEMENT br EMPTY></p>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (Raw HTML)
+===============
+
+markdown:
+foo <![CDATA[>&<]]>
+
+HTML:
+<p>foo <![CDATA[>&<]]></p>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (Raw HTML)
+===============
+
+markdown:
+foo <a href="&ouml;">
+
+HTML:
+<p>foo <a href="&ouml;"></p>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (Raw HTML)
+===============
+
+markdown:
+foo <a href="\*">
+
+HTML:
+<p>foo <a href="\*"></p>
+
+output:
+[raw HTML is not permitted in plain text output]
 
 TEST (Raw HTML)
 ===============
@@ -9820,6 +10959,34 @@ HTML:
 output:
 `code\ span`
 
+
+TEST (Hard line breaks)
+=======================
+
+markdown:
+<a href="foo  
+bar">
+
+HTML:
+<p><a href="foo  
+bar"></p>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (Hard line breaks)
+=======================
+
+markdown:
+<a href="foo\
+bar">
+
+HTML:
+<p><a href="foo\
+bar"></p>
+
+output:
+[raw HTML is not permitted in plain text output]
 
 TEST (Hard line breaks)
 =======================
