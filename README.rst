@@ -23,10 +23,10 @@ Which outputs::
 
 Or using the CommonMarkToCommonMarkRenderer instead of the CommonMarkPlainTextRenderer, you get::
 
-    Hello\!
-    =======
+	Hello\!
+	=======
 
-    This is [a link](https\:\/\/github\.com\/JoshData\/commonmark\-py\-plaintext)\.
+	This is [a link](https://github.com/JoshData/commonmark-py-plaintext)\.
 
 Why have a special renderer for plain text?
 
