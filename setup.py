@@ -11,8 +11,8 @@ setup(
     py_modules = ['CommonMarkPlainText'],
     url='https://github.com/joshdata/commonmark-to-text',
     license='CC0 (copyright waived)',
-    description='A CommonMark renderer that outputs pretty plain text.',
+    description='A CommonMark renderer that outputs pretty plain text or compliant CommonMark.',
     long_description=open("README.rst").read(),
     keywords = "commonmark plain text",
-    install_requires=["CommonMark"],
+    install_requires=["CommonMark==0.6"],
 )

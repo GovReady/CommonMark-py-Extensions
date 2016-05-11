@@ -1,4 +1,6 @@
-A CommonMark-py (https://github.com/rtfd/CommonMark-py) renderer that outputs pretty plain text or round-trips to CommonMark, i.e. not the original Markdown but something nicer for end users to see.
+A `CommonMark-py`_<https://github.com/rtfd/CommonMark-py> renderer that outputs pretty plain text (not the original Markdown but something nicer for end users to see) or round-trips to compliant CommonMark.
+
+The library was built against `CommonMark 0.25`_<http://spec.commonmark.org/0.25/> and `CommonMark-py 0.6.4`_<https://github.com/rtfd/CommonMark-py>.
 
 Example::
 

@@ -267,8 +267,12 @@ class CommonMarkToCommonMarkRenderer(CommonMarkPlainTextRenderer):
 
     def heading(self, node, entering):
         if node.level <= 2:
+            # Prefer setext-style heading for levels 1 and 2, because it is
+            # the only style that supports multi-line content within it, which
+            # we might have (and we don't know at this point).
             super().heading(node, entering)
         else:
+            # Use ATX-style headings for other levels.
             if entering:
                 self.lit("#" * node.level + " ")
                 self.block_indent.append(" " * (node.level+1))
