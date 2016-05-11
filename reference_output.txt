@@ -176,8 +176,8 @@ HTML:
 
 output:
 * foo
-  * bar
-    * baz
+  - bar
+    + baz
 
 TEST (Precedence)
 =================
@@ -3705,7 +3705,7 @@ bar
 
 * baz
 
-  * ---
+  - ---
     foo
     
     
@@ -4586,8 +4586,8 @@ HTML:
 
 output:
 * foo
-  * bar
-    * baz
+  - bar
+    + baz
 
 TEST (List items)
 =================
@@ -4664,7 +4664,7 @@ HTML:
 </ul>
 
 output:
-* * foo
+* - foo
 
 TEST (List items)
 =================
@@ -4964,8 +4964,8 @@ HTML:
 
 output:
 * foo
-  * bar
-    * baz
+  - bar
+    + baz
 -----
   bim
 -----
@@ -5321,7 +5321,7 @@ HTML:
 
 output:
 * a
-  * b
+  - b
 
     c
 
@@ -5329,7 +5329,7 @@ output:
 
 \
 * a
-  * b
+  - b
 
     c
 
@@ -5485,7 +5485,7 @@ HTML:
 
 output:
 * a
-  * b
+  - b
 
 TEST (Lists)
 ============
@@ -5537,14 +5537,14 @@ HTML:
 output:
 * foo
 
-  * bar
+  - bar
   baz
 
 
 \
 * foo
 
-  * bar
+  - bar
   baz
 
 
@@ -5592,12 +5592,12 @@ HTML:
 output:
 * a
 
-  * b
-  * c
+  - b
+  - c
 * d
 
-  * e
-  * f
+  - e
+  - f
 
 TEST (Inlines)
 ==============

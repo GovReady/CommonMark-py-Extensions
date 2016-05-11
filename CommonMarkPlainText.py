@@ -10,9 +10,10 @@ class RawHtmlNotAllowed(ValueError):
 
 
 class ListBlock:
-    def __init__(self, list_type, start_value):
+    def __init__(self, list_type, start_value, bullet_char):
         self.list_type = list_type
         self.value = start_value
+        self.bullet_char = bullet_char
     def __str__(self):
         # Does not cause indentation.
         return ""
@@ -26,7 +27,7 @@ class ItemBullet:
         # A bullet is emitted exactly once.
         if not self.emitted:
             if self.listblock.list_type == "bullet":
-                self.emitted = "* "
+                self.emitted = self.listblock.bullet_char + " "
             elif self.listblock.list_type == "ordered":
                 self.emitted = str(self.listblock.value) + ". "
                 self.listblock.value += 1
@@ -146,7 +147,13 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
             self.block_indent.pop(-1)
     def list(self, node, entering):
         if entering:
-            self.block_indent.append(ListBlock(node.list_data['type'], node.list_data['start']))
+            # We could re-use the bullet character from the input:
+            # bullet_char = node.list_data['bullet_char']
+            # but for better normalization we'll choose a bullet char by
+            # alternating through *, -, and + as we go deeper into levels.
+            bullet_level = len(list(filter(lambda b : isinstance(b, ListBlock) and b.list_type == "bullet", self.block_indent)))
+            bullet_char = ["*", "-", "+"][bullet_level % 3]
+            self.block_indent.append(ListBlock(node.list_data['type'], node.list_data['start'], bullet_char))
         else:
             self.block_indent.pop(-1)
     def item(self, node, entering):
