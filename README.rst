@@ -39,7 +39,7 @@ Limitations:
 
 * The html_inline and html_block nodes are not supported and will raise a ValueError exception.
 * Images are rendered as "[image]" plus their alt text.
-* The CommonMarkToCommonMarkRenderer is pretty good but is not complete. It also has some additional limitations: lists next to each other may be combined, the loose/tight distinction of lists is not captured in output.
+* The CommonMarkToCommonMarkRenderer is pretty good but is not complete. It also has some additional limitations: it over-zealously backslash-escapes punctuation characters because it can't tell when it would be safe to not do so, lists next to each other may be combined, the loose/tight distinction of lists is not captured in output.
 
 Testing:
 
