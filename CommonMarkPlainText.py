@@ -153,6 +153,13 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
             # alternating through *, -, and + as we go deeper into levels.
             bullet_level = len(list(filter(lambda b : isinstance(b, ListBlock) and b.list_type == "bullet", self.block_indent)))
             bullet_char = ["*", "-", "+"][bullet_level % 3]
+            # TODO #1: Two lists next to each other are distinguished as
+            # different if they have either a different bullet (for bulleted
+            # lists) or a different delimiter (the "." or ")" after the number,
+            # for ordered lists). That distinction might be lost here and
+            # would result in two lists being combined into one.
+            # TODO #2: A list can be loose or tight, but we don't output them
+            # any differently.
             self.block_indent.append(ListBlock(node.list_data['type'], node.list_data['start'], bullet_char))
         else:
             self.block_indent.pop(-1)
