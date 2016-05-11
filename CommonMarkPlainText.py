@@ -230,6 +230,20 @@ class CommonMarkToCommonMarkRenderer(CommonMarkPlainTextRenderer):
                 self.lit("\"")
             self.lit(")")
 
+    def image(self, node, entering):
+        if entering:
+            self.lit("![")
+        else:
+            self.lit("](")
+            # same as link, see above
+            self.lit(node.destination.replace("(", "\\(").replace(")", "\\)"))
+            if node.title:
+                # same as link, see above
+                self.lit(" \"")
+                self.lit(node.title.replace("\"", "\\\""))
+                self.lit("\"")
+            self.lit(")")
+
     def heading(self, node, entering):
         if node.level <= 2:
             super().heading(node, entering)

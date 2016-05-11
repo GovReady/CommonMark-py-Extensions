@@ -8235,13 +8235,6 @@ output:
 [image]moon </uri>
 
 
-\
-[[image]moon](/uri)
-
-
-/
-<p><a href="/uri">[image]moon</a></p>
-
 TEST (Links)
 ============
 
@@ -8280,13 +8273,6 @@ HTML:
 output:
 [image][foo <uri1>](uri2)
 
-
-\
-[image]\[[foo](uri1)\]\(uri2\)
-
-
-/
-<p>[image][<a href="uri1">foo</a>](uri2)</p>
 
 TEST (Links)
 ============
@@ -8427,13 +8413,6 @@ HTML:
 output:
 [image]moon </uri>
 
-
-\
-[[image]moon](/uri)
-
-
-/
-<p><a href="/uri">[image]moon</a></p>
 
 TEST (Links)
 ============
@@ -9021,13 +9000,6 @@ output:
 [image]foo
 
 
-\
-[image]foo
-
-
-/
-<p>[image]foo</p>
-
 TEST (Images)
 =============
 
@@ -9043,13 +9015,6 @@ output:
 [image]foo *bar*
 
 
-\
-[image]foo *bar*
-
-
-/
-<p>[image]foo <em>bar</em></p>
-
 TEST (Images)
 =============
 
@@ -9063,13 +9028,6 @@ output:
 [image]foo [image]bar
 
 
-\
-[image]foo [image]bar
-
-
-/
-<p>[image]foo [image]bar</p>
-
 TEST (Images)
 =============
 
@@ -9082,13 +9040,6 @@ HTML:
 output:
 [image]foo bar </url>
 
-
-\
-[image]foo [bar](/url)
-
-
-/
-<p>[image]foo <a href="/url">bar</a></p>
 
 TEST (Images)
 =============
@@ -9105,13 +9056,6 @@ output:
 [image]foo *bar*
 
 
-\
-[image]foo *bar*
-
-
-/
-<p>[image]foo <em>bar</em></p>
-
 TEST (Images)
 =============
 
@@ -9127,13 +9071,6 @@ output:
 [image]foo *bar*
 
 
-\
-[image]foo *bar*
-
-
-/
-<p>[image]foo <em>bar</em></p>
-
 TEST (Images)
 =============
 
@@ -9146,13 +9083,6 @@ HTML:
 output:
 [image]foo
 
-
-\
-[image]foo
-
-
-/
-<p>[image]foo</p>
 
 TEST (Images)
 =============
@@ -9167,13 +9097,6 @@ output:
 My [image]foo bar
 
 
-\
-My [image]foo bar
-
-
-/
-<p>My [image]foo bar</p>
-
 TEST (Images)
 =============
 
@@ -9187,13 +9110,6 @@ output:
 [image]foo
 
 
-\
-[image]foo
-
-
-/
-<p>[image]foo</p>
-
 TEST (Images)
 =============
 
@@ -9206,13 +9122,6 @@ HTML:
 output:
 [image]
 
-
-\
-[image]
-
-
-/
-<p>[image]</p>
 
 TEST (Images)
 =============
@@ -9229,13 +9138,6 @@ output:
 [image]foo
 
 
-\
-[image]foo
-
-
-/
-<p>[image]foo</p>
-
 TEST (Images)
 =============
 
@@ -9250,13 +9152,6 @@ HTML:
 output:
 [image]foo
 
-
-\
-[image]foo
-
-
-/
-<p>[image]foo</p>
 
 TEST (Images)
 =============
@@ -9273,13 +9168,6 @@ output:
 [image]foo
 
 
-\
-[image]foo
-
-
-/
-<p>[image]foo</p>
-
 TEST (Images)
 =============
 
@@ -9295,13 +9183,6 @@ output:
 [image]*foo* bar
 
 
-\
-[image]*foo* bar
-
-
-/
-<p>[image]<em>foo</em> bar</p>
-
 TEST (Images)
 =============
 
@@ -9316,13 +9197,6 @@ HTML:
 output:
 [image]Foo
 
-
-\
-[image]Foo
-
-
-/
-<p>[image]Foo</p>
 
 TEST (Images)
 =============
@@ -9342,15 +9216,6 @@ output:
 []
 
 
-\
-[image]foo
-\[\]
-
-
-/
-<p>[image]foo
-[]</p>
-
 TEST (Images)
 =============
 
@@ -9366,13 +9231,6 @@ output:
 [image]foo
 
 
-\
-[image]foo
-
-
-/
-<p>[image]foo</p>
-
 TEST (Images)
 =============
 
@@ -9387,13 +9245,6 @@ HTML:
 output:
 [image]*foo* bar
 
-
-\
-[image]*foo* bar
-
-
-/
-<p>[image]<em>foo</em> bar</p>
 
 TEST (Images)
 =============
@@ -9427,13 +9278,6 @@ HTML:
 output:
 [image]Foo
 
-
-\
-[image]Foo
-
-
-/
-<p>[image]Foo</p>
 
 TEST (Images)
 =============
