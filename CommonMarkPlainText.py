@@ -110,7 +110,10 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
         while backtick_string in node.literal:
             backtick_string += "`"
         self.lit(backtick_string)
-        if node.literal.startswith("`"):
+        if node.literal.startswith("`") or node.literal == "":
+            # Must have space betweet a literal backtick within the code,
+            # and if the code is totally empty there must be space between
+            # the start and end backticks.
             self.lit(" ")
         self.lit(node.literal) # this is correct as lit() and not out() for CommonMark-compliant output
         if node.literal.endswith("`"):
@@ -120,12 +123,9 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
         # open code block
         self.render_indent()
         self.emit_code_block_fence(node.literal, node.info)
-        # each line, with indentation
-        lines = node.literal.split("\n")
-        while len(lines) > 0 and lines[-1] == "": lines.pop(-1)
-        for line in lines:
-            self.render_indent()
-            self.lit(line + "\n") # this is correct as lit() and not out() for CommonMark-compliant output
+        # each line, with indentation; note that the literal is a literal
+        # and must not be escaped
+        self.emit_intented_literal(node.literal)
         # close code block
         self.render_indent()
         self.emit_code_block_fence(node.literal)
@@ -133,6 +133,14 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
     def emit_code_block_fence(self, literal, language=None):
         width = max([len(line.replace("\t", "    ")) for line in literal.split("\n")])
         self.lit("-" * width + "\n")
+    def emit_intented_literal(self, literal):
+        lines = literal.split("\n")
+        while len(lines) > 0 and lines[-1] == "":
+            # Don't end with a blank line.
+            lines.pop(-1)
+        for line in lines:
+            self.render_indent()
+            self.lit(line + "\n")
     def thematic_break(self, node, entering):
         self.render_indent()
         self.lit("-" * 60)
@@ -297,7 +305,8 @@ class CommonMarkToCommonMarkRenderer(CommonMarkPlainTextRenderer):
 
     def html_block(self, node, entering):
         self.lit('\n')
-        self.lit(node.literal)
+        self.emit_intented_literal(node.literal)
+        self.lit('\n')
         self.lit('\n')
 
 if __name__ == "__main__":

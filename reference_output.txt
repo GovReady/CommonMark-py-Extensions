@@ -2064,12 +2064,7 @@ HTML:
 aaa</p>
 
 output:
-``
-aaa
-
-
-Round-tripping CommonMark failed. It generated:
-``
+` `
 aaa
 
 
@@ -2272,18 +2267,6 @@ HTML:
 output:
 [raw HTML is not permitted in plain text output]
 
-Round-tripping CommonMark failed. It generated:
-
-<table>
-  <tr>
-    <td>
-           hi
-    </td>
-  </tr>
-</table>
-okay\.
-
-
 TEST (HTML blocks)
 ==================
 
@@ -2331,14 +2314,6 @@ HTML:
 
 output:
 [raw HTML is not permitted in plain text output]
-
-Round-tripping CommonMark failed. It generated:
-
-<DIV CLASS="foo">
-*Markdown*
-
-
-</DIV>
 
 TEST (HTML blocks)
 ==================
@@ -2388,13 +2363,6 @@ HTML:
 
 output:
 [raw HTML is not permitted in plain text output]
-
-Round-tripping CommonMark failed. It generated:
-
-<div>
-*foo*
-*bar*
-
 
 TEST (HTML blocks)
 ==================
@@ -2580,14 +2548,6 @@ HTML:
 output:
 [raw HTML is not permitted in plain text output]
 
-Round-tripping CommonMark failed. It generated:
-
-<del>
-*foo*
-
-
-</del>
-
 TEST (HTML blocks)
 ==================
 
@@ -2701,13 +2661,6 @@ foo
 output:
 [raw HTML is not permitted in plain text output]
 
-Round-tripping CommonMark failed. It generated:
-
-<div>
-foo
-bar
-
-
 TEST (HTML blocks)
 ==================
 
@@ -2728,7 +2681,9 @@ output:
 
 Round-tripping CommonMark failed. It generated:
 
-<div>
+* <div>
+
+
 * foo
 
 TEST (HTML blocks)
@@ -2891,14 +2846,6 @@ HTML:
 output:
 [raw HTML is not permitted in plain text output]
 
-Round-tripping CommonMark failed. It generated:
-
-  <div>
-```
-<div>
-```
-
-
 TEST (HTML blocks)
 ==================
 
@@ -2968,14 +2915,6 @@ HTML:
 
 output:
 [raw HTML is not permitted in plain text output]
-
-Round-tripping CommonMark failed. It generated:
-
-<div>
-*Emphasized* text\.
-
-
-</div>
 
 TEST (HTML blocks)
 ==================
@@ -3049,22 +2988,6 @@ HTML:
 
 output:
 [raw HTML is not permitted in plain text output]
-
-Round-tripping CommonMark failed. It generated:
-
-<table>
-
-  <tr>
-```
-<td>
-  Hi
-</td>
-```
-
-
-  </tr>
-
-</table>
 
 TEST (Link reference definitions)
 =================================
