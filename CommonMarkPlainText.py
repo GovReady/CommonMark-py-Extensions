@@ -47,17 +47,17 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
         self.setext_heading_chars = ["#", "=", "-"]
         self.block_indent = []
 
-    def render_indent(self, next_bullet=False):
+    def emit_intent(self):
         self.lit("".join(str(b) for b in self.block_indent))
 
     def text(self, node, entering=None):
         self.out(node.literal)
     def softbreak(self, node=None, entering=None):
         self.lit("\n")
-        self.render_indent()
+        self.emit_intent()
     def linebreak(self, node=None, entering=None):
         self.lit("\n")
-        self.render_indent()
+        self.emit_intent()
     def link(self, node, entering):
         if entering:
             self.link_start = len(self.buf)
@@ -76,7 +76,7 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
         self.lit("**") # same symbol entering & existing
     def paragraph(self, node, entering):
         if entering:
-            self.render_indent()
+            self.emit_intent()
         else:
             # adapted from the HtmlRenderer
             grandparent = node.parent.parent
@@ -86,7 +86,7 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
                 self.lit("\n\n")
     def heading(self, node, entering):
         if entering:
-            self.render_indent()
+            self.emit_intent()
             self.heading_start = len(self.buf)
         else:
             if node.level <= len(self.setext_heading_chars):
@@ -97,10 +97,10 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
                     self.lit("#" * node.level + " ")
                 else:
                     self.lit("\n")
-                    self.render_indent()
+                    self.emit_intent()
                     self.lit(self.setext_heading_chars[node.level-1] * heading_len)
             self.lit("\n")
-            self.render_indent()
+            self.emit_intent()
             self.lit("\n")
     def code(self, node, entering):
         # Just do actual CommonMark here. The backtick string around the literal
@@ -121,13 +121,13 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
         self.lit(backtick_string)
     def code_block(self, node, entering):
         # open code block
-        self.render_indent()
+        self.emit_intent()
         self.emit_code_block_fence(node.literal, node.info)
         # each line, with indentation; note that the literal is a literal
         # and must not be escaped
         self.emit_intented_literal(node.literal)
         # close code block
-        self.render_indent()
+        self.emit_intent()
         self.emit_code_block_fence(node.literal)
         self.lit("\n")
     def emit_code_block_fence(self, literal, language=None):
@@ -139,10 +139,10 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
             # Don't end with a blank line.
             lines.pop(-1)
         for line in lines:
-            self.render_indent()
+            self.emit_intent()
             self.lit(line + "\n")
     def thematic_break(self, node, entering):
-        self.render_indent()
+        self.emit_intent()
         self.lit("-" * 60)
         self.lit("\n\n")
     def block_quote(self, node, entering):
@@ -152,7 +152,7 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
         else:
             if self.block_quote_start == len(self.buf):
                 # If no content, still must emit something.
-                self.render_indent()
+                self.emit_intent()
                 self.out("\n\n")
             self.block_indent.pop(-1)
     def list(self, node, entering):
@@ -182,7 +182,7 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
         else:
             if len(self.buf) == self.item_start:
                 # Always emit a bullet even if there was no content.
-                self.render_indent()
+                self.emit_intent()
                 self.lit("\n\n")
             self.block_indent.pop(-1)
 
@@ -222,7 +222,7 @@ class CommonMarkToCommonMarkRenderer(CommonMarkPlainTextRenderer):
 
     def linebreak(self, node=None, entering=None):
         self.lit("\\\n")
-        self.render_indent()
+        self.emit_intent()
 
     def link(self, node, entering):
         # Determine if the link label and the destination are the same by rendering
