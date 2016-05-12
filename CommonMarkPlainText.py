@@ -49,6 +49,15 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
 
     def emit_intent(self):
         self.lit("".join(str(b) for b in self.block_indent))
+    def emit_end_block(self, node):
+        # adapted from the HtmlRenderer
+        grandparent = node.parent.parent
+        if grandparent is not None and grandparent.t == 'list' and  grandparent.list_data['tight']:
+            # Within a loose list, don't add a double-newline.
+            pass
+        else:
+            self.emit_intent()
+            self.cr()
 
     def text(self, node, entering=None):
         self.out(node.literal)
@@ -78,12 +87,8 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
         if entering:
             self.emit_intent()
         else:
-            # adapted from the HtmlRenderer
-            grandparent = node.parent.parent
-            if grandparent is not None and grandparent.t == 'list' and  grandparent.list_data['tight']:
-                self.lit("\n")
-            else:
-                self.lit("\n\n")
+            self.cr()
+            self.emit_end_block(node)
     def heading(self, node, entering):
         if entering:
             self.emit_intent()
@@ -99,9 +104,8 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
                     self.lit("\n")
                     self.emit_intent()
                     self.lit(self.setext_heading_chars[node.level-1] * heading_len)
-            self.lit("\n")
-            self.emit_intent()
-            self.lit("\n")
+            self.cr()
+            self.emit_end_block(node)
     def code(self, node, entering):
         # Just do actual CommonMark here. The backtick string around the literal
         # must have one more backtick than the number of consecutive backticks
@@ -129,7 +133,7 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
         # close code block
         self.emit_intent()
         self.emit_code_block_fence(node.literal)
-        self.lit("\n")
+        self.emit_end_block(node)
     def emit_code_block_fence(self, literal, language=None):
         width = max([len(line.replace("\t", "    ")) for line in literal.split("\n")])
         self.lit("-" * width + "\n")
@@ -144,7 +148,8 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
     def thematic_break(self, node, entering):
         self.emit_intent()
         self.lit("-" * 60)
-        self.lit("\n\n")
+        self.cr()
+        self.emit_end_block(node)
     def block_quote(self, node, entering):
         if entering:
             self.block_indent.append("> ")
@@ -153,7 +158,7 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
             if self.block_quote_start == len(self.buf):
                 # If no content, still must emit something.
                 self.emit_intent()
-                self.out("\n\n")
+                self.cr()
             self.block_indent.pop(-1)
     def list(self, node, entering):
         if entering:
@@ -173,6 +178,7 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
             self.block_indent.append(ListBlock(node.list_data['type'], node.list_data['start'], bullet_char))
         else:
             self.block_indent.pop(-1)
+            self.emit_end_block(node)
     def item(self, node, entering):
         if entering:
             # Find the ListBlock that was most recently added to self.block_indent.
@@ -183,7 +189,7 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
             if len(self.buf) == self.item_start:
                 # Always emit a bullet even if there was no content.
                 self.emit_intent()
-                self.lit("\n\n")
+                self.cr()
             self.block_indent.pop(-1)
 
     def html_inline(self, node, entering):
@@ -206,7 +212,7 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
             self.lit(node.on_enter)
         elif (not entering) and node.on_exit:
             self.lit(node.on_exit)
-        self.cr()
+        self.emit_end_block(node)
 
 class CommonMarkToCommonMarkRenderer(CommonMarkPlainTextRenderer):
     def __init__(self):
@@ -306,8 +312,7 @@ class CommonMarkToCommonMarkRenderer(CommonMarkPlainTextRenderer):
     def html_block(self, node, entering):
         self.lit('\n')
         self.emit_intented_literal(node.literal)
-        self.lit('\n')
-        self.lit('\n')
+        self.emit_end_block(node)
 
 if __name__ == "__main__":
     # Example!

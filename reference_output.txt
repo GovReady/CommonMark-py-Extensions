@@ -67,8 +67,9 @@ HTML:
 
 output:
 * foo
-
+  
   bar
+  
 
 
 TEST (Tabs)
@@ -90,10 +91,11 @@ HTML:
 
 output:
 * foo
-
+  
   -----
     bar
   -----
+  
 
 
 TEST (Tabs)
@@ -112,7 +114,7 @@ output:
 > -----
 >   foo
 > -----
-
+> 
 
 TEST (Tabs)
 ===========
@@ -179,6 +181,7 @@ output:
   - bar
     + baz
 
+
 TEST (Precedence)
 =================
 
@@ -195,6 +198,7 @@ HTML:
 output:
 * `one
 * two`
+
 
 TEST (Thematic breaks)
 ======================
@@ -435,9 +439,11 @@ HTML:
 
 output:
 * foo
+
 ------------------------------------------------------------
 
 * bar
+
 
 TEST (Thematic breaks)
 ======================
@@ -498,9 +504,11 @@ HTML:
 
 output:
 * Foo
+
 ------------------------------------------------------------
 
 * Bar
+
 
 TEST (Thematic breaks)
 ======================
@@ -1118,7 +1126,7 @@ HTML:
 
 output:
 > Foo
-
+> 
 ------------------------------------------------------------
 
 
@@ -1141,7 +1149,7 @@ output:
 > foo
 > bar
 > ===
-
+> 
 
 TEST (Setext headings)
 ======================
@@ -1158,6 +1166,7 @@ HTML:
 
 output:
 * Foo
+
 ------------------------------------------------------------
 
 
@@ -1254,6 +1263,7 @@ HTML:
 
 output:
 * foo
+
 ------------------------------------------------------------
 
 
@@ -1292,7 +1302,7 @@ HTML:
 
 output:
 > foo
-
+> 
 ------------------------------------------------------------
 
 
@@ -1444,8 +1454,9 @@ HTML:
 
 output:
 * foo
-
+  
   bar
+  
 
 
 TEST (Indented code blocks)
@@ -1468,8 +1479,10 @@ HTML:
 
 output:
 1. foo
-
+   
    * bar
+   
+
 
 TEST (Indented code blocks)
 ===========================
@@ -1865,7 +1878,7 @@ output:
 > ---
 > aaa
 > ---
-
+> 
 bbb
 
 
@@ -2679,13 +2692,6 @@ HTML:
 output:
 [raw HTML is not permitted in plain text output]
 
-Round-tripping CommonMark failed. It generated:
-
-* <div>
-
-
-* foo
-
 TEST (HTML blocks)
 ==================
 
@@ -3346,7 +3352,7 @@ Foo </url>
 ##########
 
 > bar
-
+> 
 
 TEST (Link reference definitions)
 =================================
@@ -3389,7 +3395,6 @@ output:
 foo </url>
 
 > 
-
 
 TEST (Paragraphs)
 =================
@@ -3584,7 +3589,7 @@ output:
 > 
 > bar
 > baz
-
+> 
 
 TEST (Block quotes)
 ===================
@@ -3607,7 +3612,7 @@ output:
 > 
 > bar
 > baz
-
+> 
 
 TEST (Block quotes)
 ===================
@@ -3630,7 +3635,7 @@ output:
 > 
 > bar
 > baz
-
+> 
 
 TEST (Block quotes)
 ===================
@@ -3675,7 +3680,7 @@ output:
 > 
 > bar
 > baz
-
+> 
 
 TEST (Block quotes)
 ===================
@@ -3696,7 +3701,7 @@ output:
 > bar
 > baz
 > foo
-
+> 
 
 TEST (Block quotes)
 ===================
@@ -3713,7 +3718,7 @@ HTML:
 
 output:
 > foo
-
+> 
 ------------------------------------------------------------
 
 
@@ -3736,7 +3741,9 @@ HTML:
 
 output:
 > * foo
+> 
 * bar
+
 
 TEST (Block quotes)
 ===================
@@ -3757,7 +3764,7 @@ output:
 > ---
 > foo
 > ---
-
+> 
 ---
 bar
 ---
@@ -3781,7 +3788,7 @@ HTML:
 output:
 > 
 > 
-
+> 
 foo
 
 
@@ -3804,7 +3811,7 @@ HTML:
 output:
 > foo
 > - bar
-
+> 
 
 TEST (Block quotes)
 ===================
@@ -3818,7 +3825,6 @@ HTML:
 
 output:
 > 
-
 
 TEST (Block quotes)
 ===================
@@ -3834,7 +3840,6 @@ HTML:
 
 output:
 > 
-
 
 TEST (Block quotes)
 ===================
@@ -3851,7 +3856,7 @@ HTML:
 
 output:
 > foo
-
+> 
 
 TEST (Block quotes)
 ===================
@@ -3871,9 +3876,15 @@ HTML:
 
 output:
 > foo
-
+> 
 > bar
+> 
 
+Round-tripping CommonMark failed. It generated:
+> foo
+> 
+> bar
+> 
 
 TEST (Block quotes)
 ===================
@@ -3891,7 +3902,7 @@ bar</p>
 output:
 > foo
 > bar
-
+> 
 
 TEST (Block quotes)
 ===================
@@ -3909,15 +3920,9 @@ HTML:
 
 output:
 > foo
-
+> 
 > bar
-
-
-Round-tripping CommonMark failed. It generated:
-> foo
-
-> bar
-
+> 
 
 TEST (Block quotes)
 ===================
@@ -3936,7 +3941,7 @@ output:
 foo
 
 > bar
-
+> 
 
 TEST (Block quotes)
 ===================
@@ -3957,11 +3962,11 @@ HTML:
 
 output:
 > aaa
-
+> 
 ------------------------------------------------------------
 
 > bbb
-
+> 
 
 TEST (Block quotes)
 ===================
@@ -3979,7 +3984,7 @@ baz</p>
 output:
 > bar
 > baz
-
+> 
 
 TEST (Block quotes)
 ===================
@@ -3997,7 +4002,7 @@ HTML:
 
 output:
 > bar
-
+> 
 baz
 
 
@@ -4017,7 +4022,7 @@ HTML:
 
 output:
 > bar
-
+> 
 baz
 
 
@@ -4041,7 +4046,7 @@ bar</p>
 output:
 > > > foo
 > > > bar
-
+> > > 
 
 TEST (Block quotes)
 ===================
@@ -4066,7 +4071,7 @@ output:
 > > > foo
 > > > bar
 > > > baz
-
+> > > 
 
 TEST (Block quotes)
 ===================
@@ -4089,9 +4094,17 @@ output:
 > ----
 > code
 > ----
-
+> 
 > not code
+> 
 
+Round-tripping CommonMark failed. It generated:
+> ```
+> code
+> ```
+> 
+> not code
+> 
 
 TEST (List items)
 =================
@@ -4122,7 +4135,7 @@ indented code
 -------------
 
 > A block quote.
-
+> 
 
 TEST (List items)
 =================
@@ -4151,12 +4164,13 @@ with two lines.</p>
 output:
 1. A paragraph
    with two lines.
-
+   
    -------------
    indented code
    -------------
-
+   
    > A block quote.
+   > 
 
 
 TEST (List items)
@@ -4175,11 +4189,7 @@ HTML:
 
 output:
 * one
-two
 
-
-Round-tripping CommonMark failed. It generated:
-* one
 two
 
 
@@ -4201,8 +4211,9 @@ HTML:
 
 output:
 * one
-
+  
   two
+  
 
 
 TEST (List items)
@@ -4222,6 +4233,7 @@ HTML:
 
 output:
 * one
+
 ----
  two
 ----
@@ -4245,8 +4257,9 @@ HTML:
 
 output:
 * one
-
+  
   two
+  
 
 
 TEST (List items)
@@ -4271,15 +4284,10 @@ HTML:
 
 output:
 > > 1. one
-
+> >    
 > >    two
-
-
-Round-tripping CommonMark failed. It generated:
-> > 1. one
-
-> >    two
-
+> >    
+> > 
 
 TEST (List items)
 =================
@@ -4301,13 +4309,9 @@ HTML:
 
 output:
 > > * one
+> > 
 > > two
-
-
-Round-tripping CommonMark failed. It generated:
-> > * one
-> > two
-
+> > 
 
 TEST (List items)
 =================
@@ -4391,10 +4395,11 @@ bar
 
 output:
 * foo
-
+  
   bar
-
+  
 * foo
+  
 
 bar
 
@@ -4404,15 +4409,16 @@ bar
   
   bar
   ---
-
+  
 * baz
-
+  
   - ---
     foo
     
     
     bar
     ---
+  
 
 
 TEST (List items)
@@ -4444,14 +4450,15 @@ HTML:
 
 output:
 1. foo
-
+   
    ---
    bar
    ---
-
+   
    baz
-
+   
    > bam
+   > 
 
 
 TEST (List items)
@@ -4477,12 +4484,13 @@ baz
 
 output:
 * Foo
-
+  
   ---
   bar
   
   baz
   ---
+  
 
 
 TEST (List items)
@@ -4509,10 +4517,11 @@ HTML:
 
 output:
 * Foo
-
+  
   ---
   bar
   ---
+  
 
 -----
   baz
@@ -4532,6 +4541,7 @@ HTML:
 
 output:
 123456789. ok
+
 
 TEST (List items)
 =================
@@ -4560,6 +4570,7 @@ HTML:
 output:
 0. ok
 
+
 TEST (List items)
 =================
 
@@ -4573,6 +4584,7 @@ HTML:
 
 output:
 3. ok
+
 
 TEST (List items)
 =================
@@ -4606,10 +4618,11 @@ HTML:
 
 output:
 * foo
-
+  
   ---
   bar
   ---
+  
 
 
 TEST (List items)
@@ -4631,10 +4644,11 @@ HTML:
 
 output:
 10. foo
-
+    
     ---
     bar
     ---
+    
 
 
 TEST (List items)
@@ -4691,12 +4705,13 @@ output:
 1. -------------
    indented code
    -------------
-
+   
    paragraph
-
+   
    ---------
    more code
    ---------
+   
 
 
 TEST (List items)
@@ -4724,12 +4739,13 @@ output:
 1. --------------
     indented code
    --------------
-
+   
    paragraph
-
+   
    ---------
    more code
    ---------
+   
 
 
 TEST (List items)
@@ -4766,11 +4782,7 @@ HTML:
 
 output:
 * foo
-bar
 
-
-Round-tripping CommonMark failed. It generated:
-* foo
 bar
 
 
@@ -4792,8 +4804,9 @@ HTML:
 
 output:
 * foo
-
+  
   bar
+  
 
 
 TEST (List items)
@@ -4827,21 +4840,9 @@ output:
 * ---
   bar
   ---
-
 * ---
   baz
   ---
-
-
-Round-tripping CommonMark failed. It generated:
-* foo
-* ```
-  bar
-  ```
-
-* ```
-  baz
-  ```
 
 
 TEST (List items)
@@ -4858,6 +4859,7 @@ HTML:
 
 output:
 * foo
+
 
 TEST (List items)
 =================
@@ -4897,14 +4899,8 @@ HTML:
 output:
 * foo
 * 
-
 * bar
 
-Round-tripping CommonMark failed. It generated:
-* foo
-* 
-
-* bar
 
 TEST (List items)
 =================
@@ -4924,14 +4920,8 @@ HTML:
 output:
 * foo
 * 
-
 * bar
 
-Round-tripping CommonMark failed. It generated:
-* foo
-* 
-
-* bar
 
 TEST (List items)
 =================
@@ -4951,14 +4941,8 @@ HTML:
 output:
 1. foo
 2. 
-
 3. bar
 
-Round-tripping CommonMark failed. It generated:
-1. foo
-2. 
-
-3. bar
 
 TEST (List items)
 =================
@@ -5002,12 +4986,13 @@ with two lines.</p>
 output:
 1. A paragraph
    with two lines.
-
+   
    -------------
    indented code
    -------------
-
+   
    > A block quote.
+   > 
 
 
 TEST (List items)
@@ -5037,12 +5022,13 @@ with two lines.</p>
 output:
 1. A paragraph
    with two lines.
-
+   
    -------------
    indented code
    -------------
-
+   
    > A block quote.
+   > 
 
 
 TEST (List items)
@@ -5072,12 +5058,13 @@ with two lines.</p>
 output:
 1. A paragraph
    with two lines.
-
+   
    -------------
    indented code
    -------------
-
+   
    > A block quote.
+   > 
 
 
 TEST (List items)
@@ -5138,12 +5125,13 @@ with two lines.</p>
 output:
 1. A paragraph
    with two lines.
-
+   
    -------------
    indented code
    -------------
-
+   
    > A block quote.
+   > 
 
 
 TEST (List items)
@@ -5162,6 +5150,7 @@ with two lines.</li>
 output:
 1. A paragraph
    with two lines.
+
 
 TEST (List items)
 =================
@@ -5185,7 +5174,8 @@ continued here.</p>
 output:
 > 1. > Blockquote
 >    > continued here.
-
+>    > 
+> 
 
 TEST (List items)
 =================
@@ -5209,7 +5199,8 @@ continued here.</p>
 output:
 > 1. > Blockquote
 >    > continued here.
-
+>    > 
+> 
 
 TEST (List items)
 =================
@@ -5237,6 +5228,7 @@ output:
   - bar
     + baz
 
+
 TEST (List items)
 =================
 
@@ -5256,6 +5248,7 @@ output:
 * foo
 * bar
 * baz
+
 
 TEST (List items)
 =================
@@ -5277,6 +5270,7 @@ output:
 10. foo
     * bar
 
+
 TEST (List items)
 =================
 
@@ -5294,7 +5288,9 @@ HTML:
 
 output:
 10. foo
+
 * bar
+
 
 TEST (List items)
 =================
@@ -5313,6 +5309,7 @@ HTML:
 
 output:
 * - foo
+
 
 TEST (List items)
 =================
@@ -5336,6 +5333,7 @@ HTML:
 output:
 1. * 2. foo
 
+
 TEST (List items)
 =================
 
@@ -5358,20 +5356,10 @@ baz</li>
 output:
 * Foo
   ###
-  
 * Bar
   ===
-  
   baz
 
-Round-tripping CommonMark failed. It generated:
-* Foo
-  ===
-  
-* Bar
-  ---
-  
-  baz
 
 TEST (Lists)
 ============
@@ -5393,12 +5381,16 @@ HTML:
 output:
 * foo
 * bar
+
 * baz
+
 
 Round-tripping CommonMark failed. It generated:
 * foo
 * bar
+
 * baz
+
 
 TEST (Lists)
 ============
@@ -5420,12 +5412,16 @@ HTML:
 output:
 1. foo
 2. bar
+
 3. baz
+
 
 Round-tripping CommonMark failed. It generated:
 1. foo
 2. bar
+
 3. baz
+
 
 TEST (Lists)
 ============
@@ -5448,6 +5444,7 @@ Foo
 * bar
 * baz
 
+
 TEST (Lists)
 ============
 
@@ -5465,6 +5462,7 @@ output:
 The number of windows in my house is
 
 14. The number of doors is 6.
+
 
 TEST (Lists)
 ============
@@ -5492,17 +5490,12 @@ HTML:
 
 output:
 * foo
-
+  
 * bar
+  
 
 * baz
 
-Round-tripping CommonMark failed. It generated:
-* foo
-
-* bar
-
-* baz
 
 TEST (Lists)
 ============
@@ -5525,15 +5518,11 @@ HTML:
 
 output:
 * foo
+
 bar
 
 * baz
 
-Round-tripping CommonMark failed. It generated:
-* foo
-bar
-
-* baz
 
 TEST (Lists)
 ============
@@ -5565,6 +5554,7 @@ output:
 * foo
   - bar
     + baz
+
 -----
   bim
 -----
@@ -5594,14 +5584,18 @@ HTML:
 output:
 * foo
 * bar
+
 * baz
 * bim
+
 
 Round-tripping CommonMark failed. It generated:
 * foo
 * bar
+
 * baz
 * bim
+
 
 TEST (Lists)
 ============
@@ -5631,10 +5625,11 @@ HTML:
 
 output:
 * foo
-
+  
   notcode
-
+  
 * foo
+  
 
 ----
 code
@@ -5679,6 +5674,7 @@ output:
 * h
 * i
 
+
 TEST (Lists)
 ============
 
@@ -5704,10 +5700,11 @@ HTML:
 
 output:
 1. a
-
+   
 2. b
-
+   
 3. c
+   
 
 
 TEST (Lists)
@@ -5734,10 +5731,11 @@ HTML:
 
 output:
 * a
-
+  
 * b
-
+  
 * c
+  
 
 
 TEST (Lists)
@@ -5762,10 +5760,10 @@ HTML:
 
 output:
 * a
-
+  
 * 
-
 * c
+  
 
 
 TEST (Lists)
@@ -5794,12 +5792,13 @@ HTML:
 
 output:
 * a
-
+  
 * b
-
+  
   c
-
+  
 * d
+  
 
 
 TEST (Lists)
@@ -5827,10 +5826,11 @@ HTML:
 
 output:
 * a
-
+  
 * b
-
+  
 * d
+  
 
 
 TEST (Lists)
@@ -5862,16 +5862,16 @@ output:
 * -
   b
   -
-
 * c
+
 
 Round-tripping CommonMark failed. It generated:
 * a
 * ```
   b
   ```
-
 * c
+
 
 TEST (Lists)
 ============
@@ -5899,18 +5899,20 @@ HTML:
 output:
 * a
   - b
-
+    
     c
-
+    
 * d
+
 
 Round-tripping CommonMark failed. It generated:
 * a
   - b
-
+    
     c
-
+    
 * d
+
 
 TEST (Lists)
 ============
@@ -5934,14 +5936,9 @@ HTML:
 output:
 * a
   > b
-
+  > 
 * c
 
-Round-tripping CommonMark failed. It generated:
-* a
-  > b
-
-* c
 
 TEST (Lists)
 ============
@@ -5969,22 +5966,12 @@ HTML:
 output:
 * a
   > b
-
+  > 
   -
   c
   -
-
 * d
 
-Round-tripping CommonMark failed. It generated:
-* a
-  > b
-
-  ```
-  c
-  ```
-
-* d
 
 TEST (Lists)
 ============
@@ -5999,6 +5986,7 @@ HTML:
 
 output:
 * a
+
 
 TEST (Lists)
 ============
@@ -6019,6 +6007,7 @@ HTML:
 output:
 * a
   - b
+
 
 TEST (Lists)
 ============
@@ -6043,8 +6032,9 @@ output:
 1. ---
    foo
    ---
-
+   
    bar
+   
 
 
 TEST (Lists)
@@ -6069,16 +6059,11 @@ HTML:
 
 output:
 * foo
-
+  
   - bar
+  
   baz
-
-
-Round-tripping CommonMark failed. It generated:
-* foo
-
-  - bar
-  baz
+  
 
 
 TEST (Lists)
@@ -6113,13 +6098,16 @@ HTML:
 
 output:
 * a
-
+  
   - b
   - c
+  
 * d
-
+  
   - e
   - f
+  
+
 
 TEST (Inlines)
 ==============
