@@ -62,10 +62,10 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
     def text(self, node, entering=None):
         self.out(node.literal)
     def softbreak(self, node=None, entering=None):
-        self.lit("\n")
+        self.cr()
         self.emit_intent()
     def linebreak(self, node=None, entering=None):
-        self.lit("\n")
+        self.cr()
         self.emit_intent()
     def link(self, node, entering):
         if entering:
@@ -101,7 +101,7 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
                     # empty, so fall back to a setext-style heading.
                     self.lit("#" * node.level + " ")
                 else:
-                    self.lit("\n")
+                    self.cr()
                     self.emit_intent()
                     self.lit(self.setext_heading_chars[node.level-1] * heading_len)
             self.cr()
@@ -291,7 +291,7 @@ class CommonMarkToCommonMarkRenderer(CommonMarkPlainTextRenderer):
                 self.lit("#" * node.level + " ")
                 self.block_indent.append(" " * (node.level+1))
             else:
-                self.lit("\n")
+                self.cr()
                 self.block_indent.pop(-1)
 
     def emit_code_block_fence(self, content, info_string=None):
@@ -304,7 +304,7 @@ class CommonMarkToCommonMarkRenderer(CommonMarkPlainTextRenderer):
         self.lit(fence_string)
         if info_string:
             self.out(info_string)
-        self.lit("\n")
+        self.cr()
 
     def html_inline(self, node, entering):
         self.lit(node.literal)
