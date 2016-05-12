@@ -88,11 +88,8 @@ def run_tests():
         html = CommonMark.render.html.HtmlRenderer().render(ast)
         if html != test['html']:
             # This is an error. Round-tripping didn't work.
-            print("\\")
+            print("Round-tripping CommonMark failed. It generated:")
             print(cm)
-            print("/")
-            print(html)
-
 
 
 run_tests()

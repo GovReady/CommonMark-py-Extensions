@@ -2068,14 +2068,10 @@ output:
 aaa
 
 
-\
+Round-tripping CommonMark failed. It generated:
 ``
 aaa
 
-
-/
-<p>``
-aaa</p>
 
 TEST (Fenced code blocks)
 =========================
@@ -2276,7 +2272,7 @@ HTML:
 output:
 [raw HTML is not permitted in plain text output]
 
-\
+Round-tripping CommonMark failed. It generated:
 
 <table>
   <tr>
@@ -2287,16 +2283,6 @@ output:
 </table>
 okay\.
 
-
-/
-<table>
-  <tr>
-    <td>
-           hi
-    </td>
-  </tr>
-</table>
-okay\.
 
 TEST (HTML blocks)
 ==================
@@ -2346,17 +2332,12 @@ HTML:
 output:
 [raw HTML is not permitted in plain text output]
 
-\
+Round-tripping CommonMark failed. It generated:
 
 <DIV CLASS="foo">
 *Markdown*
 
 
-</DIV>
-
-/
-<DIV CLASS="foo">
-*Markdown*
 </DIV>
 
 TEST (HTML blocks)
@@ -2408,17 +2389,12 @@ HTML:
 output:
 [raw HTML is not permitted in plain text output]
 
-\
+Round-tripping CommonMark failed. It generated:
 
 <div>
 *foo*
 *bar*
 
-
-/
-<div>
-*foo*
-*bar*
 
 TEST (HTML blocks)
 ==================
@@ -2604,17 +2580,12 @@ HTML:
 output:
 [raw HTML is not permitted in plain text output]
 
-\
+Round-tripping CommonMark failed. It generated:
 
 <del>
 *foo*
 
 
-</del>
-
-/
-<del>
-*foo*
 </del>
 
 TEST (HTML blocks)
@@ -2730,17 +2701,12 @@ foo
 output:
 [raw HTML is not permitted in plain text output]
 
-\
+Round-tripping CommonMark failed. It generated:
 
 <div>
 foo
 bar
 
-
-/
-<div>
-foo
-bar
 
 TEST (HTML blocks)
 ==================
@@ -2760,12 +2726,8 @@ HTML:
 output:
 [raw HTML is not permitted in plain text output]
 
-\
+Round-tripping CommonMark failed. It generated:
 
-<div>
-* foo
-
-/
 <div>
 * foo
 
@@ -2929,19 +2891,13 @@ HTML:
 output:
 [raw HTML is not permitted in plain text output]
 
-\
+Round-tripping CommonMark failed. It generated:
 
   <div>
 ```
 <div>
 ```
 
-
-/
-  <div>
-```
-<div>
-```
 
 TEST (HTML blocks)
 ==================
@@ -3013,17 +2969,12 @@ HTML:
 output:
 [raw HTML is not permitted in plain text output]
 
-\
+Round-tripping CommonMark failed. It generated:
 
 <div>
 *Emphasized* text\.
 
 
-</div>
-
-/
-<div>
-*Emphasized* text\.
 </div>
 
 TEST (HTML blocks)
@@ -3099,7 +3050,7 @@ HTML:
 output:
 [raw HTML is not permitted in plain text output]
 
-\
+Round-tripping CommonMark failed. It generated:
 
 <table>
 
@@ -3113,17 +3064,6 @@ output:
 
   </tr>
 
-</table>
-
-/
-<table>
-  <tr>
-```
-<td>
-  Hi
-</td>
-```
-  </tr>
 </table>
 
 TEST (Link reference definitions)
@@ -4050,19 +3990,11 @@ output:
 > bar
 
 
-\
+Round-tripping CommonMark failed. It generated:
 > foo
 
 > bar
 
-
-/
-<blockquote>
-<p>foo</p>
-</blockquote>
-<blockquote>
-<p>bar</p>
-</blockquote>
 
 TEST (Block quotes)
 ===================
@@ -4323,16 +4255,10 @@ output:
 two
 
 
-\
+Round-tripping CommonMark failed. It generated:
 * one
 two
 
-
-/
-<ul>
-<li>one
-two</li>
-</ul>
 
 TEST (List items)
 =================
@@ -4426,25 +4352,11 @@ output:
 > >    two
 
 
-\
+Round-tripping CommonMark failed. It generated:
 > > 1. one
 
 > >    two
 
-
-/
-<blockquote>
-<blockquote>
-<ol>
-<li>one</li>
-</ol>
-</blockquote>
-</blockquote>
-<blockquote>
-<blockquote>
-<p>two</p>
-</blockquote>
-</blockquote>
 
 TEST (List items)
 =================
@@ -4469,20 +4381,10 @@ output:
 > > two
 
 
-\
+Round-tripping CommonMark failed. It generated:
 > > * one
 > > two
 
-
-/
-<blockquote>
-<blockquote>
-<ul>
-<li>one
-two</li>
-</ul>
-</blockquote>
-</blockquote>
 
 TEST (List items)
 =================
@@ -4944,16 +4846,10 @@ output:
 bar
 
 
-\
+Round-tripping CommonMark failed. It generated:
 * foo
 bar
 
-
-/
-<ul>
-<li>foo
-bar</li>
-</ul>
 
 TEST (List items)
 =================
@@ -5014,7 +4910,7 @@ output:
   ---
 
 
-\
+Round-tripping CommonMark failed. It generated:
 * foo
 * ```
   bar
@@ -5024,21 +4920,6 @@ output:
   baz
   ```
 
-
-/
-<ul>
-<li>
-<p>foo</p>
-</li>
-<li>
-<pre><code>bar
-</code></pre>
-</li>
-<li>
-<pre><code>baz
-</code></pre>
-</li>
-</ul>
 
 TEST (List items)
 =================
@@ -5096,22 +4977,11 @@ output:
 
 * bar
 
-\
+Round-tripping CommonMark failed. It generated:
 * foo
 * 
 
 * bar
-
-/
-<ul>
-<li>
-<p>foo</p>
-</li>
-<li></li>
-<li>
-<p>bar</p>
-</li>
-</ul>
 
 TEST (List items)
 =================
@@ -5134,22 +5004,11 @@ output:
 
 * bar
 
-\
+Round-tripping CommonMark failed. It generated:
 * foo
 * 
 
 * bar
-
-/
-<ul>
-<li>
-<p>foo</p>
-</li>
-<li></li>
-<li>
-<p>bar</p>
-</li>
-</ul>
 
 TEST (List items)
 =================
@@ -5172,22 +5031,11 @@ output:
 
 3. bar
 
-\
+Round-tripping CommonMark failed. It generated:
 1. foo
 2. 
 
 3. bar
-
-/
-<ol>
-<li>
-<p>foo</p>
-</li>
-<li></li>
-<li>
-<p>bar</p>
-</li>
-</ol>
 
 TEST (List items)
 =================
@@ -5593,7 +5441,7 @@ output:
   
   baz
 
-\
+Round-tripping CommonMark failed. It generated:
 * Foo
   ===
   
@@ -5601,17 +5449,6 @@ output:
   ---
   
   baz
-
-/
-<ul>
-<li>
-<h1>Foo</h1>
-</li>
-<li>
-<h2>Bar</h2>
-<p>baz</p>
-</li>
-</ul>
 
 TEST (Lists)
 ============
@@ -5635,17 +5472,10 @@ output:
 * bar
 * baz
 
-\
+Round-tripping CommonMark failed. It generated:
 * foo
 * bar
 * baz
-
-/
-<ul>
-<li>foo</li>
-<li>bar</li>
-<li>baz</li>
-</ul>
 
 TEST (Lists)
 ============
@@ -5669,17 +5499,10 @@ output:
 2. bar
 3. baz
 
-\
+Round-tripping CommonMark failed. It generated:
 1. foo
 2. bar
 3. baz
-
-/
-<ol>
-<li>foo</li>
-<li>bar</li>
-<li>baz</li>
-</ol>
 
 TEST (Lists)
 ============
@@ -5751,25 +5574,12 @@ output:
 
 * baz
 
-\
+Round-tripping CommonMark failed. It generated:
 * foo
 
 * bar
 
 * baz
-
-/
-<ul>
-<li>
-<p>foo</p>
-</li>
-<li>
-<p>bar</p>
-</li>
-<li>
-<p>baz</p>
-</li>
-</ul>
 
 TEST (Lists)
 ============
@@ -5796,22 +5606,11 @@ bar
 
 * baz
 
-\
+Round-tripping CommonMark failed. It generated:
 * foo
 bar
 
 * baz
-
-/
-<ul>
-<li>
-<p>foo
-bar</p>
-</li>
-<li>
-<p>baz</p>
-</li>
-</ul>
 
 TEST (Lists)
 ============
@@ -5875,19 +5674,11 @@ output:
 * baz
 * bim
 
-\
+Round-tripping CommonMark failed. It generated:
 * foo
 * bar
 * baz
 * bim
-
-/
-<ul>
-<li>foo</li>
-<li>bar</li>
-<li>baz</li>
-<li>bim</li>
-</ul>
 
 TEST (Lists)
 ============
@@ -6151,27 +5942,13 @@ output:
 
 * c
 
-\
+Round-tripping CommonMark failed. It generated:
 * a
 * ```
   b
   ```
 
 * c
-
-/
-<ul>
-<li>
-<p>a</p>
-</li>
-<li>
-<pre><code>b
-</code></pre>
-</li>
-<li>
-<p>c</p>
-</li>
-</ul>
 
 TEST (Lists)
 ============
@@ -6204,29 +5981,13 @@ output:
 
 * d
 
-\
+Round-tripping CommonMark failed. It generated:
 * a
   - b
 
     c
 
 * d
-
-/
-<ul>
-<li>
-<p>a</p>
-<ul>
-<li>
-<p>b</p>
-<p>c</p>
-</li>
-</ul>
-</li>
-<li>
-<p>d</p>
-</li>
-</ul>
 
 TEST (Lists)
 ============
@@ -6253,24 +6014,11 @@ output:
 
 * c
 
-\
+Round-tripping CommonMark failed. It generated:
 * a
   > b
 
 * c
-
-/
-<ul>
-<li>
-<p>a</p>
-<blockquote>
-<p>b</p>
-</blockquote>
-</li>
-<li>
-<p>c</p>
-</li>
-</ul>
 
 TEST (Lists)
 ============
@@ -6305,7 +6053,7 @@ output:
 
 * d
 
-\
+Round-tripping CommonMark failed. It generated:
 * a
   > b
 
@@ -6314,21 +6062,6 @@ output:
   ```
 
 * d
-
-/
-<ul>
-<li>
-<p>a</p>
-<blockquote>
-<p>b</p>
-</blockquote>
-<pre><code>c
-</code></pre>
-</li>
-<li>
-<p>d</p>
-</li>
-</ul>
 
 TEST (Lists)
 ============
@@ -6418,23 +6151,12 @@ output:
   baz
 
 
-\
+Round-tripping CommonMark failed. It generated:
 * foo
 
   - bar
   baz
 
-
-/
-<ul>
-<li>
-<p>foo</p>
-<ul>
-<li>bar
-baz</li>
-</ul>
-</li>
-</ul>
 
 TEST (Lists)
 ============
@@ -6715,16 +6437,11 @@ output:
 ∲ ≧̸
 
 
-\
+Round-tripping CommonMark failed. It generated:
   \& © Æ Ď
 ¾ ℋ ⅆ
 ∲ ≧̸
 
-
-/
-<p>&amp; © Æ Ď
-¾ ℋ ⅆ
-∲ ≧̸</p>
 
 TEST (Entity and numeric character references)
 ==============================================
@@ -8503,12 +8220,9 @@ output:
 **foo**
 
 
-\
+Round-tripping CommonMark failed. It generated:
 **foo**
 
-
-/
-<p><strong>foo</strong></p>
 
 TEST (Emphasis and strong emphasis)
 ===================================
@@ -8536,12 +8250,9 @@ output:
 **foo**
 
 
-\
+Round-tripping CommonMark failed. It generated:
 **foo**
 
-
-/
-<p><strong>foo</strong></p>
 
 TEST (Emphasis and strong emphasis)
 ===================================

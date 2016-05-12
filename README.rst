@@ -43,9 +43,9 @@ Limitations:
 
 Testing:
 
-There is no reference output for what this renderer should produce. But I've saved the output of all of the CommonMark tests into reference_output.txt. To check for consistency with this output, run::
+There is no reference output for what the plain text renderer should produce. But I've saved the output of all of the CommonMark spec examples into reference_output.txt so that as this library evolves we can see changes. To check for consistency with previous output of this library, run::
 
     python3 test.py > reference_output.txt
     git diff
 
-To see what's changed/broken.
+The CommonMarkPlainTextRenderer is tested by round-tripping CommonMark (parsing, then outputing it as CommonMark), and then parsing that and outputting to HTML. The final HTML should match the HTML that you'd get from just rendering to HTML in one step. 
