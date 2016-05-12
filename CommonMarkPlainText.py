@@ -140,8 +140,10 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
     def emit_intented_literal(self, literal):
         lines = literal.split("\n")
         while len(lines) > 0 and lines[-1] == "":
-            # Don't end with a blank line.
+            # The parser sometimes includes an extra blank line.
+            # Might be a parser bug?
             lines.pop(-1)
+            break
         for line in lines:
             self.emit_intent()
             self.lit(line + "\n")

@@ -5861,15 +5861,9 @@ output:
 * a
 * -
   b
+  
+  
   -
-* c
-
-
-Round-tripping CommonMark failed. It generated:
-* a
-* ```
-  b
-  ```
 * c
 
 
