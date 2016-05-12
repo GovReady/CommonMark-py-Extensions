@@ -210,7 +210,7 @@ class CommonMarkToCommonMarkRenderer(CommonMarkPlainTextRenderer):
         # http://spec.commonmark.org/0.25/#ascii-punctuation-character
         escape_chars = ["!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_", "`", "{", "|", "}", "~"]
         s = "".join(("\\" if c in escape_chars else "") + c for c in s)
-        super().out(s)
+        super(CommonMarkToCommonMarkRenderer, self).out(s)
 
     def linebreak(self, node=None, entering=None):
         self.lit("\\\n")
@@ -270,7 +270,7 @@ class CommonMarkToCommonMarkRenderer(CommonMarkPlainTextRenderer):
             # Prefer setext-style heading for levels 1 and 2, because it is
             # the only style that supports multi-line content within it, which
             # we might have (and we don't know at this point).
-            super().heading(node, entering)
+            super(CommonMarkToCommonMarkRenderer, self).heading(node, entering)
         else:
             # Use ATX-style headings for other levels.
             if entering:
