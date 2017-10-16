@@ -242,11 +242,40 @@ class CommonMarkToCommonMarkRenderer(CommonMarkPlainTextRenderer):
 
     def out(self, s):
         # Escape characters that have significance to the CommonMark spec.
+        # While all ASCII punctuation can be escaped (http://spec.commonmark.org/0.28/#ascii-punctuation-character),
+        # not all ASCII punctuation has significance. Some symbols are
+        # significant only in certain context (e.g. start of line) but
+        # we don't know the context here.
+        always_escape = {
+            "---", "___", "***", # thematic break
+            "#", # ATX headers
+            "=", "-", # setext underline
+            "`", "~", # fenced code blocks, code spans
+            "<", # raw HTML start conditions
+            "[", # link reference definitions (but not the colon since a stray colon could not be confused here)
+            ">", # block quotes
+            "-", "+", "*", # bullet list marker
+            ".", ")", # ordered list marker after the digit
+            "&", # character references
+            "*", "_", # emphasis and strong emphasis
+            "[", "]", # link text
+            "<", ">", # link destination, autolink
+            "\"", "'", # link title
+            # "(", ")", # inline link -- if it were valid, it would have balanced parens so escaping would not be necessary?
+            "!", # image
+        }
 
-        # Escape all punctuation.
-        # http://spec.commonmark.org/0.28/#ascii-punctuation-character
-        escape_chars = ["!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_", "`", "{", "|", "}", "~"]
-        s = "".join(("\\" if c in escape_chars else "") + c for c in s)
+        # Always escape the characters above.
+        pattern = "|".join(re.escape(c) for c in always_escape)
+
+        # Escape backslashes if followed by punctuation (other backslashes
+        # cannot be for escapes and are treated literally).
+        ascii_punctuation_chars = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
+        pattern += r"|\\(?=[" + re.escape(ascii_punctuation_chars) +"])"
+
+        # Apply substitutions.
+        s = re.sub(pattern, r"\\\0", s)
+
         super(CommonMarkToCommonMarkRenderer, self).out(s)
 
     def linebreak(self, node=None, entering=None):
