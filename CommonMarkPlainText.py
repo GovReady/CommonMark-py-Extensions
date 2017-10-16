@@ -263,7 +263,8 @@ class CommonMarkToCommonMarkRenderer(CommonMarkPlainTextRenderer):
 
         # Some characters only need escaping at the start of a line, which might
         # include start-of-line characters. But we don't have a way to detect
-        # that at the moment.
+        # that at the moment. We can just filter out of if it doesn't follow
+        # something that can't precede it on a line.
         escape_at_line_start = {
             "---", "___", "***", # thematic break
             "#", # ATX headers
@@ -271,9 +272,11 @@ class CommonMarkToCommonMarkRenderer(CommonMarkPlainTextRenderer):
             "[", # link reference definitions (but not the colon since a stray colon could not be confused here)
             ">", # block quotes
             "-", "+", "*", # bullet list marker
-            ".", ")", # ordered list marker after the digit
         }
-        pattern += "|" + "|".join(re.escape(c) for c in escape_at_line_start)
+        pattern += "|" + "|".join("(?<![A-Za-z0-9])" + re.escape(c) for c in escape_at_line_start)
+
+        # The ordered list markers need escapes just when they follow a digit.
+        pattern += r"|(?<=[0-9])[\.\)]"
 
         # Escape backslashes if followed by punctuation (other backslashes
         # cannot be for escapes and are treated literally).

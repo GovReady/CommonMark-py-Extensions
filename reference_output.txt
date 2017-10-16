@@ -6145,6 +6145,17 @@ output:
 [foo]: /url "not a reference"
 
 
+Round-tripping CommonMark failed. It generated:
+\*not emphasized\*
+\<br/\> not a tag
+\[not a link\](/foo)
+\`not code\`
+1. not a list
+\* not a list
+\# not a heading
+\[foo\]: /url \"not a reference\"
+
+
 TEST (Backslash escapes)
 ========================
 
@@ -7053,10 +7064,6 @@ output:
 *(bar)*.
 
 
-Round-tripping CommonMark failed. It generated:
-*(bar\)*\.
-
-
 TEST (Emphasis and strong emphasis)
 ===================================
 
@@ -7399,10 +7406,6 @@ HTML:
 
 output:
 **(bar)**.
-
-
-Round-tripping CommonMark failed. It generated:
-**(bar\)**\.
 
 
 TEST (Emphasis and strong emphasis)
@@ -8824,7 +8827,7 @@ output:
 
 
 Round-tripping CommonMark failed. It generated:
-\[foo *\[bar [baz](/uri)\](/uri\)*\](/uri\)
+\[foo *\[bar [baz](/uri)\](/uri)*\](/uri)
 
 
 TEST (Links)
@@ -10085,7 +10088,7 @@ http://example.com/\[\ <http://example.com/%5C%5B%5C>
 
 
 Round-tripping CommonMark failed. It generated:
-[http://example\.com/\\\[\](http://example.com/%5C%5B%5C)
+[http://example.com/\\\[\](http://example.com/%5C%5B%5C)
 
 
 TEST (Autolinks)
