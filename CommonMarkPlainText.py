@@ -247,15 +247,8 @@ class CommonMarkToCommonMarkRenderer(CommonMarkPlainTextRenderer):
         # significant only in certain context (e.g. start of line) but
         # we don't know the context here.
         always_escape = {
-            "---", "___", "***", # thematic break
-            "#", # ATX headers
-            "=", "-", # setext underline
             "`", "~", # fenced code blocks, code spans
             "<", # raw HTML start conditions
-            "[", # link reference definitions (but not the colon since a stray colon could not be confused here)
-            ">", # block quotes
-            "-", "+", "*", # bullet list marker
-            ".", ")", # ordered list marker after the digit
             "&", # character references
             "*", "_", # emphasis and strong emphasis
             "[", "]", # link text
@@ -268,13 +261,27 @@ class CommonMarkToCommonMarkRenderer(CommonMarkPlainTextRenderer):
         # Always escape the characters above.
         pattern = "|".join(re.escape(c) for c in always_escape)
 
+        # Some characters only need escaping at the start of a line, which might
+        # include start-of-line characters. But we don't have a way to detect
+        # that at the moment.
+        escape_at_line_start = {
+            "---", "___", "***", # thematic break
+            "#", # ATX headers
+            "=", "-", # setext underline
+            "[", # link reference definitions (but not the colon since a stray colon could not be confused here)
+            ">", # block quotes
+            "-", "+", "*", # bullet list marker
+            ".", ")", # ordered list marker after the digit
+        }
+        pattern += "|" + "|".join(re.escape(c) for c in escape_at_line_start)
+
         # Escape backslashes if followed by punctuation (other backslashes
         # cannot be for escapes and are treated literally).
         ascii_punctuation_chars = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
         pattern += r"|\\(?=[" + re.escape(ascii_punctuation_chars) +"])"
 
         # Apply substitutions.
-        s = re.sub(pattern, r"\\\0", s)
+        s = re.sub(pattern, lambda m : "\\" + m.group(0), s, re.M)
 
         super(CommonMarkToCommonMarkRenderer, self).out(s)
 
