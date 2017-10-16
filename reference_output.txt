@@ -182,6 +182,33 @@ output:
     + baz
 
 
+TEST (Tabs)
+===========
+
+markdown:
+#	Foo
+
+HTML:
+<h1>Foo</h1>
+
+output:
+Foo
+###
+
+
+TEST (Tabs)
+===========
+
+markdown:
+*	*	*	
+
+HTML:
+<hr />
+
+output:
+------------------------------------------------------------
+
+
 TEST (Precedence)
 =================
 
@@ -595,19 +622,6 @@ output:
 #5 bolt
 
 #hashtag
-
-
-TEST (ATX headings)
-===================
-
-markdown:
-#	foo
-
-HTML:
-<p>#	foo</p>
-
-output:
-#	foo
 
 
 TEST (ATX headings)
@@ -1741,6 +1755,21 @@ TEST (Fenced code blocks)
 =========================
 
 markdown:
+``
+foo
+``
+
+HTML:
+<p><code>foo</code></p>
+
+output:
+`foo`
+
+
+TEST (Fenced code blocks)
+=========================
+
+markdown:
 ```
 aaa
 ~~~
@@ -2257,6 +2286,29 @@ TEST (HTML blocks)
 ==================
 
 markdown:
+<table><tr><td>
+<pre>
+**Hello**,
+
+_world_.
+</pre>
+</td></tr></table>
+
+HTML:
+<table><tr><td>
+<pre>
+**Hello**,
+<p><em>world</em>.
+</pre></p>
+</td></tr></table>
+
+output:
+[raw HTML is not permitted in plain text output]
+
+TEST (HTML blocks)
+==================
+
+markdown:
 <table>
   <tr>
     <td>
@@ -2583,6 +2635,7 @@ import Text.HTML.TagSoup
 main :: IO ()
 main = print $ parseTags tags
 </code></pre>
+okay
 
 HTML:
 <pre language="haskell"><code>
@@ -2591,6 +2644,7 @@ import Text.HTML.TagSoup
 main :: IO ()
 main = print $ parseTags tags
 </code></pre>
+<p>okay</p>
 
 output:
 [raw HTML is not permitted in plain text output]
@@ -2604,6 +2658,7 @@ markdown:
 
 document.getElementById("demo").innerHTML = "Hello JavaScript!";
 </script>
+okay
 
 HTML:
 <script type="text/javascript">
@@ -2611,6 +2666,7 @@ HTML:
 
 document.getElementById("demo").innerHTML = "Hello JavaScript!";
 </script>
+<p>okay</p>
 
 output:
 [raw HTML is not permitted in plain text output]
@@ -2625,6 +2681,7 @@ h1 {color:red;}
 
 p {color:blue;}
 </style>
+okay
 
 HTML:
 <style
@@ -2633,6 +2690,7 @@ h1 {color:red;}
 
 p {color:blue;}
 </style>
+<p>okay</p>
 
 output:
 [raw HTML is not permitted in plain text output]
@@ -2744,12 +2802,14 @@ markdown:
 
 bar
    baz -->
+okay
 
 HTML:
 <!-- Foo
 
 bar
    baz -->
+<p>okay</p>
 
 output:
 [raw HTML is not permitted in plain text output]
@@ -2763,6 +2823,7 @@ markdown:
   echo '>';
 
 ?>
+okay
 
 HTML:
 <?php
@@ -2770,6 +2831,7 @@ HTML:
   echo '>';
 
 ?>
+<p>okay</p>
 
 output:
 [raw HTML is not permitted in plain text output]
@@ -2802,6 +2864,7 @@ function matchwo(a,b)
   }
 }
 ]]>
+okay
 
 HTML:
 <![CDATA[
@@ -2816,6 +2879,7 @@ function matchwo(a,b)
   }
 }
 ]]>
+<p>okay</p>
 
 output:
 [raw HTML is not permitted in plain text output]
@@ -4337,28 +4401,8 @@ TEST (List items)
 markdown:
 - foo
 
-  bar
-
-- foo
-
 
   bar
-
-- ```
-  foo
-
-
-  bar
-  ```
-
-- baz
-
-  + ```
-    foo
-
-
-    bar
-    ```
 
 HTML:
 <ul>
@@ -4366,58 +4410,12 @@ HTML:
 <p>foo</p>
 <p>bar</p>
 </li>
-<li>
-<p>foo</p>
-</li>
-</ul>
-<p>bar</p>
-<ul>
-<li>
-<pre><code>foo
-
-
-bar
-</code></pre>
-</li>
-<li>
-<p>baz</p>
-<ul>
-<li>
-<pre><code>foo
-
-
-bar
-</code></pre>
-</li>
-</ul>
-</li>
 </ul>
 
 output:
 * foo
   
   bar
-  
-* foo
-  
-
-bar
-
-* ---
-  foo
-  
-  
-  bar
-  ---
-  
-* baz
-  
-  - ---
-    foo
-    
-    
-    bar
-    ---
   
 
 
@@ -4469,6 +4467,7 @@ markdown:
 
       bar
 
+
       baz
 
 HTML:
@@ -4476,6 +4475,7 @@ HTML:
 <li>
 <p>Foo</p>
 <pre><code>bar
+
 
 baz
 </code></pre>
@@ -4488,44 +4488,10 @@ output:
   ---
   bar
   
+  
   baz
   ---
   
-
-
-TEST (List items)
-=================
-
-markdown:
-- Foo
-
-      bar
-
-
-      baz
-
-HTML:
-<ul>
-<li>
-<p>Foo</p>
-<pre><code>bar
-</code></pre>
-</li>
-</ul>
-<pre><code>  baz
-</code></pre>
-
-output:
-* Foo
-  
-  ---
-  bar
-  ---
-  
-
------
-  baz
------
 
 
 TEST (List items)
@@ -4963,6 +4929,30 @@ TEST (List items)
 =================
 
 markdown:
+foo
+*
+
+foo
+1.
+
+HTML:
+<p>foo
+*</p>
+<p>foo
+1.</p>
+
+output:
+foo
+*
+
+foo
+1.
+
+
+TEST (List items)
+=================
+
+markdown:
  1.  A paragraph
      with two lines.
 
@@ -5209,6 +5199,7 @@ markdown:
 - foo
   - bar
     - baz
+      - boo
 
 HTML:
 <ul>
@@ -5216,7 +5207,11 @@ HTML:
 <ul>
 <li>bar
 <ul>
-<li>baz</li>
+<li>baz
+<ul>
+<li>boo</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -5227,6 +5222,7 @@ output:
 * foo
   - bar
     + baz
+      * boo
 
 
 TEST (List items)
@@ -5236,18 +5232,21 @@ markdown:
 - foo
  - bar
   - baz
+   - boo
 
 HTML:
 <ul>
 <li>foo</li>
 <li>bar</li>
 <li>baz</li>
+<li>boo</li>
 </ul>
 
 output:
 * foo
 * bar
 * baz
+* boo
 
 
 TEST (List items)
@@ -5453,15 +5452,31 @@ The number of windows in my house is
 14.  The number of doors is 6.
 
 HTML:
+<p>The number of windows in my house is
+14.  The number of doors is 6.</p>
+
+output:
+The number of windows in my house is
+14.  The number of doors is 6.
+
+
+TEST (Lists)
+============
+
+markdown:
+The number of windows in my house is
+1.  The number of doors is 6.
+
+HTML:
 <p>The number of windows in my house is</p>
-<ol start="14">
+<ol>
 <li>The number of doors is 6.</li>
 </ol>
 
 output:
 The number of windows in my house is
 
-14. The number of doors is 6.
+1. The number of doors is 6.
 
 
 TEST (Lists)
@@ -5483,9 +5498,9 @@ HTML:
 <li>
 <p>bar</p>
 </li>
-</ul>
-<ul>
-<li>baz</li>
+<li>
+<p>baz</p>
+</li>
 </ul>
 
 output:
@@ -5493,35 +5508,8 @@ output:
   
 * bar
   
-
 * baz
-
-
-TEST (Lists)
-============
-
-markdown:
-- foo
-
-
-  bar
-- baz
-
-HTML:
-<ul>
-<li>foo</li>
-</ul>
-<p>bar</p>
-<ul>
-<li>baz</li>
-</ul>
-
-output:
-* foo
-
-bar
-
-* baz
+  
 
 
 TEST (Lists)
@@ -5541,23 +5529,23 @@ HTML:
 <ul>
 <li>bar
 <ul>
-<li>baz</li>
-</ul>
+<li>
+<p>baz</p>
+<p>bim</p>
 </li>
 </ul>
 </li>
 </ul>
-<pre><code>  bim
-</code></pre>
+</li>
+</ul>
 
 output:
 * foo
   - bar
     + baz
-
------
-  bim
------
+      
+      bim
+      
 
 
 TEST (Lists)
@@ -5567,6 +5555,7 @@ markdown:
 - foo
 - bar
 
+<!-- -->
 
 - baz
 - bim
@@ -5576,26 +5565,14 @@ HTML:
 <li>foo</li>
 <li>bar</li>
 </ul>
+<!-- -->
 <ul>
 <li>baz</li>
 <li>bim</li>
 </ul>
 
 output:
-* foo
-* bar
-
-* baz
-* bim
-
-
-Round-tripping CommonMark failed. It generated:
-* foo
-* bar
-
-* baz
-* bim
-
+[raw HTML is not permitted in plain text output]
 
 TEST (Lists)
 ============
@@ -5607,6 +5584,7 @@ markdown:
 
 -   foo
 
+<!-- -->
 
     code
 
@@ -5620,21 +5598,12 @@ HTML:
 <p>foo</p>
 </li>
 </ul>
+<!-- -->
 <pre><code>code
 </code></pre>
 
 output:
-* foo
-  
-  notcode
-  
-* foo
-  
-
-----
-code
-----
-
+[raw HTML is not permitted in plain text output]
 
 TEST (Lists)
 ============
@@ -6575,6 +6544,19 @@ TEST (Code spans)
 =================
 
 markdown:
+`a  b`
+
+HTML:
+<p><code>a  b</code></p>
+
+output:
+`a  b`
+
+
+TEST (Code spans)
+=================
+
+markdown:
 `foo `` bar`
 
 HTML:
@@ -6698,6 +6680,19 @@ HTML:
 
 output:
 `foo
+
+
+TEST (Code spans)
+=================
+
+markdown:
+`foo``bar``
+
+HTML:
+<p>`foo<code>bar</code></p>
+
+output:
+`foo`bar`
 
 
 TEST (Emphasis and strong emphasis)
@@ -6916,15 +6911,12 @@ markdown:
 *
 
 HTML:
-<p>*foo bar</p>
-<ul>
-<li></li>
-</ul>
+<p>*foo bar
+*</p>
 
 output:
 *foo bar
-
-* 
+*
 
 
 TEST (Emphasis and strong emphasis)
@@ -7055,6 +7047,10 @@ HTML:
 
 output:
 *(bar)*.
+
+
+Round-tripping CommonMark failed. It generated:
+*\(bar\)*\.
 
 
 TEST (Emphasis and strong emphasis)
@@ -7401,6 +7397,10 @@ output:
 **(bar)**.
 
 
+Round-tripping CommonMark failed. It generated:
+**\(bar\)**\.
+
+
 TEST (Emphasis and strong emphasis)
 ===================================
 
@@ -7502,7 +7502,7 @@ markdown:
 *foo**bar**baz*
 
 HTML:
-<p><em>foo</em><em>bar</em><em>baz</em></p>
+<p><em>foo<strong>bar</strong>baz</em></p>
 
 output:
 *foo**bar**baz*
@@ -7541,7 +7541,7 @@ markdown:
 *foo**bar***
 
 HTML:
-<p><em>foo</em><em>bar</em>**</p>
+<p><em>foo<strong>bar</strong></em></p>
 
 output:
 *foo**bar***
@@ -7700,7 +7700,7 @@ markdown:
 **foo*bar*baz**
 
 HTML:
-<p><em><em>foo</em>bar</em>baz**</p>
+<p><strong>foo<em>bar</em>baz</strong></p>
 
 output:
 **foo*bar*baz**
@@ -8205,7 +8205,7 @@ markdown:
 ***foo***
 
 HTML:
-<p><strong><em>foo</em></strong></p>
+<p><em><strong>foo</strong></em></p>
 
 output:
 ***foo***
@@ -8218,7 +8218,7 @@ markdown:
 _____foo_____
 
 HTML:
-<p><strong><strong><em>foo</em></strong></strong></p>
+<p><em><strong><strong>foo</strong></strong></em></p>
 
 output:
 *****foo*****
@@ -8235,19 +8235,6 @@ HTML:
 
 output:
 *foo _bar* baz_
-
-
-TEST (Emphasis and strong emphasis)
-===================================
-
-markdown:
-**foo*bar**
-
-HTML:
-<p><em><em>foo</em>bar</em>*</p>
-
-output:
-**foo*bar**
 
 
 TEST (Emphasis and strong emphasis)
@@ -8528,33 +8515,7 @@ TEST (Links)
 ============
 
 markdown:
-[link]((foo)and(bar))
-
-HTML:
-<p><a href="(foo)and(bar)">link</a></p>
-
-output:
-link <(foo)and(bar)>
-
-
-TEST (Links)
-============
-
-markdown:
 [link](foo(and(bar)))
-
-HTML:
-<p>[link](foo(and(bar)))</p>
-
-output:
-[link](foo(and(bar)))
-
-
-TEST (Links)
-============
-
-markdown:
-[link](foo(and\(bar\)))
 
 HTML:
 <p><a href="foo(and(bar))">link</a></p>
@@ -8567,13 +8528,26 @@ TEST (Links)
 ============
 
 markdown:
-[link](<foo(and(bar))>)
+[link](foo\(and\(bar\))
 
 HTML:
-<p><a href="foo(and(bar))">link</a></p>
+<p><a href="foo(and(bar)">link</a></p>
 
 output:
-link <foo(and(bar))>
+link <foo(and(bar)>
+
+
+TEST (Links)
+============
+
+markdown:
+[link](<foo(and(bar)>)
+
+HTML:
+<p><a href="foo(and(bar)">link</a></p>
+
+output:
+link <foo(and(bar)>
 
 
 TEST (Links)
@@ -8681,6 +8655,19 @@ HTML:
 
 output:
 link </url>
+
+
+TEST (Links)
+============
+
+markdown:
+[link](/url "title")
+
+HTML:
+<p><a href="/url%C2%A0%22title%22">link</a></p>
+
+output:
+link </url%C2%A0%22title%22>
 
 
 TEST (Links)
@@ -8838,6 +8825,10 @@ HTML:
 
 output:
 [foo *[bar baz </uri>](/uri)*](/uri)
+
+
+Round-tripping CommonMark failed. It generated:
+\[foo *\[bar [baz](/uri)\]\(\/uri\)*\]\(\/uri\)
 
 
 TEST (Links)
@@ -9033,6 +9024,10 @@ HTML:
 
 output:
 [foo *bar baz </uri>*]ref </uri>
+
+
+Round-tripping CommonMark failed. It generated:
+\[foo *bar [baz](/uri)*\][ref](/uri)
 
 
 TEST (Links)
@@ -9549,6 +9544,51 @@ TEST (Links)
 ============
 
 markdown:
+[foo][]
+
+[foo]: /url1
+
+HTML:
+<p><a href="/url1">foo</a></p>
+
+output:
+foo </url1>
+
+
+TEST (Links)
+============
+
+markdown:
+[foo]()
+
+[foo]: /url1
+
+HTML:
+<p><a href="">foo</a></p>
+
+output:
+foo <>
+
+
+TEST (Links)
+============
+
+markdown:
+[foo](not a link)
+
+[foo]: /url1
+
+HTML:
+<p><a href="/url1">foo</a>(not a link)</p>
+
+output:
+foo </url1>(not a link)
+
+
+TEST (Links)
+============
+
+markdown:
 [foo][bar][baz]
 
 [baz]: /url
@@ -9888,7 +9928,7 @@ TEST (Images)
 =============
 
 markdown:
-\!\[foo]
+!\[foo]
 
 [foo]: /url "title"
 

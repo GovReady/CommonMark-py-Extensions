@@ -223,7 +223,7 @@ class CommonMarkToCommonMarkRenderer(CommonMarkPlainTextRenderer):
 
     def out(self, s):
         # Escape punctuation.
-        # http://spec.commonmark.org/0.25/#ascii-punctuation-character
+        # http://spec.commonmark.org/0.28/#ascii-punctuation-character
         escape_chars = ["!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_", "`", "{", "|", "}", "~"]
         s = "".join(("\\" if c in escape_chars else "") + c for c in s)
         super(CommonMarkToCommonMarkRenderer, self).out(s)

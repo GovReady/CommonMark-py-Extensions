@@ -14,5 +14,5 @@ setup(
     description='A CommonMark renderer that outputs pretty plain text or compliant CommonMark.',
     long_description=open("README.rst").read(),
     keywords = "commonmark plain text",
-    install_requires=["CommonMark==0.6.4"],
+    install_requires=["CommonMark==0.7.4"],
 )
