@@ -49,6 +49,7 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
 
     def emit_intent(self):
         self.lit("".join(str(b) for b in self.block_indent))
+
     def emit_end_block(self, node):
         # adapted from the HtmlRenderer
         grandparent = node.parent.parent
@@ -79,10 +80,28 @@ class CommonMarkPlainTextRenderer(CommonMark.render.renderer.Renderer):
             self.lit('[image]')
         else:
             pass
+
+    def emphstronglevel(self, node):
+        if (node.parent.t in ("emph", "strong") and node is node.parent.first_child):
+            return self.emphstronglevel(node.parent) + 1
+        elif node.prv and node.prv.t in ("emph", "strong"):
+            return self.emphstronglevel(node.prv) + 1
+        return 0
+
     def emph(self, node, entering):
-        self.lit("*") # same symbol entering & existing
+        # same symbol entering & exiting, but must alternate between * and _
+        # when nested immediately within or following a strong/emph.
+        if (self.emphstronglevel(node) % 2) == 0:
+            self.lit("*")
+        else:
+            self.lit("_")
     def strong(self, node, entering):
-        self.lit("**") # same symbol entering & existing
+        # same symbol entering & exiting, but must alternate between * and _
+        # when nested immediately within or following a strong/emph.
+        if (self.emphstronglevel(node) % 2) == 0:
+            self.lit("**")
+        else:
+            self.lit("__")
     def paragraph(self, node, entering):
         if entering:
             self.emit_intent()
@@ -222,7 +241,9 @@ class CommonMarkToCommonMarkRenderer(CommonMarkPlainTextRenderer):
         self.setext_heading_chars = ["=", "-"]
 
     def out(self, s):
-        # Escape punctuation.
+        # Escape characters that have significance to the CommonMark spec.
+
+        # Escape all punctuation.
         # http://spec.commonmark.org/0.28/#ascii-punctuation-character
         escape_chars = ["!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_", "`", "{", "|", "}", "~"]
         s = "".join(("\\" if c in escape_chars else "") + c for c in s)
