@@ -249,7 +249,6 @@ class CommonMarkToCommonMarkRenderer(CommonMarkPlainTextRenderer):
         always_escape = {
             "`", "~", # fenced code blocks, code spans
             "<", # raw HTML start conditions
-            "&", # character references
             "*", "_", # emphasis and strong emphasis
             "[", "]", # link text
             "<", ">", # link destination, autolink
@@ -260,6 +259,9 @@ class CommonMarkToCommonMarkRenderer(CommonMarkPlainTextRenderer):
 
         # Always escape the characters above.
         pattern = "|".join(re.escape(c) for c in always_escape)
+
+        # Escape things that look like character references but aren't.
+        pattern += r"|&\w+;|&#[Xx]?[0-9A-Fa-f]+;"
 
         # Some characters only need escaping at the start of a line, which might
         # include start-of-line characters. But we don't have a way to detect
