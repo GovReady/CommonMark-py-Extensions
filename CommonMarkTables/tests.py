@@ -200,40 +200,17 @@ class MultilineTablesTests(unittest.TestCase):
 
 
     def assertRender(self, markdown, expected):
-        parser = ParserWithTables(options={"multiline_table_cells": True})
+        parser = ParserWithTables()
         ast = parser.parse(markdown)
         html = RendererWithTables().render(ast)
         html = html.rstrip()
         self.assertEqual(html, expected)
 
 
-    def test_single_line(self):
-        self.assertRender(
-"""| foo | bar |
-| --- | --- |
-| baz | bim |""",
-
-"""<table>
-<thead>
-<tr>
-<th>foo</th>
-<th>bar</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>baz</td>
-<td>bim</td>
-</tr>
-</tbody>
-</table>"""
-        )
-
-
     def test_simple(self):
         self.assertRender(
 """| foo | bar |
-| --- | --- |
+| === | === |
 | baz | bim |
 | baz | bim |""",
 
@@ -256,6 +233,7 @@ bim</p>
 </tbody>
 </table>"""            
         )
+        
 
 if __name__ == '__main__':
     unittest.main()

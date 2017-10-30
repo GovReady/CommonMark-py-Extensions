@@ -22,7 +22,7 @@ Usage is similar to the upstream library:
 You can also instantiate (and subclass, if you like) the parser and renderer separately:
 
 ```python
-markdown = """
+markup = """
 | Sample | Header |
 | -----: | :----: |
 | A      | **bold** |
@@ -31,7 +31,7 @@ markdown = """
 
 from CommonMarkTables import ParserWithTables, RendererWithTables
 parser = ParserWithTables()
-ast = parser.parse(markdown)
+ast = parser.parse(markup)
 print(RendererWithTables().render(ast))
 ```
 
@@ -60,25 +60,19 @@ This outputs:
 
 Note how the alignment is set with `:` as per GitHub Flavored Markdown tables.
 
-To use multi-line cells, all rows are separated by lines with dashes, such as in:
+To use multi-line cells that can hold embedded block formatting (e.g. paragraphs
+and lists within cells), use `=`s instead of hyphens below the header and separate all rows with rows of `=`s (optionally ending with another row of `=`s):
 
 ```python
-markdown = """
+markup = """
 | Sample | Header |
-| -----: | :----: |
+| ====== | ====== |
 | * A    | * B    |
 | * C    | * D    |
-| ------ | ------ |
-| > C    | D    |
+| ====== | ====== |
+| > C    | D      |
+| ====== | ====== |
 """
-```
-
-Then instantiate the parser with an option:
-
-```python
-parser = ParserWithTables(options={
-    "multiline_table_cells": True
-})
 ```
 
 The resulting HTML is:
@@ -87,29 +81,29 @@ The resulting HTML is:
 <table>
 <thead>
 <tr>
-<th align="right">Sample</th>
-<th align="center">Header</th>
+<th>Sample</th>
+<th>Header</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="right"><ul>
+<td><ul>
 <li>A</li>
 <li>C</li>
 </ul>
 </td>
-<td align="center"><ul>
+<td><ul>
 <li>B</li>
 <li>D</li>
 </ul>
 </td>
 </tr>
 <tr>
-<td align="right"><blockquote>
+<td><blockquote>
 <p>C</p>
 </blockquote>
 </td>
-<td align="center">D</td>
+<td>D</td>
 </tr>
 </tbody>
 </table>

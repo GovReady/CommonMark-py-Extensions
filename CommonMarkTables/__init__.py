@@ -95,15 +95,16 @@ class Table(CommonMark.blocks.Block):
         if table[-1][-1].strip() == "":
             table[-1].pop(-1)
 
-        # Re-flow the table around rows whose cells are only
-        # hyphens and colons. The first such row divides the <thead> from
-        # the <tbody> section. Subsequent rows separate actual
-        # rows --- other rows are merged.
+        # Re-flow the table into a <thead> part and a <tbody> part,
+        # and if the separator row uses ='s instead of -'s then
+        # treat subsequent rows as multiline rows that must be
+        # separated by ='s.
         column_properties = defaultdict(lambda : {})
         table_parts = [[]] # [thead, tbody] or just [tbody]
+        multiline = False
         newrow = False
         for row in table:
-            if len(list(filter(lambda cell : not re.match(r"[-:][-:\s]*$", cell), row))) == 0:
+            if len(list(filter(lambda cell : not re.match(r"[-=:]+$", cell), row))) == 0:
                 # This row has cells of just dahses.
                 if len(table_parts) == 1:
                     # The first time, we shift to the tbody.
@@ -118,10 +119,18 @@ class Table(CommonMark.blocks.Block):
                             column_properties[i]["align"] = "left"
                         elif cell.endswith(":"):
                             column_properties[i]["align"] = "right"
-                else:
-                    # Subsequent times we just note that we're starting a new row.
+
+                    # If ='s were used, then the table is parsed in
+                    # multiline mode.
+                    if "=" in "".join(row):
+                        multiline = True
+                
+                elif multiline:
+                    # Subsequent times we just note that we're starting a new row
+                    # in multiline mode.
                     newrow = True
-            elif newrow or len(table_parts[-1]) == 0 or not parser.options.get("multiline_table_cells"):
+
+            elif not multiline or newrow or len(table_parts[-1]) == 0:
                 # Append a new row.
                 table_parts[-1].append(row)
                 newrow = False
@@ -129,8 +138,9 @@ class Table(CommonMark.blocks.Block):
                 # Fill in empty rows if fewer than the header.
                 if len(table_parts) > 1 and len(table_parts[0][0]) > len(table_parts[-1][-1]):
                     table_parts[-1][-1].extend( ["" for _ in range(len(table_parts[0][0]) - len(table_parts[-1][-1])) ] )
+            
             else:
-                # Merge this row with the previous one.
+                # Multline mode. Merge this row with the previous one.
                 for i in range(len(row)):
                     if i < len(table_parts[-1][-1]):
                         table_parts[-1][-1][i] += "\n" + row[i]
@@ -143,7 +153,7 @@ class Table(CommonMark.blocks.Block):
 
         # Parse the Markdown in each cell using a new parser
         # instance for each cell.
-        if not parser.options.get("multiline_table_cells"):
+        if not multiline:
             # Just parse the inlines in each cell using the parser's
             # inline_parser function. Wrap each cell string content
             # in a Node first.
@@ -235,8 +245,6 @@ def commonmark(markup):
 if __name__ == "__main__":
     # Run the parser on STDIN and write to STDOUT.
     import sys
-    parser = ParserWithTables(options={
-        "multiline_table_cells": ("--multiline_table_cells" in sys.argv)
-    })
+    parser = ParserWithTables()
     ast = parser.parse(sys.stdin.read())
     print(RendererWithTables().render(ast))
