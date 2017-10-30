@@ -191,6 +191,9 @@ class ParserWithTables(CommonMark.Parser):
 # Define a new renderer that extends the HtmlRenderer and
 # adds table rendering.
 class RendererWithTables(CommonMark.HtmlRenderer):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
     def table(self, node, entering):
         if entering:
             self.lit("<table>\n")
