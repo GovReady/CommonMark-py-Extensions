@@ -8,6 +8,8 @@ embedded block markup.
 
 This library is tightly linked to the CommonMark-py internals and has been tested only with `CommonMark==0.7.4`.
 
+NOTE: This project is a work-in-progress. It is closely compatible with GitHub Flavored Markdown but deviates a bit in edge cases and block-end rules.
+
 Usage is similar to the upstream library:
 
 ```python
