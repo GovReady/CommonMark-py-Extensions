@@ -1,0 +1,3 @@
+include CommonMarkTables/__init__.py
+include CommonMarkTables/test.py
+include LICENSE README.md
