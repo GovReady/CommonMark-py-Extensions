@@ -194,9 +194,12 @@ class RendererWithTables(CommonMark.HtmlRenderer):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+    def make_table_node(self, node):
+        return "<table>"
+
     def table(self, node, entering):
         if entering:
-            self.lit("<table>\n")
+            self.lit(self.make_table_node(node) + "\n")
             for i, part in enumerate(node.table):
                 if i == 0:
                     part_tag = "thead"
