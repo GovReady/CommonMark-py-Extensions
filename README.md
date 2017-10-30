@@ -6,6 +6,8 @@ parsing and rendering tables in [GitHub Flavored Markdown](https://github.github
 format, as well as our own format for multi-line table cells that support
 embedded block markup.
 
+This library is tightly linked to the CommonMark-py internals and has been tested only with `CommonMark==0.7.4`.
+
 Usage is similar to the upstream library:
 
 ```python
