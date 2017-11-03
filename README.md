@@ -14,7 +14,7 @@ NOTE: This project is a work-in-progress. It is closely compatible with GitHub F
 Installation
 ------------
 
-	pip install git+https://github.com/GovReady/CommonMark-py-Extensions
+	pip install commonmarkextensions
 
 Usage
 -----
@@ -219,3 +219,16 @@ There is no reference output for what the plain text renderer should produce. Bu
     git diff
 
 The PlainTextRenderer is tested by round-tripping CommonMark (parsing, then outputing it as CommonMark), and then parsing that and outputting to HTML. The final HTML should match the HTML that you'd get from just rendering to HTML in one step. 
+
+
+For Project Maintainers
+-----------------------
+
+To publish a universal wheel to pypi::
+
+        pip3 install twine
+        rm -rf dist
+        python3 setup.py bdist_wheel --universal
+        twine upload dist/*
+        git tag v1.0.XXX
+        git push --tags
