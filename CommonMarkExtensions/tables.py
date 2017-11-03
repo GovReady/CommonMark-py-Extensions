@@ -240,6 +240,7 @@ class RendererWithTables(CommonMark.HtmlRenderer):
             self.lit("</table>\n")
 
 
+
 # Define a new helper method that would be an in-place replacement
 # for CommonMark.commonmark.
 def commonmark(markup):

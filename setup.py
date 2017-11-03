@@ -5,12 +5,12 @@ from setuptools import setup, find_packages
 from codecs import open
 
 setup(
-	name='commonmarktables',
+	name='commonmarkextensions',
 	version='0.0.1',
 
-	description='Table rendering for CommonMark-py.',
+	description='Tables and plain text rendering for CommonMark-py.',
 	long_description=open("README.md", encoding='utf-8').read(),
-	url='https://github.com/GovReady/CommonMark-py-tables',
+	url='https://github.com/GovReady/CommonMark-py-Extensions',
 
 	author=u'GovReady PBC',
 	author_email=u'',
@@ -29,7 +29,7 @@ setup(
 		'Programming Language :: Python :: 3.6',
 	],
 
-	keywords="markdown commonmark table",
+	keywords="markdown commonmark tables plaintext",
 
 	packages=find_packages(),
 	install_requires=[
@@ -38,7 +38,6 @@ setup(
 
 	entry_points={
 		'console_scripts': [
-			'cmarktables=CommonMarkTables:main',
 		],
 	},
 )

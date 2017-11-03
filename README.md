@@ -1,20 +1,28 @@
-Tables for CommonMark-py
+CommonMark-py-Extensions
 ========================
 
-This package provides classes for extending [CommonMark-py](https://github.com/rtfd/CommonMark-py), a CommonMark rendering library for Python, with
-parsing and rendering tables in [GitHub Flavored Markdown](https://github.github.com/gfm/#tables-extension-)
-format, as well as our own format for multi-line table cells that support
+This package extends [CommonMark-py](https://github.com/rtfd/CommonMark-py), a CommonMark rendering library for Python, with:
+
+* Tables in [GitHub Flavored Markdown](https://github.github.com/gfm/#tables-extension-), with a futher extension for multi-line table cells that support
 embedded block markup.
 
 This library is tightly linked to the CommonMark-py internals and has been tested only with `CommonMark==0.7.4`.
 
 NOTE: This project is a work-in-progress. It is closely compatible with GitHub Flavored Markdown but deviates a bit in edge cases and block-end rules.
 
+Installation
+------------
+
+	pip install git+https://github.com/GovReady/CommonMark-py-Extensions
+
+Usage
+-----
+
 Usage is similar to the upstream library:
 
 ```python
->>> import CommonMarkTables
->>> CommonMarkTables.commonmark("""
+>>> import CommonMarkExtensions.tables
+>>> CommonMarkExtensions.tables.commonmark("""
 ... | Header 1 | Header 2 |
 ... | -------- | -------- |
 ... | Cells    | **can**  |
@@ -33,7 +41,7 @@ markup = """
 | C      | D      |
 """
 
-from CommonMarkTables import ParserWithTables, RendererWithTables
+from CommonMarkExtensions.tables import ParserWithTables, RendererWithTables
 parser = ParserWithTables()
 ast = parser.parse(markup)
 print(RendererWithTables().render(ast))

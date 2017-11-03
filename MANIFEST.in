@@ -1,3 +1,4 @@
 include CommonMarkTables/__init__.py
+include CommonMarkTables/tables.py
 include CommonMarkTables/test.py
 include LICENSE README.md
