@@ -1,6 +1,8 @@
 import unittest
 
-from CommonMarkTables import ParserWithTables, RendererWithTables
+import CommonMark
+from CommonMarkExtensions.tables import ParserWithTables, RendererWithTables
+from CommonMarkExtensions.plaintext import PlainTextRenderer
 
 
 class GithubFlavoredTablesTests(unittest.TestCase):
@@ -234,6 +236,23 @@ bim</p>
 </table>"""            
         )
         
+
+class PlainTextRendererTests(unittest.TestCase):
+    """Test the PlainTextRenderer cell mode."""
+
+
+    def assertRender(self, markdown, expected):
+        parser = CommonMark.Parser()
+        ast = parser.parse(markdown)
+        text = PlainTextRenderer().render(ast).rstrip()
+        self.assertEqual(text, expected)
+
+
+    def test_simple(self):
+        self.assertRender("""Hello""", """Hello""")
+
+    def test_heading(self):
+        self.assertRender("""# Heading *Formatting*""", """Heading *Formatting*\n####################""")
 
 if __name__ == '__main__':
     unittest.main()
