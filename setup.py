@@ -6,7 +6,7 @@ from codecs import open
 
 setup(
 	name='commonmarkextensions',
-	version='0.0.1',
+	version='0.0.2',
 
 	description='Tables and plain text rendering for CommonMark-py.',
 	long_description=open("README.md", encoding='utf-8').read(),
