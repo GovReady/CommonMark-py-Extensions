@@ -3,8 +3,8 @@
 
 import re
 
-import CommonMark
-import CommonMark.render.renderer
+import commonmark
+import commonmark.render.renderer
 
 
 class RawHtmlNotAllowed(ValueError):
@@ -43,7 +43,7 @@ class ItemBullet:
             return " " * len(self.emitted)
 
 
-class PlainTextRenderer(CommonMark.render.renderer.Renderer):
+class PlainTextRenderer(commonmark.render.renderer.Renderer):
     def __init__(self):
         self.setext_heading_chars = ["#", "=", "-"]
         self.block_indent = []
@@ -381,9 +381,9 @@ class CommonMarkToCommonMarkRenderer(PlainTextRenderer):
 
 
 # Define a new helper method that would be an in-place replacement
-# for CommonMark.commonmark.
-def commonmark(markup):
-    parser = CommonMark.Parser()
+# for commonmark.commonmark.
+def commonmark_to_html(markup):
+    parser = commonmark.Parser()
     ast = parser.parse(markup)
     return PlainTextRenderer().render(ast)
 
@@ -391,4 +391,4 @@ def commonmark(markup):
 if __name__ == "__main__":
     # Run the parser on STDIN and write to STDOUT.
     import sys
-    print(commonmark(sys.stdin.read()))
+    print(commonmark_to_html(sys.stdin.read()))

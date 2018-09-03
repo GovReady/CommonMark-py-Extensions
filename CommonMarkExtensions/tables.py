@@ -1,26 +1,26 @@
 from collections import defaultdict
 
-import CommonMark
-import CommonMark.blocks
-import CommonMark.node
+import commonmark
+import commonmark.blocks
+import commonmark.node
 
 
 # Mokey-patch the reMaybeSpecial regex to add our table symbol |.
 # This regex is apparently just an optimization so this should not
 # affect CommonMark parser instances that do not recognize tables.
 import re
-CommonMark.blocks.reMaybeSpecial = re.compile(r'^[#`~*+_=<>0-9-|]')
+commonmark.blocks.reMaybeSpecial = re.compile(r'^[#`~*+_=<>0-9-|]')
 
 
 # Define a new BlockStarts class that implements a table method
 # to detect and parse table starts, modeled after the blockquote.
-class BlockStarts(CommonMark.blocks.BlockStarts):
+class BlockStarts(commonmark.blocks.BlockStarts):
     def __init__(self):
         self.METHODS = ["table"] + self.METHODS
     @staticmethod
     def table(parser, container):
         if not parser.indented and \
-           CommonMark.blocks.peek(parser.current_line, parser.next_nonspace) == '|':
+           commonmark.blocks.peek(parser.current_line, parser.next_nonspace) == '|':
             parser.advance_next_nonspace()
             parser.advance_offset(1, False)
             parser.close_unmatched_blocks()
@@ -34,16 +34,16 @@ class BlockStarts(CommonMark.blocks.BlockStarts):
 # they start with the symbol. Also has accepts_lines to suck in everything
 # within it as raw data. Accept : as a continuation symbol for
 # Github-flavored Markdown table column alignment.
-class Table(CommonMark.blocks.Block):
+class Table(commonmark.blocks.Block):
     accepts_lines = True
 
     @staticmethod
     def continue_(parser=None, container=None):
         ln = parser.current_line
-        if not parser.indented and CommonMark.blocks.peek(ln, parser.next_nonspace) == "|":
+        if not parser.indented and commonmark.blocks.peek(ln, parser.next_nonspace) == "|":
             parser.advance_next_nonspace()
             parser.advance_offset(1, False)
-        elif not parser.indented and CommonMark.blocks.peek(ln, parser.next_nonspace) not in ("", ">", "`"):
+        elif not parser.indented and commonmark.blocks.peek(ln, parser.next_nonspace) not in ("", ">", "`"):
             pass
         else:
             return 1
@@ -158,7 +158,7 @@ class Table(CommonMark.blocks.Block):
             # inline_parser function. Wrap each cell string content
             # in a Node first.
             def inner_parser(cell):
-                node = CommonMark.node.Node("document", 0)
+                node = commonmark.node.Node("document", 0)
                 node.string_content = cell
                 parser.inline_parser.parse(node)
                 return node
@@ -177,12 +177,12 @@ class Table(CommonMark.blocks.Block):
         block.column_properties = column_properties
         block.table = table_parts
 
-CommonMark.blocks.Table = Table
+commonmark.blocks.Table = Table
 
 
 # Create a new parser sub-class that adds the new block-start
 # for tables.
-class ParserWithTables(CommonMark.Parser):
+class ParserWithTables(commonmark.Parser):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.block_starts = BlockStarts()
@@ -190,7 +190,7 @@ class ParserWithTables(CommonMark.Parser):
 
 # Define a new renderer that extends the HtmlRenderer and
 # adds table rendering.
-class RendererWithTables(CommonMark.HtmlRenderer):
+class RendererWithTables(commonmark.HtmlRenderer):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -242,8 +242,8 @@ class RendererWithTables(CommonMark.HtmlRenderer):
 
 
 # Define a new helper method that would be an in-place replacement
-# for CommonMark.commonmark.
-def commonmark(markup):
+# for commonmark.commonmark.
+def commonmark_to_html(markup):
     parser = ParserWithTables()
     ast = parser.parse(markup)
     return RendererWithTables().render(ast)

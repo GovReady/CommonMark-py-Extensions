@@ -6,9 +6,9 @@ from codecs import open
 
 setup(
 	name='commonmarkextensions',
-	version='0.0.3',
+	version='0.0.4',
 
-	description='Tables and plain text rendering for CommonMark-py.',
+	description='Tables and plain text rendering extension to commonmark.',
 	long_description=open("README.md", encoding='utf-8').read(),
 	url='https://github.com/GovReady/CommonMark-py-Extensions',
 
@@ -33,7 +33,7 @@ setup(
 
 	packages=find_packages(),
 	install_requires=[
-		"CommonMark>=0.7.4,<=0.7.5",
+		"commonmark==0.8.0",
 		],
 
 	entry_points={

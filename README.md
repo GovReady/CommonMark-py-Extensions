@@ -1,13 +1,13 @@
 CommonMark-py-Extensions
 ========================
 
-This package extends [CommonMark-py](https://github.com/rtfd/CommonMark-py), a CommonMark rendering library for Python, with:
+This package extends the [commonmark](https://github.com/rtfd/CommonMark-py) CommonMark rendering library for Python with:
 
 * Tables in [GitHub Flavored Markdown](https://github.github.com/gfm/#tables-extension-), with a futher extension for multi-line table cells that support
 embedded block markup.
 * A new renderer to convert CommonMark to plain text that is prettier than the original CommonMark, and a renderer that turns CommonMark back into CommonMark again.
 
-This library is tightly linked to the CommonMark-py internals and has been tested only with `CommonMark==0.7.4`.
+This library is tightly linked to the commonmark internals and has been tested only with `commonmark==0.8.0`.
 
 NOTE: This project is a work-in-progress. It is closely compatible with GitHub Flavored Markdown but deviates a bit in edge cases and block-end rules.
 
@@ -181,9 +181,9 @@ This outputs:
 Plain text rendering using a parser and renderer:
 
 ```python
-import CommonMark
+import commonmark
 from CommonMarkExtensions.plaintext import PlainTextRenderer
-parser = CommonMark.Parser()
+parser = commonmark.Parser()
 ast = parser.parse(markup)
 print(PlainTextRenderer().render(ast))
 ```
@@ -197,9 +197,9 @@ into more CommonMark.
 ... 
 ... See [our website](https://www.govready.com) for details.
 ... """
->>> import CommonMark
+>>> import commonmark
 >>> from CommonMarkExtensions.plaintext import CommonMarkToCommonMarkRenderer
->>> parser = CommonMark.Parser()
+>>> parser = commonmark.Parser()
 >>> ast = parser.parse(markup)
 >>> print(CommonMarkToCommonMarkRenderer().render(ast))
 Good morning\!
