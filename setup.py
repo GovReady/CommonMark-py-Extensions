@@ -6,7 +6,7 @@ from codecs import open
 
 setup(
 	name='commonmarkextensions',
-	version='0.0.4',
+	version='0.0.5',
 
 	description='Tables and plain text rendering extension to commonmark.',
 	long_description=open("README.md", encoding='utf-8').read(),
@@ -33,7 +33,7 @@ setup(
 
 	packages=find_packages(),
 	install_requires=[
-		"commonmark==0.8.0",
+		"commonmark>=0.8.0,<=0.8.1",
 		],
 
 	entry_points={

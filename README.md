@@ -24,8 +24,8 @@ Usage
 Usage is similar to the upstream library. To render tables:
 
 ```python
->>> import CommonMarkExtensions.tables
->>> CommonMarkExtensions.tables.commonmark("""
+>>> import commonmark_extensions.tables
+>>> commonmark_extensions.tables.commonmark("""
 ... | Header 1 | Header 2 |
 ... | -------- | -------- |
 ... | Cells    | **can**  |
@@ -107,8 +107,8 @@ The plain text renderer fixes up and normalizes markup:
 Use the plain text renderer as follows:
 
 ```python
->>> import CommonMarkExtensions.plaintext
->>> pt = CommonMarkExtensions.plaintext.commonmark("""
+>>> import commonmark_extensions.plaintext
+>>> pt = commonmark_extensions.plaintext.commonmark("""
 ...   # Good morning!
 ... 
 ...   See [our website](https://www.govready.com) for details.
@@ -147,7 +147,7 @@ markup = """
 | C      | D      |
 """
 
-from CommonMarkExtensions.tables import ParserWithTables, RendererWithTables
+from commonmark_extensions.tables import ParserWithTables, RendererWithTables
 parser = ParserWithTables()
 ast = parser.parse(markup)
 print(RendererWithTables().render(ast))
@@ -182,7 +182,7 @@ Plain text rendering using a parser and renderer:
 
 ```python
 import commonmark
-from CommonMarkExtensions.plaintext import PlainTextRenderer
+from commonmark_extensions.plaintext import PlainTextRenderer
 parser = commonmark.Parser()
 ast = parser.parse(markup)
 print(PlainTextRenderer().render(ast))
@@ -198,7 +198,7 @@ into more CommonMark.
 ... See [our website](https://www.govready.com) for details.
 ... """
 >>> import commonmark
->>> from CommonMarkExtensions.plaintext import CommonMarkToCommonMarkRenderer
+>>> from commonmark_extensions.plaintext import CommonMarkToCommonMarkRenderer
 >>> parser = commonmark.Parser()
 >>> ast = parser.parse(markup)
 >>> print(CommonMarkToCommonMarkRenderer().render(ast))
@@ -215,7 +215,7 @@ Tests
 
 There is no reference output for what the plain text renderer should produce. But I've saved the output of all of the CommonMark spec examples into `reference_output.txt` so that as this library evolves we can see changes. To check for consistency with previous output of this library, run::
 
-    python3 CommonMarkExtensions/make_reference_output.py > reference_output.txt
+    python3 commonmark_extensions/make_reference_output.py > reference_output.txt
     git diff
 
 The PlainTextRenderer is tested by round-tripping CommonMark (parsing, then outputing it as CommonMark), and then parsing that and outputting to HTML. The final HTML should match the HTML that you'd get from just rendering to HTML in one step. 

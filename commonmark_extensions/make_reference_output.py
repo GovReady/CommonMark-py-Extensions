@@ -3,9 +3,9 @@ import os.path
 import re
 import sys
 
-import CommonMark
-import CommonMark.render.html
-import CommonMarkExtensions.plaintext
+import commonmark
+import commonmark.render.html
+import commonmark_extensions.plaintext
 
 def get_tests():
     if not os.path.exists("spec.txt"):
@@ -54,14 +54,14 @@ def get_tests():
 def run_tests():
     test_output = []
 
-    parser = CommonMark.Parser()
+    parser = commonmark.Parser()
 
     for test in get_tests():
         # Render as text and output.
         # Since we don't have reference output, we'll make our own and
         # just track if it changes.
 
-        renderer = CommonMarkExtensions.plaintext.PlainTextRenderer()
+        renderer = commonmark_extensions.plaintext.PlainTextRenderer()
         ast = parser.parse(test['markdown'])
 
         heading = "TEST (%s)" % test['section']
@@ -76,16 +76,16 @@ def run_tests():
 
         try:
             output = renderer.render(ast)
-        except CommonMarkExtensions.plaintext.RawHtmlNotAllowed:
+        except commonmark_extensions.plaintext.RawHtmlNotAllowed:
             print("[raw HTML is not permitted in plain text output]\n")
         else:
             print(output)
 
         # Render as CommonMark, then re-parse it, render that to
         # HTML, and see if the HTML matches the reference HTML.
-        cm = CommonMarkExtensions.plaintext.CommonMarkToCommonMarkRenderer().render(ast)
+        cm = commonmark_extensions.plaintext.CommonMarkToCommonMarkRenderer().render(ast)
         ast = parser.parse(cm)
-        html = CommonMark.render.html.HtmlRenderer().render(ast)
+        html = commonmark.render.html.HtmlRenderer().render(ast)
         if html != test['html']:
             # This is an error. Round-tripping didn't work.
             print("Round-tripping CommonMark failed. It generated:")

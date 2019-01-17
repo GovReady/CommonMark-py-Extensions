@@ -1,5 +1,5 @@
-include CommonMarkExtensions/__init__.py
-include CommonMarkExtensions/tables.py
-include CommonMarkExtensions/plaintext.py
-include CommonMarkExtensions/test.py
+include commonmark_extensions/__init__.py
+include commonmark_extensions/tables.py
+include commonmark_extensions/plaintext.py
+include commonmark_extensions/test.py
 include LICENSE README.md

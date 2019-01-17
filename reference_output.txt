@@ -6565,11 +6565,7 @@ HTML:
 <p><code>a  b</code></p>
 
 output:
-`a b`
-
-
-Round-tripping CommonMark failed. It generated:
-`a b`
+`a  b`
 
 
 TEST (Code spans)
@@ -8211,11 +8207,7 @@ HTML:
 <p><em><strong>foo</strong></em></p>
 
 output:
-**_foo_**
-
-
-Round-tripping CommonMark failed. It generated:
-**_foo_**
+*__foo__*
 
 
 TEST (Emphasis and strong emphasis)
@@ -8228,11 +8220,7 @@ HTML:
 <p><em><strong><strong>foo</strong></strong></em></p>
 
 output:
-**__*foo*__**
-
-
-Round-tripping CommonMark failed. It generated:
-**__*foo*__**
+*__**foo**__*
 
 
 TEST (Emphasis and strong emphasis)
@@ -8532,11 +8520,7 @@ HTML:
 <p><a href="foo(and(bar))">link</a></p>
 
 output:
-[link](foo(and(bar)))
-
-
-Round-tripping CommonMark failed. It generated:
-\[link\](foo(and(bar)))
+link <foo(and(bar))>
 
 
 TEST (Links)
@@ -8842,6 +8826,10 @@ output:
 [foo *[bar baz </uri>](/uri)*](/uri)
 
 
+Round-tripping CommonMark failed. It generated:
+\[foo *\[bar [baz](/uri)\](/uri)*\](/uri)
+
+
 TEST (Links)
 ============
 
@@ -9035,6 +9023,10 @@ HTML:
 
 output:
 [foo *bar baz </uri>*]ref </uri>
+
+
+Round-tripping CommonMark failed. It generated:
+\[foo *bar [baz](/uri)*\][ref](/uri)
 
 
 TEST (Links)
@@ -9593,11 +9585,7 @@ HTML:
 <p><a href="/url1">foo</a>(not a link)</p>
 
 output:
-[foo](not a link)
-
-
-Round-tripping CommonMark failed. It generated:
-\[foo\](not a link)
+foo </url1>(not a link)
 
 
 TEST (Links)

@@ -1,8 +1,8 @@
 import unittest
 
-import CommonMark
-from CommonMarkExtensions.tables import ParserWithTables, RendererWithTables
-from CommonMarkExtensions.plaintext import PlainTextRenderer
+import commonmark
+from commonmark_extensions.tables import ParserWithTables, RendererWithTables
+from commonmark_extensions.plaintext import PlainTextRenderer
 
 
 class GithubFlavoredTablesTests(unittest.TestCase):
@@ -242,7 +242,7 @@ class PlainTextRendererTests(unittest.TestCase):
 
 
     def assertRender(self, markdown, expected):
-        parser = CommonMark.Parser()
+        parser = commonmark.Parser()
         ast = parser.parse(markdown)
         text = PlainTextRenderer().render(ast).rstrip()
         self.assertEqual(text, expected)
