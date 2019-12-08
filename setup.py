@@ -33,7 +33,7 @@ setup(
 
 	packages=find_packages(),
 	install_requires=[
-		"commonmark>=0.8.0,<=0.8.1",
+		"commonmark>=0.8.0,<=0.9.1",
 		],
 
 	entry_points={
