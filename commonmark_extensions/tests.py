@@ -121,6 +121,8 @@ bar | baz""",
 """| abc | def |
 | --- | --- |
 | bar | baz |
+bar
+
 bar""",
 
 """<table>
@@ -141,6 +143,7 @@ bar""",
 </tr>
 </tbody>
 </table>
+
 <p>bar</p>""")
 
 

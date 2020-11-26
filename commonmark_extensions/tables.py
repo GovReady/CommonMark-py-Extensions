@@ -43,7 +43,7 @@ class Table(commonmark.blocks.Block):
         if not parser.indented and commonmark.blocks.peek(ln, parser.next_nonspace) == "|":
             parser.advance_next_nonspace()
             parser.advance_offset(1, False)
-        elif not parser.indented and commonmark.blocks.peek(ln, parser.next_nonspace) not in ("", ">", "`"):
+        elif not parser.indented and commonmark.blocks.peek(ln, parser.next_nonspace) not in ("", ">", "`", None):
             pass
         else:
             return 1
