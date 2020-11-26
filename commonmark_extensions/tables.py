@@ -138,6 +138,10 @@ class Table(commonmark.blocks.Block):
                 # Fill in empty rows if fewer than the header.
                 if len(table_parts) > 1 and len(table_parts[0][0]) > len(table_parts[-1][-1]):
                     table_parts[-1][-1].extend( ["" for _ in range(len(table_parts[0][0]) - len(table_parts[-1][-1])) ] )
+
+                # Remove excess cells if more than number of columns
+                if len(table_parts) > 1 and len(table_parts[0][0]) < len(table_parts[-1][-1]):
+                    table_parts[-1][-1] = table_parts[-1][-1][:len(table_parts[0][0])]
             
             else:
                 # Multline mode. Merge this row with the previous one.
