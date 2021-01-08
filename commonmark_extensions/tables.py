@@ -186,6 +186,7 @@ class ParserWithTables(commonmark.Parser):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.block_starts = BlockStarts()
+        self.blocks['table'] = commonmark.blocks.Table
 
 
 # Define a new renderer that extends the HtmlRenderer and
