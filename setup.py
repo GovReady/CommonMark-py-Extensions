@@ -10,6 +10,7 @@ setup(
 
 	description='Tables and plain text rendering extension to commonmark.',
 	long_description=open("README.md", encoding='utf-8').read(),
+        long_description_content_type='text/markdown',
 	url='https://github.com/GovReady/CommonMark-py-Extensions',
 
 	author=u'GovReady PBC',
@@ -29,7 +30,7 @@ setup(
 		'Programming Language :: Python :: 3.6',
 		'Programming Language :: Python :: 3.7',
 		'Programming Language :: Python :: 3.8',
-		'Programming Language :: Python :: 3.9'
+		'Programming Language :: Python :: 3.9',
 	],
 
 	keywords="markdown commonmark tables plaintext",
