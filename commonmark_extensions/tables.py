@@ -25,7 +25,8 @@ class BlockStarts(commonmark.blocks.BlockStarts):
             parser.advance_offset(1, False)
             parser.close_unmatched_blocks()
             parser.add_child('table', parser.next_nonspace)
-            return 1
+            parser.tip.string_content = '|'
+            return 2
         return 0
 
 
@@ -43,7 +44,8 @@ class Table(commonmark.blocks.Block):
         if not parser.indented and commonmark.blocks.peek(ln, parser.next_nonspace) == "|":
             parser.advance_next_nonspace()
             parser.advance_offset(1, False)
-        elif not parser.indented and commonmark.blocks.peek(ln, parser.next_nonspace) not in ("", ">", "`"):
+            container.string_content += "|"
+        elif not parser.indented and commonmark.blocks.peek(ln, parser.next_nonspace) not in ("", ">", "`", None):
             pass
         else:
             return 1
@@ -60,6 +62,7 @@ class Table(commonmark.blocks.Block):
         table = [[""]]
         escape = False
         newrowbars = False
+        ignore_pipe = True
         for c in block.string_content.rstrip():
             # \-escaping
             if escape:
@@ -71,6 +74,9 @@ class Table(commonmark.blocks.Block):
             # New cell is begun by a bar. Right-strip the cell we're
             # ending.
             elif c == "|":
+                if ignore_pipe:
+                    ignore_pipe = False
+                    continue
                 table[-1][-1] = table[-1][-1].rstrip()
                 table[-1].append("")
 
@@ -80,6 +86,8 @@ class Table(commonmark.blocks.Block):
             elif c == "\n":
                 if table[-1][-1].strip() == "": table[-1].pop(-1)
                 table.append([""])
+                ignore_pipe = True
+                continue
 
             # Ignore space at start of cell. An escaped space
             # can force a space.
@@ -89,6 +97,8 @@ class Table(commonmark.blocks.Block):
             # Content.
             else:
                 table[-1][-1] += c
+
+            ignore_pipe = False
 
         # Remove the last cell if it's empty since it's caused
         # by the final pipe at the end of the last line.
@@ -107,6 +117,9 @@ class Table(commonmark.blocks.Block):
             if len(list(filter(lambda cell : not re.match(r"[-=:]+$", cell), row))) == 0:
                 # This row has cells of just dahses.
                 if len(table_parts) == 1:
+                    if len(row) != len(table_parts[0][0]):
+                        block.t = 'paragraph'
+                        return
                     # The first time, we shift to the tbody.
                     table_parts.append([])
 
@@ -138,6 +151,10 @@ class Table(commonmark.blocks.Block):
                 # Fill in empty rows if fewer than the header.
                 if len(table_parts) > 1 and len(table_parts[0][0]) > len(table_parts[-1][-1]):
                     table_parts[-1][-1].extend( ["" for _ in range(len(table_parts[0][0]) - len(table_parts[-1][-1])) ] )
+
+                # Remove excess cells if more than number of columns
+                if len(table_parts) > 1 and len(table_parts[0][0]) < len(table_parts[-1][-1]):
+                    table_parts[-1][-1] = table_parts[-1][-1][:len(table_parts[0][0])]
             
             else:
                 # Multline mode. Merge this row with the previous one.
