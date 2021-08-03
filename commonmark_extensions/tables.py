@@ -143,6 +143,8 @@ class Table(commonmark.blocks.Block):
                 # Multline mode. Merge this row with the previous one.
                 for i in range(len(row)):
                     if i < len(table_parts[-1][-1]):
+                        if table_parts[-1][-1][i] == "-":
+                            continue
                         table_parts[-1][-1][i] += "\n" + row[i]
                     else:
                         table_parts[-1][-1].append(row[i])
