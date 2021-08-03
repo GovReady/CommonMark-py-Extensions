@@ -196,6 +196,69 @@ bar""",
 </thead>
 </table>""")
 
+    def test_colspan_header(self):
+        self.assertRender(
+"""| foo | - |
+| --- | --- |
+| baz | bim |""",
+
+"""<table>
+<thead>
+<tr>
+<th colspan="2">foo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>baz</td>
+<td>bim</td>
+</tr>
+</tbody>
+</table>"""
+        )
+
+    def test_colspan_body(self):
+        self.assertRender(
+"""| foo | bar |
+| --- | --- |
+| baz | - |""",
+
+"""<table>
+<thead>
+<tr>
+<th>foo</th>
+<th>bar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2">baz</td>
+</tr>
+</tbody>
+</table>"""
+        )
+
+    def test_colspan_multiple(self):
+        self.assertRender(
+"""| foo | bar | - |- | -|
+| --- | --- | --- | --- | --- |
+| baz | - | bim | - |-|""",
+
+"""<table>
+<thead>
+<tr>
+<th>foo</th>
+<th colspan="4">bar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2">baz</td>
+<td colspan="3">bim</td>
+</tr>
+</tbody>
+</table>"""
+        )
             
 class MultilineTablesTests(unittest.TestCase):
     """Test the multiline cell mode."""
@@ -236,6 +299,98 @@ bim</p>
 </table>"""            
         )
         
+    def test_colspan_header(self):
+        self.assertRender(
+"""| foo | - |
+| === | === |
+| baz | bim |
+| baz | bim |""",
+
+"""<table>
+<thead>
+<tr>
+<th colspan="2">foo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><p>baz
+baz</p>
+</td>
+<td><p>bim
+bim</p>
+</td>
+</tr>
+</tbody>
+</table>"""
+        )
+
+    def test_colspan_body(self):
+        self.assertRender(
+"""| foo | bar |
+| === | === |
+| baz | - |""",
+
+"""<table>
+<thead>
+<tr>
+<th>foo</th>
+<th>bar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2">baz</td>
+</tr>
+</tbody>
+</table>"""
+        )
+
+    def test_colspan_multiple(self):
+        self.assertRender(
+"""| foo | bar | - |- | -|
+| === | === | === | === | === |
+| baz | - | bim | - |-|""",
+
+"""<table>
+<thead>
+<tr>
+<th>foo</th>
+<th colspan="4">bar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2">baz</td>
+<td colspan="3">bim</td>
+</tr>
+</tbody>
+</table>"""
+        )
+
+    def test_colspan_multiline_body(self):
+        self.assertRender(
+"""| foo | bar |
+| === | === |
+| baz | - |
+| baz | |""",
+
+"""<table>
+<thead>
+<tr>
+<th>foo</th>
+<th>bar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2"><p>baz
+baz</p>
+</td>
+</tr>
+</tbody>
+</table>"""
+        )
 
 class PlainTextRendererTests(unittest.TestCase):
     """Test the PlainTextRenderer cell mode."""

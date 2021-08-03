@@ -143,6 +143,8 @@ class Table(commonmark.blocks.Block):
                 # Multline mode. Merge this row with the previous one.
                 for i in range(len(row)):
                     if i < len(table_parts[-1][-1]):
+                        if table_parts[-1][-1][i] == "-":
+                            continue
                         table_parts[-1][-1][i] += "\n" + row[i]
                     else:
                         table_parts[-1][-1].append(row[i])
@@ -171,7 +173,7 @@ class Table(commonmark.blocks.Block):
         for part in table_parts:
             for row in part:
                 for i, cell in enumerate(row):
-                    row[i] = inner_parser(cell)
+                    row[i] = inner_parser(cell) if cell != "-" else None
 
         # Store the parsed table on the node.
         block.column_properties = column_properties
@@ -211,6 +213,9 @@ class RendererWithTables(commonmark.HtmlRenderer):
                 for row in part:
                     self.lit("<tr>\n")
                     for colidx, cell in enumerate(row):
+                        if cell is None:
+                            continue
+
                         if part_tag == "thead":
                             col_tag = "th"
                             if self.options.get("table_th_scope"):
@@ -223,6 +228,15 @@ class RendererWithTables(commonmark.HtmlRenderer):
 
                         if colidx in node.column_properties and "align" in node.column_properties[colidx]:
                             col_attrs += ' align=\"' + node.column_properties[colidx]["align"] + "\""
+
+                        span = 1
+                        for nextid in range(colidx+1, len(row)):
+                            if row[nextid] is None:
+                                span += 1
+                            else:
+                                break
+                        if span > 1:
+                            col_attrs += ' colspan=\"' + str(span) + '\"'
 
                         self.lit("<" + col_tag + col_attrs + ">")
                         
